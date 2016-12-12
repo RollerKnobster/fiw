@@ -1,0 +1,50 @@
+{% extends "admin.base.html.twig" %}
+
+{% block content %}
+			<section class="project-name-wrapper">
+				<!-- topic wrapper -->
+					<div class="topic-wrapper">
+						<div class="project-name">
+						</div>
+						<div class="lang-wrapper">
+							<ul class="lang-menu">
+								{% for lang in app.langs %}
+								<li class="lang-field{% if app.lang == lang %} lang-active{% endif %}"><a href="{{baseUrl()}}/{{lang}}/admin">{{lang}}</a></li>
+								{% endfor %}
+							</ul>
+						</div>
+					</div>
+				<!-- end topic wrapper -->
+
+				<!-- text field -->
+				<section class="text-field">
+					<form action="{{baseUrl()}}/{{app.lang_uri}}/admin/save_text" method="POST" id="about_form">
+						<textarea class="text-field-input" tabindex="1" data-mcs-theme="dark" name="text">{{text}}</textarea>
+						<div class="button-wrapper submit-float">
+							<button type="submit" class="submit-button"></button>
+							<p class="submit-text">збережено</p>
+						</div>
+					</form>
+				</section>
+				<!-- end text field -->
+			</section>
+{% endblock %}
+
+{% block javascripts %}
+<script>
+
+$(document).ready(function(){
+
+	$("#about_form").on('submit', function(e){
+		e.preventDefault();
+
+		$.post($(this).attr('action'), $(this).serialize(), function(data){
+			console.log(data);
+		});
+
+	});
+
+});
+
+</script>
+{% endblock %}

@@ -1,0 +1,157 @@
+{% extends "admin.base.html.twig" %}
+
+{% block content %}
+			<section class="project-name-wrapper">
+				<!-- topic wrapper -->
+					<div class="topic-wrapper">
+						<div class="project-name">
+						</div>
+						<div class="lang-wrapper">
+							<ul class="lang-menu">
+								{% for lang in app.langs %}
+								<li class="lang-field{% if app.lang == lang %} lang-active{% endif %}">
+									<a href="{{baseUrl()}}/{{lang}}/admin/employer{% if employer %}/{{employer.token}}{% else %}s{% endif %}">{{lang}}</a>
+								</li>
+								{% endfor %}
+							</ul>
+						</div>
+					</div>
+				<!-- end topic wrapper -->
+
+				<!-- photo information -->
+				<div class="photo-info-wrapper">
+					<form action="{{baseUrl()}}/{{app.lang_uri}}/admin/employer/save" enctype="multipart/form-data" method="POST" id="employer_form" {% if not employer %}style="display:none"{% endif %}>
+					{% if employer and employer.id %}<input type="hidden" name="employer_id" value="{{employer.id}}">{% endif %}
+						<table class="photo-info">
+							<tr>
+								<td class="left-td">фото</td>
+								<td>Ім'я та прізвище</td>
+							</tr>
+							<tr>
+								<td rowspan="3" class="left-td">
+									{% set has_photo = employer and not (employer.image ends with 'empty.jpg') %}
+									<!-- перший wrapper для завантаження фотки (додати блоку клас wrapper-hidden коли фотка завантажена) -->
+									<div class="photo-wrapper{% if has_photo %} wrapper-hidden{% endif %}">
+										<div class="photo-block">
+											<div class="photo-block-overflow overflow-passive"></div>
+										</div>
+										<label for="upload_photo">
+											<span>завантажити</span>
+										</label>
+										<input type="file" id="upload_photo" name="picture">
+									</div>
+									<!-- перший wrapper для завантаження фотки -->
+									<!-- другий wrapper для видалення фотки  (забрати блоку клас wrapper-hidden коли фотка завантажена)-->
+									<div class="photo-wrapper{% if not has_photo %} wrapper-hidden{% endif %}">
+										<div class="photo-block">
+											<img src="{{employer.image}}" alt="worker">
+											<div class="photo-block-overflow"></div>
+										</div>
+										<span class="remove_image">видалити</span>
+									</div>
+									<!-- другий wrapper для видалення фотки -->
+								</td>
+								<td class="td-change right-td input-field">
+									<input type="text" placeholder="Іра Павленко" class="lower" name="name" value="{{employer.name}}">
+								</td>
+							</tr>
+							<tr>
+								<td class="right-td">Посада</td>
+							</tr>
+							<tr>
+								<td class="td-change right-td input-field">
+									<input type="text" placeholder="Менеджер по продажу" class="lower" name="position" value="{{employer.position}}">
+								</td>
+							</tr>
+						</table>
+						<div class="button-wrapper submit-margin">
+							<button type="submit" class="submit-button"></button>
+							<p class="submit-text">збережено</p>
+						</div>
+					</form>
+				</div>
+				<!-- end photo information -->
+
+				<!-- adding-photo -->
+				<div class="photo-add">
+					{% for empl in employer_list %}
+					<div class="photo-add-wrapper">
+						<a href="{{urlFor('admin_one_employer', {'token':empl.token})}}">
+							<div class="project-add-block">
+								<img src="{{empl.image}}" alt="Employer image">
+								<div class="project-add-inner inner-passive">
+									<div class="close-button">&#215;</div>
+									<p class="project-block-text">{{empl.name}}</p>
+								</div>
+							</div>
+						</a>
+					</div>
+					{% endfor %}
+					<div class="photo-add-wrapper">
+						<a href="javascript:void(0)">
+							<img src="image/photo-info/worker.png" class="opacity-img">
+							<div class="add-btn">
+								<div class="add-btn-hover"></div>
+							</div>
+						</a>
+					</div>
+				</div>
+				<!-- end adding-photo -->
+			</section>
+{% endblock %}
+
+
+{% block javascripts %}
+<script>
+
+$(document).ready(function(){
+
+	if (window.location.hash && window.location.hash == '#create')
+		$('#employer_form').show();
+
+	$("#employer_form").on('submit', function(e){
+
+		e.preventDefault();
+
+		var formData = new FormData(this);
+
+		$.ajax({
+			url: $(this).attr("action"),
+			type: 'POST',
+			data: formData,
+			dataType: 'json',
+			async: false,
+			success: function (data) {
+				console.log(data)
+			},
+			cache: false,
+			contentType: false,
+			processData: false
+		});
+
+	});
+
+	$('.remove_thumb').on('click', function(){
+		var pw = $(this).closest('.project-wrapper');
+		pw.addClass('wrapper-hidden');
+		pw.siblings('.wrapper-hidden').removeClass('wrapper-hidden');
+		$(this).after('<input type="hidden" name="remove_thumb" value="1">');
+	});
+
+	$('.remove_img').on('click', function(){
+		var pw = $(this).closest('.project-wrapper');
+		pw.addClass('wrapper-hidden');
+		pw.siblings('.wrapper-hidden').removeClass('wrapper-hidden');
+		$(this).after('<input type="hidden" name="remove_img" value="1">');
+	});
+
+	$('.add-btn').on('click', function(){
+		{% if employer %}
+		top.location.href = '{{urlFor("admin_employers")}}#create';
+		{% endif %}
+		$('#employer_form').show();
+	});
+});
+
+</script>
+{% endblock %}

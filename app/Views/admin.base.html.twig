@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="{{app.lang}}">
+<head>
+	<meta charset="UTF-8">
+	<title>{{app.site_name}}</title>
+	<link rel="stylesheet" href="{{baseUrl()}}/css/admin.css">
+	<link rel="stylesheet" href="{{baseUrl()}}/scrollbar/jquery.mCustomScrollbar.css">
+	<link rel="stylesheet" href="{{baseUrl()}}/css/fontawesome/css/font-awesome.min.css">
+</head>
+<body>
+	<div class="main-container">
+		<div class="container">
+			<!-- header-menu -->
+			<header class="header">
+				<div class="logo">
+					<img src="{{baseUrl()}}/image/logo.png" alt="logo">
+				</div>
+				<ul class="header-menu">
+					<li><a href="{{urlFor('admin_portfolio')}}">проекти</a></li>
+					<li><a href="{{urlFor('admin_main')}}">текст про нас</a></li>
+					<li><a href="{{urlFor('admin_employers')}}">наші фото</a></li>
+				</ul>
+			</header>
+			<!-- end header-menu -->
+			{% block content %}{% endblock %}
+			</div>
+	</div>
+
+
+	<script src="{{baseUrl()}}/javascript/jquery-1.11.1.min.js"></script>
+	<script src="{{baseUrl()}}/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script src="{{baseUrl()}}/javascript/addscrollbar.js"></script>
+	<script src="{{baseUrl()}}/javascript/index.js"></script>
+	{% block javascripts %}{% endblock %}
+</body>
+</html>

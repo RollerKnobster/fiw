@@ -1,0 +1,35 @@
+<!-- MODAL -->
+<div id="myModal-{{loop.index}}" class="modal">
+	<!-- modal content -->
+	<div class="modal-content-wrapper">
+		<div class="modal-content">
+			<p class="main-slider-topic" id="slider_topic">{{portfolio.name}}</p>
+			<div class="close-btn">
+				<div class="sm-wr">
+					<div>&#215</div>
+				</div>
+			</div>
+			<div class="main-slider-wrapper">
+				<!-- big image -->
+				<ul class="big-img">
+					{% for p_image in portfolio.images %}
+					<li><img src="{{baseUrl()}}{{p_image}}" alt="photo"></li>
+					{% endfor %}
+				</ul>
+				<!-- end big image -->
+				<div class="small-img-wrapper" id="small_pictures">
+					{% for p_image in portfolio.images %}
+					<a href="javascript:void(0)" data-slide-index="{{loop.index0}}">
+						<div class="small-img-block">
+							<img src="{{baseUrl()}}{{p_image}}" alt="photo">
+							<div class="img-block-hover"></div>
+						</div>
+					</a>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- modal content -->
+</div>
+<!-- END MODAL -->

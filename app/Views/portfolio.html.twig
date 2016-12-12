@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="{{app.lang}}">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{{portfolio.title}} - {{app.site_name}}</title>
+	<link rel="stylesheet" href="{{baseUrl()}}/css/screen.css">
+	<link rel="stylesheet" href="{{baseUrl()}}/css/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="{{baseUrl()}}/bxslider/jquery.bxslider.css">
+	<meta name="description" content="{{portfolio.seo}}">
+</head>
+<body>
+
+<!--  - - - - - - - - - - - -HEADER- - - - - - - - - - - - -->
+<header class="portfolio-header">
+	<div class="container">
+		<!-- - - - - - vertical menu - - - - - -->
+		<div class="vertical-menu fixed-portfolio-menu" id="portfolio-vertical-menu">
+			<div class="vertical-menu-wrapper">
+				<div class="logo">
+					<img src="{{baseUrl()}}/image/header-nav/logowhite.png" alt="Keef logo">
+				</div>
+				<div class="lang-vertical">
+					<div class="sizer">
+						<img src="{{baseUrl()}}/image/vertical-menu/vm.png" alt="passive icon">
+					</div>
+					<div class="vertical-select">
+						<ul class="vert-ul">
+							{% for lang in app.langs %}
+							<li class="vert-li{% if app.lang == lang %} active-lang{% endif %}"><a href="{{baseUrl()}}/{{lang}}">{{lang}}</a></li>
+							{% endfor %}
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="vertical-nav-wrapper">
+				<nav class="vertical-nav">
+					<div>
+						<a href="{{urlFor('home')}}">
+							<span class="v-first-li">{{app.texts.home}}</span>
+						</a>
+					</div>
+					<div>
+						<a href="{{urlFor('home')}}">
+							<span>{{app.texts.what_we_do}}</span>
+						</a>
+					</div>
+					<div>
+						<a href="{{urlFor('home')}}">
+							<span>{{app.texts.who_we_are}}</span>
+						</a>
+					</div>
+				</nav>
+			</div>
+		</div>
+		<!-- - - - - - end vertical menu - - - - - -->
+
+		<!-- - - - - - SLIDER WRAPPER - - - - - -->
+		<div class="slider-wrapper">
+			<!-- - - - - - main topic - - - - - -->
+			<div class="main-topic">
+				<a href="{{urlFor('home')}}">{{portfolio.category.title}}</a>
+			</div>
+			<!-- - - - - - end main topic - - - - - -->
+
+			<!-- portfolio page -->
+			<div class="portfolio-page">
+
+				<!-- main-image -->
+				<div class="main-image">
+					<img src="{{portfolio.image}}" alt="badaro" class="portfolio-main-image">
+					<div class="image-hover-href">
+						<a href="{{baseUrl()}}">{{portfolio.category.title}}</a>
+					</div>
+				</div>
+				<!-- end main-image -->
+
+				<!-- main-image-info -->
+				<div class="main-image-info">
+					<div class="border-container" id="border-container">
+						<div class="mini-wrapper">
+							<h1>{{portfolio.title}}</h1>
+							<h3>{{portfolio.type}}</h3>
+							<p class="text-topic">project details:</p>
+							<p class="main-text">{{portfolio.description}}</p>
+							<p class="date">added {{portfolio.created|date('d/m/Y')}}</p>
+							<div class="social">
+								{% if portfolio.facebook %}
+								<a href="portfolio.facebook">
+									<div class="icons">
+										<i class="fa fa-facebook"></i>
+									</div>
+								</a>
+								{% endif %}
+								{% if portfolio.twitter %}
+								<a href="{{portfolio.twitter}}">
+									<div class="icons">
+										<i class="fa fa-twitter"></i>
+									</div>
+								</a>
+								{% endif %}
+								{% if portfolio.google %}
+								<a href="{{portfolio.google}}">
+									<div class="icons">
+										<i class="fa fa-google-plus"></i>
+									</div>
+								</a>
+								{% endif %}
+								{% if portfolio.linkedin %}
+								<a href="{{portfolio.linkedin}}">
+									<div class="icons">
+										<i class="fa fa-linkedin"></i>
+									</div>
+								</a>
+								{% endif %}
+								{% if portfolio.pinterest %}
+								<a href="{{portfolio.pinterest}}">
+									<div class="icons">
+										<i class="fa fa-pinterest-p"></i>
+									</div>
+								</a>
+								{% endif %}
+							</div>
+							<div class="pager">
+								<a href="{% if portfolio.prev %}{{baseUrl()}}{{urlFor('portfolio', {name:portfolio.prev.token})}}{% else %}javascript:void(0){% endif %}">
+									<img src="{{baseUrl()}}/image/slider/arrow/blackleft.png" alt="prev" id="pagerPrev">
+								</a>
+								<a href="{% if portfolio.next %}{{baseUrl()}}{{urlFor('portfolio', {name:portfolio.next.token})}}{% else %}javascript:void(0){% endif %}">
+									<img src="{{baseUrl()}}/image/slider/arrow/blackright.png" alt="next" id="pagerNext">
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- end main-image-info -->
+
+			</div>
+			<!-- end portfolio page -->
+
+
+		</div>
+		<!-- - - - - - END SLIDER WRAPPER - - - - - -->
+	</div>
+</header>
+<!--  - - - - - - - - - - - -END HEADER- - - - - - - - - - - - -->
+
+
+<!--  - - - - - - - - - - - -FOOTER- - - - - - - - - - - - -->
+<footer class="footer">
+	<div class="container">
+		<div class="table-wrapper">
+			<table class="footer-table first-table">
+				<tr>
+					<td class="smaller-td sprite-td" rowspan="2"><div></div></td>
+					<td class="smallest-td" rowspan="2">get in touch</td>
+					<td class="mini-td">
+						<img src="{{baseUrl()}}/image/footer/icon/phone.png" alt="mobile">
+					</td>
+					<td class="small-td">+ 38 096 779 79 99</td>
+					<td class="middle-td" rowspan="5">Contact us</td>
+				</tr>
+				<tr>
+					<td class="mini-td">
+						<img src="{{baseUrl()}}/image/footer/icon/whatsapp.png" alt="whatsapp">
+					</td>
+					<td class="small-td">+ 38 096 779 79 99</td>
+				</tr>
+				<tr>
+					<td class="smaller-td regular-font" colspan="2">General enquiries</td>
+					<td class="mini-td">
+						<img src="{{baseUrl()}}/image/footer/icon/skype.png" alt="skype">
+					</td>
+					<td class="small-td">keef.design</td>
+				</tr>
+				<tr>
+					<td class="smaller-td" colspan="2">keef craft and design</td>
+					<td class="mini-td">
+						<img src="{{baseUrl()}}/image/footer/icon/email.png" alt="email">
+					</td>
+					<td class="small-td">keef@europe.com</td>
+				</tr>
+				<tr>
+					<td class="smaller-td small-font" colspan="2">All rights reserved</td>
+					<td class="mini-td">
+						<img src="{{baseUrl()}}/image/footer/icon/location.png" alt="location">
+					</td>
+					<td class="small-td">lviv.ukraine</td>
+				</tr>
+			</table>
+			<section class="middle-block"></section>
+			<!--  - - - - - - - - - - - - second table - - - - - - - - - - - - - - - - -->
+			<table class="footer-table second-table">
+				<tr class="hover-opacity">
+					<td class="bigger-td">
+						<a href="https://www.facebook.com/keef.com.ua" target="_blanc">like us on facebook</a>
+					</td>
+					<td class="mini-td">
+						<div class="mini-td-wrapper">
+							<div class="mini-td-passive">
+								<a href="https://www.facebook.com/keef.com.ua" target="_blanc">
+									<img class="footer-icon" src="{{baseUrl()}}/image/footer/icon-active/facebookactive.png" alt="facebook">
+								</a>
+							</div>
+						</div>
+					</td>
+					<td class="smaller-td" rowspan="5">social media</td>
+				</tr>
+				<tr class="hover-opacity">
+					<td class="bigger-td">
+						<a href="https://www.instagram.com/keef.design/" target="_blanc">follow us on instagram</a>
+					</td>
+					<td class="mini-td">
+						<div class="mini-td-wrapper">
+							<div class="mini-td-passive">
+								<a href="https://www.instagram.com/keef.design/" target="_blanc">
+									<img class="footer-icon" src="{{baseUrl()}}/image/footer/icon-active/instagramactive.png" alt="instagram">
+								</a>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr class="hover-opacity">
+					<td class="bigger-td">
+						<a href="https://www.behance.net/KEEF_DESIGN" target="_blanc">follow us on behance</a>
+					</td>
+					<td class="mini-td">
+						<div class="mini-td-wrapper">
+							<div class="mini-td-passive">
+								<a href="https://www.behance.net/KEEF_DESIGN" target="_blanc">
+									<img class="footer-icon" src="{{baseUrl()}}/image/footer/icon-active/behanceactive.png" alt="behance">
+								</a>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr class="hover-opacity">
+					<td class="bigger-td">
+						<a href="https://www.linkedin.com/start/join?session_redirect=https%3A%2F%2Fwww.linkedin.com%2Fcompany%2F10885040%3Ftrk%3Dtyah%26trkInfo%3DclickedVertical%253Acompany%252CclickedEntityId%253A10885040%252Cidx%253A2-1-2%252CtarId%253A1478012942441%252Ctas%253Akeef%2520c&source=sentinel_org_block&trk=login_reg_redirect">like us on linkedin</a>
+					</td>
+					<td class="mini-td">
+						<div class="mini-td-wrapper">
+							<div class="mini-td-passive">
+								<a href="https://www.linkedin.com/start/join?session_redirect=https%3A%2F%2Fwww.linkedin.com%2Fcompany%2F10885040%3Ftrk%3Dtyah%26trkInfo%3DclickedVertical%253Acompany%252CclickedEntityId%253A10885040%252Cidx%253A2-1-2%252CtarId%253A1478012942441%252Ctas%253Akeef%2520c&source=sentinel_org_block&trk=login_reg_redirect">
+									<img class="footer-icon" src="{{baseUrl()}}/image/footer/icon-active/linkedinactive.png" alt="linkedin">
+								</a>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr class="hover-opacity">
+					<td class="bigger-td">
+						<a href="https://vk.com/keef.design">follow us on vk</a>
+					</td>
+					<td class="mini-td">
+						<div class="mini-td-wrapper">
+							<div class="mini-td-passive">
+								<a href="https://vk.com/keef.design">
+									<img class="footer-icon" src="{{baseUrl()}}/image/footer/icon-active/vkactive.png" alt="vk">
+								</a>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</footer>
+<!--  - - - - - - - - - - - -FOOTER- - - - - - - - - - - - -->
+
+
+
+	<script src="{{baseUrl()}}/javascript/jquery-3.1.1.min.js"></script>
+	<script src="{{baseUrl()}}/parallax/parallax.min.js"></script>
+	<script src="{{baseUrl()}}/bxslider/jquery.bxslider.min.js"></script>
+	<script src="{{baseUrl()}}/javascript/application.js"></script>
+	<script src="{{baseUrl()}}/javascript/sticky.js"></script>
+</body>
+</html>

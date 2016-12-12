@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="{{app.lang}}">
+<head>
+	<meta charset="UTF-8">
+	<title>login keef</title>
+	<link rel="stylesheet" href="{{baseUrl}}/css/admin.css">
+
+</head>
+<body>
+	<section class="main-section">
+		<div class="login-field-wrapper">
+			<div class="login-field">
+				<div class="logo-wrapper">
+					<img src="{{baseUrl}}/image/logo.png" alt="logo">
+				</div>
+				<form action="{{baseUrl}}/admin/login" method="POST">
+					<div class="input-box">
+						<label for="login" class="login">
+							<input type="text" id="login" placeholder="LOGIN" name="auth_name">
+						</label>
+					</div>
+					<div class="input-box">
+						<label for="password" class="password">
+							<input type="password" id="password" placeholder="PASSWORD" name="auth_password">
+						</label>
+					</div>
+					{% if flash['login.error'] %}
+					<div class="center">{{flash['login.error']}}</div>
+					{% endif %}
+					<div class="btn-wrapper">
+						<label for="submit">
+							<input type="submit" id="submit" value="">
+						</label>
+					</div>
+				</form>
+			</div>
+		</div>
+	</section>
+	<script src="{{baseUrl}}/javascript/jquery-1.11.1.min.js"></script>
+	<script src="{{baseUrl}}/javascript/index.js"></script>
+</body>
+</html>
