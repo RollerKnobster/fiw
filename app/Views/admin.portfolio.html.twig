@@ -1,304 +1,103 @@
 {% extends "admin.base.html.twig" %}
 
 {% block content %}
-			<section class="project-name-wrapper">
-				<!-- topic wrapper -->
-				<div class="topic-wrapper">
-					<div class="project-name">
-						<div class="topic-text">
-							<span class="page-topic">Назва проекту</span>
-						</div>
-						<div class="arrow">
-							<img src="{{baseUrl()}}/image/arrow.png" alt="arrow">
-						</div>
-					</div>
-					<div class="lang-wrapper">
-						<ul class="lang-menu">
-							{% for lang in app.langs %}
-							<li class="lang-field{% if app.lang == lang %} lang-active{% endif %}"><a href="{{baseUrl()}}/{{lang}}/admin/portfolio{% if portfolio %}/{{portfolio.token}}{% endif %}">{{lang}}</a></li>
-							{% endfor %}
-						</ul>
-					</div>
-				</div>
-				<!-- end topic wrapper -->
-				<form action="{{baseUrl()}}/{{app.lang_uri}}/admin/portfolio/save" enctype="multipart/form-data" method="POST" id="portfolio_form" {% if not portfolio %}style="display:none"{% endif %}>
-					{% if portfolio and portfolio.id %}<input type="hidden" name="portfolio_id" value="{{portfolio.id}}">{%endif %}
-				<!-- topic creation -->
-				<div class="topic-creation">
-					<!-- left-table -->
-					<table class="left-table">
-						<tr>
-							<td class="md-width md-height upper">Проект</td>
-							<td class="md-width md-height upper">Превю</td>
-							<td class="lg-width md-height upper">Назва проекту</td>
-						</tr>
-						<tr>
-							<td class="md-width" rowspan="3">
-								{% set has_photo = portfolio and not (portfolio.image ends with 'empty.jpg') %}
-								<!-- перший wrapper для завантаження фотки (додати блоку клас wrapper-hidden коли фотка завантажена) -->
-								<div class="project-wrapper{% if has_photo %} wrapper-hidden{% endif %}">
-									<div class="project-block-wrapper"> <!-- зображення завантажувати у div.project-block-wrapper -->
-										<div class="project-block-inner inner-passive"></div> <!-- коли картинка завантажена, removeClass inner-passive -->
-									</div>
-									<label for="upload_project">
-										<span>завантажити</span>
+				<!-- - - right side - - -->
+				<div class="right-side">
+					<!-- FORM-FORM -->
+					<form id="portfolio_form" name="portfolio_form" method="POST" action="{{urlFor('admin_save_portfolio')}}">
+					<!-- projects -->
+						<section class="projects">
+							<div class="topic-wrapper">
+								<span class="topic">Проекты</span>
+								<div class="button-submit">
+									<label for="submit_btn">
+										<input type="submit" id="submit_btn" value="Сохранить Изменения">
 									</label>
-									<input type="file" id="upload_project" name="big_img">
-								</div>
-								<!-- end перший wrapper для завантаження фотки -->
-								<!-- другий wrapper для видалення фотки  (забрати блоку клас wrapper-hidden коли фотка завантажена)-->
-								<div class="project-wrapper{% if not has_photo %} wrapper-hidden{% endif %}">
-									<div class="project-block-wrapper">
-										<img src="{{portfolio.image}}" alt="Portfolio foto">
-										<div class="project-block-inner"></div>
-									</div>
-									<span class="remove_img">видалити</span>
-								</div>
-								<!-- end другий wrapper для видалення фотки-->
-							</td>
-							<td class="md-width" rowspan="3">
-								{% set has_photo = portfolio and not (portfolio.thumb ends with 'empty.jpg') %}
-								<!-- перший wrapper для завантаження фотки (додати блоку клас wrapper-hidden коли фотка завантажена) -->
-								<div class="project-wrapper{% if has_photo %} wrapper-hidden{% endif %}">
-									<div class="project-block-wrapper"> <!-- зображення завантажувати у div.project-block-wrapper -->
-										<div class="project-block-inner inner-passive"></div> <!-- коли картинка завантажена, removeClass inner-passive -->
-									</div>
-									<label for="upload_preview">
-										<span>завантажити</span>
-									</label>
-									<input type="file" id="upload_preview" name="thumb_img">
-								</div>
-								<!-- end перший wrapper для завантаження фотки -->
-
-								<!-- другий wrapper для видалення фотки  (забрати блоку клас wrapper-hidden коли фотка завантажена)-->
-								<div class="project-wrapper{% if not has_photo %} wrapper-hidden{% endif %}">
-									<div class="project-block-wrapper">
-										<img src="{{portfolio.thumb}}" alt="Portfolio thumb">
-										<div class="project-block-inner"></div>
-									</div>
-									<span class="remove_thumb">видалити</span>
-								</div>
-								<!-- end другий wrapper для видалення фотки-->
-							</td>
-							<td class="lg-width lg-height lower input-field">
-								<input type="text" placeholder="Lykke Smiky" name="title" class="lower"{% if portfolio and portfolio.title %} value="{{portfolio.title}}" {% endif %}>
-							</td>
-						</tr>
-						<tr>
-							<td class="lg-width md-height upper">тип проекту</td>
-						</tr>
-						<tr>
-							<td class="lg-width lg-height lower input-field">
-								<input type="text" placeholder="logo design" name="type" class="lower"{% if portfolio and portfolio.type %} value="{{portfolio.type}}" {% endif %}>
-							</td>
-						</tr>
-					</table>
-					<!-- end left-table -->
-
-					<!-- right-table -->
-					<table class="right-table">
-						<tr>
-							<td rowspan="5" class="upper bigger-td">Категорія</td>
-							<td class="biggest-td biggest-td-active">
-								<label for="{{cats[0].css_class}}">
-									<div class="label-inner-box">
-										<div class="icon-box">
-											<img src="{{baseUrl()}}/image/icons/{{cats[0].css_class}}-pas.png" alt="{{cats[0].css_class}}">
-											<div class="icon-box-active">
-												<img src="{{baseUrl()}}/image/icons/{{cats[0].css_class}}-ac.png" alt="{{cats[0].css_class}}">
-											</div>
-										</div>
-										<div class="text-box">
-											<p class="upper">{{cats[0].title}}</p>
-										</div>
-									</div>
-								</label>
-							</td>
-							<td class="small-td">
-								<input type="checkbox" name="category[]" value="{{cats[0].category_id}}" id="{{cats[0].css_class}}" class="checkbox" {% if cats[0].category_id in has_categories %}checked{% endif %}>
-							</td>
-						</tr>
-						{% for cat in cats|slice(1) %}
-						<tr>
-							<td class="biggest-td">
-								<label for="{{cat.css_class}}">
-									<div class="label-inner-box">
-										<div class="icon-box">
-											<img src="{{baseUrl()}}/image/icons/{{cat.css_class}}-pas.png" alt="{{cat.css_class}}">
-											<div class="icon-box-active">
-												<img src="{{baseUrl()}}/image/icons/{{cat.css_class}}-ac.png" alt="{{cat.css_class}}">
-											</div>
-										</div>
-										<div class="text-box">
-											<p class="upper">{{cat.title}}</p>
-										</div>
-									</div>
-								</label>
-							</td>
-							<td class="small-td">
-								<input type="checkbox" name="category[]" value="{{cat.category_id}}" id="{{cat.css_class}}" class="checkbox" {% if cat.category_id in has_categories %}checked{% endif %}>
-							</td>
-						</tr>
-						{% endfor %}
-					</table>
-					<!-- end right-table -->
-				</div>
-				<!-- end topic creation -->
-
-				<!-- project description -->
-				<div class="project-description">
-					<table class="project-description-table">
-						<tr>
-							<td class="largest-td upper">Опис проекту</td>
-							<td colspan="2" class="upper">проект у соцмережах</td>
-						</tr>
-						<tr>
-							<td class="largest-td scroll-td" rowspan="4">
-								<!-- <div class="main-input-wrapper" data-mcs-theme="dark"> -->
-									<textarea class="main-input" tabindex="1" name="description">{% if portfolio and portfolio.description %}{{portfolio.description}}{% endif %}</textarea>
-								<!-- </div> -->
-							</td>
-							<td class="small-td">
-								<a href="javascript:void(0)">
-									<i class="fa fa-facebook"></i>
-								</a>
-							</td>
-							<td>
-								<input type="text" name="facebook" {% if portfolio and portfolio.facebook %} value="{{portfolio.facebook}}" {% endif %}>
-							</td>
-						</tr>
-						<tr>
-							<td class="small-td">
-								<a href="javascript:void(0)">
-									<i class="fa fa-behance"></i>
-								</a>
-							</td>
-							<td>
-								<input type="text" name="behance" {% if portfolio and portfolio.behance %} value="{{portfolio.behance}}" {% endif %}>
-							</td>
-						</tr>
-						<tr>
-							<td class="small-td">
-								<a href="javascript:void(0)">
-									<i class="fa fa-pinterest-p icon-active"></i>
-								</a>
-							</td>
-							<td>
-								<input type="text" name="pinterest" {% if portfolio and portfolio.pinterest %} value="{{portfolio.pinterest}}" {% endif %}>
-							</td>
-						</tr>
-						<tr>
-							<td class="small-td">
-								<a href="javascript:void(0)">
-									<i class="fa fa-vk"></i>
-								</a>
-							</td>
-							<td>
-								<input type="text" name="vk" {% if portfolio and portfolio.vk %} value="{{portfolio.vk}}" {% endif %}>
-							</td>
-						</tr>
-					</table>
-				</div>
-				<!-- end project description -->
-
-				<!-- SEO -->
-				<div class="seo-wrapper">
-					<table class="seo-table">
-						<tr>
-							<td class="td-small upper">CEO</td>
-							<td class="td-big">
-								<textarea name="seo">{% if portfolio and portfolio.seo %}{{portfolio.seo}}{% endif %}</textarea>
-							</td>
-						</tr>
-					</table>
-					<div class="button-wrapper">
-						<button type="submit" class="submit-button"></button>
-						<p>збережено</p>
-					</div>
-				</div>
-				<!-- end SEO -->
-
-				</form>
-
-				<!-- project creation -->
-				<div class="project-creation">
-					{% for project in portfolio_list %}
-					<div class="project-block-wrapper">
-						<a href="{{urlFor('admin_one_portfolio', {'token':project.token})}}">
-							<div class="project-block">
-								<img src="{{project.thumb}}" alt="solo">
-								<div class="project-block-inner{% if portfolio and project.token == portfolio.token %} active-project{% else %} disable-project{% endif %}">
-									<div class="close-button">&#215;</div>
-									<p class="project-block-text">{{project.title}}</p>
 								</div>
 							</div>
-						</a>
-					</div>
-					{% endfor %}
-					<div class="project-block-wrapper add-project-button">
-						<a href="javascript:void(0)">
-							<img src="image/project-block/lash.jpg" class="opacity-img">
-							<div class="add-btn">
-								<div class="add-btn-hover"></div>
+							<div class="projects-wrapper main-border">
+								<div class="project-inner inner-border">
+									<div class="wr">
+										{% for project in projects %}
+										<div class="project-block-wrapper">
+											<div class="project-block">
+												<img src="{{project.images.0}}" alt="photo">
+												<div class="project-block-hover">
+													<div class="project-block-icon"></div>
+												</div>
+											</div>
+										</div>
+										{% endfor %}
+										<div class="add-project-block new-project"></div>
+									</div>
+								</div>
 							</div>
-						</a>
-					</div>
+						</section>
+						<!-- end projects -->
+
+						<!-- project-description -->
+						<section class="project-about hidden">
+							<div class="topic-wrapper">
+								<span class="topic">О проекте</span>
+							</div>
+							<div class="project-description-wrapper">
+								<div class="project-description">
+									<div class="project-info">
+										<label for="project_name" class="begin"><span>Название:</span></label>
+										<div class="other-text">
+											<input type="text" id="project_name" placeholder="" name="name" form="portfolio_form">
+										</div>
+									</div>
+									<div class="project-info">
+										<label for="price" class="begin"><span>Цена:</span></label>
+										<div class="other-text">
+											<input type="text" id="price" placeholder="" name="price" form="portfolio_form">
+										</div>
+									</div>
+									<div class="project-info">
+										<label for="address" class="begin"><span>Адрес:</span></label>
+										<div class="other-text">
+											<input type="text" id="address" placeholder="" name="address" form="portfolio_form">
+										</div>
+									</div>
+									<div class="project-info">
+										<label for="head" class="begin"><span>Рук. проекта:</span></label>
+										<div class="other-text">
+											<input type="text" id="head" placeholder="" name="director" form="portfolio_form">
+										</div>
+									</div>
+								</div>
+								<!-- PROJECT SLIDER PHOTOES -->
+								<div class="project-slider-photoes">
+									<!--first slider block, do not remove! Or javascript will stacked -->
+									<div class="slider-box hidden">
+										<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="photo">
+										<div class="slider-box-hover">
+											<div class="box-hover-icon"></div>
+										</div>
+									</div>
+									<!-- add slides to project-slider -->
+									<label for="slider_add_photo">
+										<div class="slider-add-box"></div>
+										<input type="file" id="slider_add_photo" class="input-hidden">
+									</label>
+									<!-- add slides to project-slider -->
+
+									<div class="buttons-wrapper">
+										<input type="submit" value="Сохранить проект" form="portfolio_form">
+										<input type="button" value="Удалить проект" form="portfolio_form">
+									</div>
+								</div>
+								<!-- PROJECT SLIDER PHOTOES -->
+							</div>
+						</section>
+						<!-- end project-description -->
+					</form>
+					<!-- END FORM-FORM -->
 				</div>
-				<!-- end project creation -->
+				<!-- - - right side - - -->
+
 			</section>
+
 {% endblock %}
 
-{% block javascripts %}
-<script>
-
-$(document).ready(function(){
-
-	if (window.location.hash && window.location.hash == '#create')
-		$('#portfolio_form').show();
-
-	$("#portfolio_form").on('submit', function(e){
-
-		e.preventDefault();
-
-		var formData = new FormData(this);
-
-		$.ajax({
-			url: $(this).attr("action"),
-			type: 'POST',
-			data: formData,
-			dataType: 'json',
-			async: false,
-			success: function (data) {
-				console.log(data)
-			},
-			cache: false,
-			contentType: false,
-			processData: false
-		});
-
-	});
-
-	$('.remove_thumb').on('click', function(){
-		var pw = $(this).closest('.project-wrapper');
-		pw.addClass('wrapper-hidden');
-		pw.siblings('.wrapper-hidden').removeClass('wrapper-hidden');
-		$(this).after('<input type="hidden" name="remove_thumb" value="1">');
-	});
-
-	$('.remove_img').on('click', function(){
-		var pw = $(this).closest('.project-wrapper');
-		pw.addClass('wrapper-hidden');
-		pw.siblings('.wrapper-hidden').removeClass('wrapper-hidden');
-		$(this).after('<input type="hidden" name="remove_img" value="1">');
-	});
-
-	$('.add-project-button').on('click', function(){
-		{% if portfolio %}
-		top.location.href = '{{urlFor("admin_portfolio")}}#create';
-		{% endif %}
-		$('#portfolio_form').show();
-	});
-});
-
-</script>
-{% endblock %}

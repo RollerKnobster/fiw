@@ -1,0 +1,122 @@
+.box-topic, label p, label input, textarea {
+	font-size: 11px;
+	font-family: opensans;
+	color: #686868;
+}
+
+textarea, input {
+	&:focus::-webkit-input-placeholder {
+		opacity: .3;
+	}
+
+	&::-webkit-input-placeholder {
+		/*font-size: 10px;*/
+		color: #898989;
+	}
+
+	&:focus::-moz-placeholder {
+		opacity: .3;
+	} 
+
+	&::-moz-placeholder {
+		/*font-size: 10px;*/
+		color: #898989;
+	}
+
+	&:focus:-moz-placeholder {
+		opacity: .3;
+	}
+
+	&:-moz-placeholder {
+		/*font-size: 10px;*/
+		color: #898989;
+	}
+
+	&:focus:-ms-input-placeholder {
+		opacity: .3;
+	}
+
+	&:-ms-input-placeholder {
+		/*font-size: 10px;*/
+		color: #898989;
+	} 
+}
+
+.services {
+	width: 100%;
+	height: 410px;
+	padding-top: 25px;
+
+	.services-wrapper {
+		.services-inner {
+			.services-box {
+				width: 49.46%;
+				height: 157px;
+				background: rgba(255, 255, 255, .4);
+				display: inline-block;
+				margin: 0 0.635% 6px 0;
+				padding: 11px 0 0 9px;
+				position: relative;
+				vertical-align: top;
+
+				&:nth-child(2), &:nth-child(4), &:nth-child(6) {
+					margin-right: 0;
+				}
+
+				&:nth-child(3), &:nth-child(4) {
+					margin-bottom: 0;
+				}
+
+				.box-topic {
+					width: 50%;
+					font-size: 11px;
+					font-family: opensans;
+					color: #686868;
+					text-transform: uppercase;
+				}
+
+				.label-wrapper {
+					margin-top: 7px;
+				}
+
+				label {
+
+					&:after {
+						content: '';
+						display: block;
+						clear: both;
+						height: 0;
+					}
+
+					p {
+						float: left;
+						padding-top: 3px;
+						margin-right: 24px;
+					}
+
+					input {
+						border: none;
+						background: transparent;
+					}
+				}
+				
+				.textarea-wrapper {
+					margin-top: 15px;
+					width: 415px;
+					height: 72px;
+					background: rgba(255, 255, 255, .3);
+					
+					textarea {
+						background: transparent;
+						width: 98%;
+						height: 100%;
+						resize: none;
+						border: none;
+						outline: none;
+					}
+				}
+
+			}
+		}
+	}
+}

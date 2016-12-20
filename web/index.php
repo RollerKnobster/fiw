@@ -24,7 +24,7 @@ $app = new \Slim\Slim([
 	'debug' => DEBUG,
 	'mode' => APP_MODE,
 	'templates.path' => '../app/views',
-	'site_name' => 'Keef Studio'
+	'site_name' => 'Forma Interior Workshop'
 	]);
 
 $app->view = new \Slim\Views\Twig();
@@ -45,5 +45,15 @@ function check_login() {
 $app->view->setData(['app'=>$app->container->settings]);
 
 $app->get('/', 'FIW\Controllers\SiteController:indexAction')->name('home');
+
+$app->get('/admin', 'FIW\Controllers\AdminController:indexAction')->name('admin_index');
+$app->get('/admin/', 'FIW\Controllers\AdminController:indexAction');
+$app->get('/admin/portfolio', 'FIW\Controllers\AdminController:portfolioAction')->name('admin_portfolio');
+$app->get('/admin/portfolio/', 'FIW\Controllers\AdminController:portfolioAction');
+
+$app->post('/admin/main-slider/remove', 'FIW\Controllers\AdminController:removeMainSlideAction')->name('admin_remove_main_slide');
+$app->post('/admin/main-slider/upload', 'FIW\Controllers\AdminController:uploadMainSlideAction')->name('admin_upload_main_slide');
+$app->post('/admin/social-save', 'FIW\Controllers\AdminController:socialSaveAction')->name('admin_social_save');
+$app->post('/admin/portfolio/save', 'FIW\Controllers\AdminController:portfolioSaveAction')->name('admin_save_portfolio');
 
 $app->run();

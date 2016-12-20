@@ -70,6 +70,32 @@ class TextModel
 		return $data;
 	}
 
+	public function setSocial($new_data){
+		$data = [
+			'twitter' => '',
+			'pinterest' => '',
+			'facebook' => '',
+			'vk' => '',
+			'gp' => ''
+		];
+
+		$data = array_merge($data, $new_data);
+
+		foreach ($data as $soc => $soc_text) {
+			$text = ORM::for_table('texts')
+				->where_like('slug', 'social_'.$soc)
+				->find_one();
+			if (!$text) {
+				$text = ORM::for_table('texts')->create();
+				$text->slug = 'social_'.$soc;
+			}
+			$text->text = $soc_text;
+			$text->save();
+		}
+
+		return $data;
+	}
+
 
 	private function tagText($text)
 	{
