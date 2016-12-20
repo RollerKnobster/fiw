@@ -4,6 +4,10 @@ $(document).ready(function(){
 	// 	$(this).toggleClass("block-hover-active");
 	// });
 
+	$(".success-close").click(function(){
+		$(".success-block").css("display", "none");
+	});
+
 	// MAIN PAGE--------------------------------------------------------------
 
 		$(".slide-block").on('click', function(){

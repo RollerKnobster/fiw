@@ -5,9 +5,14 @@ $(document).ready(function(){
 // Header---Header---Header---Header---Header---Header---
 	$(".slider").bxSlider({
 		auto: true,
-		pause: 4000
+		pause: 4000, 
+		useCSS: false,
+		adaptiveHeight: true,
+		// pagerCustom: '#slider'
+		// mode: 'fade'
+   		// captions: true
+		adaptiveHeightSpeed: 200,
 	});
-
 
 	// header-block margin
 		$(window).resize(function(){
@@ -109,99 +114,46 @@ $(document).ready(function(){
 	  pagerCustom: "#small_pictures"
 	});
 	// end modal slider
-// Contacts---Contacts---Contacts---Contacts---Contacts---
+	// Contacts---Contacts---Contacts---Contacts---Contacts---
 
-// MODAL WINDOW------------------
+	// MODAL WINDOW------------------
+	var modalWindow = $(".modal");
 
+	var portfolioBlock = $(".portfolio-block");
 
-// END MODAL WINDOW-----------------
+	var closeModal = $(".close-btn");
+
+	portfolioBlock.click(function(){
+		$(modalWindow).css("opacity", "1").css("visibility", "visible");
+	});
+
+	closeModal.click(function(){
+		$(modalWindow).css("opacity", "0").css("visibility", "hidden");
+	});
+
+	$(window).click(function(event){
+		//console.log(event);
+		var arr = $(".modal-pic");
+
+		
+		var ifFind = false;
+		var parentEls = $(event.toElement).parents().map(function() {
+			console.log(this);
+			if ($(this).hasClass("modal-pic")) {
+				ifFind = true;
+			}
+		    // return this.tagName;
+		});
+
+		if(!ifFind) {
+			for (var i=0; i<arr.length; i++) {
+				if ($(arr[i]).css("visibility") == "visible") {
+					$(arr[i]).css("opacity", "0").css("visibility", "hidden");
+				}
+			}
+		}
+	// END MODAL WINDOW-----------------
+	});
+
 });
 
-
-// MODAL WINDOW------------------
-
-	// Get the modal
-	var modal = document.getElementById("myModal");
-
-	// Get the button that opens the modal
-	var btn = document.getElementById("openModal");
-	var btn1 = document.getElementById("openModal1");
-	var btn2 = document.getElementById("openModal2");
-	var btn3 = document.getElementById("openModal3");
-	var btn4 = document.getElementById("openModal4");
-	var btn5 = document.getElementById("openModal5");
-	var btn6 = document.getElementById("openModal6");
-	var btn7 = document.getElementById("openModal7");
-	var btn8 = document.getElementById("openModal8");
-	var btn9 = document.getElementById("openModal9");
-
-
-	// Get the <span> element that closes the modal
-	var span = document.getElementsByClassName("close-btn")[0];
-
-	// When the user clicks on the button, open the modal 
-	btn.onclick = function() {
-	    modal.style.opacity = "1";
-	    modal.style.visibility = "visible";
-	}
-
-	btn1.onclick = function() {
-	    modal.style.opacity = "1";
-	    modal.style.visibility = "visible";
-	}
-
-	btn2.onclick = function() {
-	    modal.style.opacity = "1";
-	    modal.style.visibility = "visible";
-	}
-
-	btn3.onclick = function() {
-	    modal.style.opacity = "1";
-	    modal.style.visibility = "visible";
-	}
-
-	btn4.onclick = function() {
-	    modal.style.opacity = "1";
-	    modal.style.visibility = "visible";
-	}
-
-	btn5.onclick = function() {
-	    modal.style.opacity = "1";
-	    modal.style.visibility = "visible";
-	}
-
-	btn6.onclick = function() {
-	    modal.style.opacity = "1";
-	    modal.style.visibility = "visible";
-	}
-
-	btn7.onclick = function() {
-	    modal.style.opacity = "1";
-	    modal.style.visibility = "visible";
-	}
-
-	btn8.onclick = function() {
-	    modal.style.opacity = "1";
-	    modal.style.visibility = "visible";
-	}
-
-	btn9.onclick = function() {
-	    modal.style.opacity = "1";
-	    modal.style.visibility = "visible";
-	}
-
-	// When the user clicks on <span> (x), close the modal
-	span.onclick = function() {
-	    modal.style.opacity = "0";
-	    modal.style.visibility = "hidden";
-	}
-
-	// When the user clicks anywhere outside of the modal, close it
-	window.onclick = function(event) {
-	    if (event.target == modal) {
-	        modal.style.opacity = "0";
-	  		modal.style.visibility = "hidden";
-	    }
-	}
-
-	// END MODAL WINDOW-----------------

@@ -6,7 +6,8 @@ $(document).ready(function(){
 
 		$.post($(this).attr('action'), $(this).serialize(), function(data) {
 			if (data.success)
-				alert('Saving social: success');
+				// alert('Saving social: success');
+				$(".success-block").toggle();
 			else
 				alert('Saving social: error');
 		}, 'json');
