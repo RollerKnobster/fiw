@@ -5,7 +5,8 @@
 				<div class="right-side">
 					<!-- FORM-FORM -->
 					<form id="portfolio_form" name="portfolio_form" method="POST" action="{{urlFor('admin_save_portfolio')}}">
-					<!-- projects -->
+						<input type="hidden" name="id" value="0" id="portfolio_id">
+						<!-- projects -->
 						<section class="projects">
 							<div class="topic-wrapper">
 								<span class="topic">Проекты</span>
@@ -20,8 +21,8 @@
 									<div class="wr">
 										{% for project in projects %}
 										<div class="project-block-wrapper">
-											<div class="project-block">
-												<img src="{{project.images.0}}" alt="photo">
+											<div class="project-block" data-token="{{project.token}}">
+												<img src="{% if project.images %}{{project.images.0}}{% else %}data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=={% endif %}" alt="photo">
 												<div class="project-block-hover">
 													<div class="project-block-icon"></div>
 												</div>
@@ -72,20 +73,20 @@
 									<!--first slider block, do not remove! Or javascript will stacked -->
 									<div class="slider-box hidden">
 										<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="photo">
-										<div class="slider-box-hover">
+										<div class="slider-box-hover" data-url="{{urlFor('admin_rm_portfolio_photo')}}">
 											<div class="box-hover-icon"></div>
 										</div>
 									</div>
 									<!-- add slides to project-slider -->
 									<label for="slider_add_photo">
 										<div class="slider-add-box"></div>
-										<input type="file" id="slider_add_photo" class="input-hidden">
+										<input type="file" id="slider_add_photo" class="input-hidden" data-action="{{urlFor('admin_add_portfolio_photo')}}">
 									</label>
 									<!-- add slides to project-slider -->
 
 									<div class="buttons-wrapper">
 										<input type="submit" value="Сохранить проект" form="portfolio_form">
-										<input type="button" value="Удалить проект" form="portfolio_form">
+										<input id="remove_project" type="button" value="Удалить проект" form="portfolio_form" data-url="{{urlFor('admin_rm_portfolio')}}">
 									</div>
 								</div>
 								<!-- PROJECT SLIDER PHOTOES -->
@@ -96,7 +97,24 @@
 					<!-- END FORM-FORM -->
 				</div>
 				<!-- - - right side - - -->
-
+				<!-- MODAL -->
+				<div id="adminModal" class="admin-modal hidden">
+					<!-- modal content -->
+					<div class="admin-modal-wrapper">
+						<div class="admin-modal-content">
+							<p>Удалить фото?</p>
+							<div class="img-delete">
+								<img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Photo to remove">
+							</div>
+							<div class="confirm-wrapper">
+								<input type="button" id="yesBtn" value="Да">
+								<input type="button" id="noBtn" value="Нет">
+							</div>
+						</div>
+					</div>
+					<!-- modal content -->
+				</div>
+				<!-- END MODAL -->
 			</section>
 
 {% endblock %}

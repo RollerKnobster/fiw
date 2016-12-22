@@ -27,11 +27,11 @@
 					</div>
 					<!-- end logo-wrapper -->
 					<ul class="side-menu">
-						<li class="side-menu-li active-li"><a href="{{urlFor('admin_index')}}">Главная</a></li>
-						<li class="side-menu-li box-shadow-r"><a href="{{urlFor('admin_portfolio')}}">Портфолио</a></li>
-						<li class="side-menu-li box-shadow-r"><a href="about.html">О Нас</a></li>
-						<li class="side-menu-li box-shadow-r"><a href="services.html">Услуги</a></li>
-						<li class="side-menu-li box-shadow-r"><a href="contacts.html">Контакты</a></li>
+						<li class="side-menu-li {% if active_page == 'main' %}active-li{% else %}box-shadow-r{% endif %}"><a href="{{urlFor('admin_index')}}">Главная</a></li>
+						<li class="side-menu-li {% if active_page == 'portfolio' %}active-li{% else %}box-shadow-r{% endif %}"><a href="{{urlFor('admin_portfolio')}}">Портфолио</a></li>
+						<li class="side-menu-li {% if active_page == '' %}active-li{% else %}box-shadow-r{% endif %}"><a href="about.html">О Нас</a></li>
+						<li class="side-menu-li {% if active_page == '' %}active-li{% else %}box-shadow-r{% endif %}"><a href="services.html">Услуги</a></li>
+						<li class="side-menu-li {% if active_page == '' %}active-li{% else %}box-shadow-r{% endif %}"><a href="contacts.html">Контакты</a></li>
 					</ul>
 					<!-- - -bottom-block- - -->
 					<div class="bottom-block box-shadow-r">

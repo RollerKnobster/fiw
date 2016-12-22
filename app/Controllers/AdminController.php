@@ -27,7 +27,8 @@ class AdminController
 	{
 		return $this->app->render('admin.main.html.twig',[
 			'social' => (new TextModel)->getSocial(),
-			'slides' => (new SliderModel)->listSlides()
+			'slides' => (new SliderModel)->listSlides(),
+			'active_page' => 'main'
 		]);
 	}
 
@@ -92,7 +93,8 @@ class AdminController
 	public function portfolioAction()
 	{
 		return $this->app->render('admin.portfolio.html.twig',[
-			'projects' => (new PortfolioModel)->showAll(true)
+			'projects' => (new PortfolioModel)->showAll(true),
+			'active_page' => 'portfolio'
 		]);
 	}
 
@@ -114,6 +116,77 @@ class AdminController
 			return $this->app->response->write('{}');
 
 		return $this->app->response->write(json_encode(['success'=>true, 'data'=>$data]));
+	}
+
+	/**
+	 *
+	 * Контроллер збереження фоток портфоліо
+	 *
+	 */
+	public function portfolioPhotoAddAction()
+	{
+		$this->app->response->headers->set('Content-Type', 'application/json');
+		if (!$this->app->request->isAjax())
+			return $this->app->response->write('{}');
+
+		$portfolio = new PortfolioModel;
+		$data = $portfolio->uploadPhoto($this->app->request->post('portfolio_id'));
+
+		return $this->app->response->write(json_encode(['success'=>true, 'data'=>$data]));
+	}
+
+	/**
+	 *
+	 * Контроллер видалення фоток портфоліо
+	 *
+	 */
+	public function portfolioPhotoRemoveAction()
+	{
+		$this->app->response->headers->set('Content-Type', 'application/json');
+		if (!$this->app->request->isAjax())
+			return $this->app->response->write('{}');
+
+		$portfolio = new PortfolioModel;
+		$data = $portfolio->removePhoto($this->app->request->post('portfolio_id'), $this->app->request->post('filename'));
+
+		return $this->app->response->write(json_encode(['success'=>$data]));
+	}
+
+	/**
+	 *
+	 * Контроллер отримання даних про одну роботу за токеном
+	 *
+	 */
+	public function portfolioGetOneAction()
+	{
+		$this->app->response->headers->set('Content-Type', 'application/json');
+		if (!$this->app->request->isAjax())
+			return $this->app->response->write('{}');
+
+		$portfolio = new PortfolioModel;
+		$data = $portfolio->findByToken($this->app->request->post('token'));
+
+		if (!count($data))
+			return $this->app->response->write('{}');
+
+		return $this->app->response->write(json_encode(['success'=>true, 'data'=>$data]));
+	}
+
+	/**
+	 *
+	 * Контроллер видалення портфоліо
+	 *
+	 */
+	public function portfolioRemoveAction()
+	{
+		$this->app->response->headers->set('Content-Type', 'application/json');
+		if (!$this->app->request->isAjax())
+			return $this->app->response->write('{}');
+
+		$portfolio = new PortfolioModel;
+		$data = $portfolio->remove($this->app->request->post('portfolio_id'));
+
+		return $this->app->response->write(json_encode(['success'=>$data]));
 	}
 
 

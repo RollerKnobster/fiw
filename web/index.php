@@ -55,5 +55,9 @@ $app->post('/admin/main-slider/remove', 'FIW\Controllers\AdminController:removeM
 $app->post('/admin/main-slider/upload', 'FIW\Controllers\AdminController:uploadMainSlideAction')->name('admin_upload_main_slide');
 $app->post('/admin/social-save', 'FIW\Controllers\AdminController:socialSaveAction')->name('admin_social_save');
 $app->post('/admin/portfolio/save', 'FIW\Controllers\AdminController:portfolioSaveAction')->name('admin_save_portfolio');
+$app->post('/admin/portfolio/get_one', 'FIW\Controllers\AdminController:portfolioGetOneAction')->name('admin_get_one_portfolio');
+$app->post('/admin/portfolio/remove', 'FIW\Controllers\AdminController:portfolioRemoveAction')->name('admin_rm_portfolio');
+$app->post('/admin/portfolio/add-photo', 'FIW\Controllers\AdminController:portfolioPhotoAddAction')->name('admin_add_portfolio_photo');
+$app->post('/admin/portfolio/remove-photo', 'FIW\Controllers\AdminController:portfolioPhotoRemoveAction')->name('admin_rm_portfolio_photo');
 
 $app->run();
