@@ -170,4 +170,9 @@ $(document).ready(function(){
 			}
 		}, 'json');
 	});
+
+	$(".success-close").click(function(){
+		$(".success-block").css("display", "none");
+	});
+
 });
