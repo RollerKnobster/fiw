@@ -82,4 +82,9 @@ $(document).ready(function(){
 			processData: false
 		});
 	});
+
+	// submit message window
+	$(".success-close").click(function(){
+		$(".success-block").css("display", "none");
+	});
 });

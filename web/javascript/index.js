@@ -7,11 +7,11 @@ $(document).ready(function(){
 		auto: true,
 		pause: 4000, 
 		useCSS: false,
-		adaptiveHeight: true,
+		// adaptiveHeight: true,
 		// pagerCustom: '#slider'
 		// mode: 'fade'
    		// captions: true
-		adaptiveHeightSpeed: 200,
+		// adaptiveHeightSpeed: 200,
 	});
 
 	// header-block margin
@@ -47,6 +47,10 @@ $(document).ready(function(){
 		$(".portfolio-open-projects").css("display", "none");
 		$(".portfolio-block-hidden, .resizer-hidden").css("display", "block");
 		$(window).trigger('resize').trigger('scroll');
+
+		// $(".big-img").bxSlider({
+		//   pagerCustom: ".small_pictures"
+		// });
 	});
 
 	$(".close-projects").click(function(){
@@ -110,9 +114,9 @@ $(document).ready(function(){
 	// end up-btn
 
 	// modal slider
-	$(".big-img").bxSlider({
-	  pagerCustom: "#small_pictures"
-	});
+	// $(".big-img").bxSlider({
+	//   pagerCustom: ".small_pictures"
+	// });
 	// end modal slider
 	// Contacts---Contacts---Contacts---Contacts---Contacts---
 
@@ -123,12 +127,30 @@ $(document).ready(function(){
 
 	var closeModal = $(".close-btn");
 
-	portfolioBlock.click(function(){
-		$(modalWindow).css("opacity", "1").css("visibility", "visible");
+
+	$('.portfolio-block').on('click', function(){
+		var idNum = $(this).parent().attr('id').replace(/[^0-9]/g, ''),
+			self = $(this),
+			modalWin = $('#myModal-'+idNum);
+
+		if (!idNum) 
+			return false;
+
+		if (!self.data('initialized')){
+
+			$('.big-img', modalWin).bxSlider({
+			  pagerCustom: '#modal-slider-'+idNum
+			});
+
+			self.data('initialized', 1);
+		}
+
+		modalWin.css('opacity', '1').css('visibility', 'visible');
 	});
 
+
 	closeModal.click(function(){
-		$(modalWindow).css("opacity", "0").css("visibility", "hidden");
+		modalWindow.css("opacity", "0").css("visibility", "hidden");
 	});
 
 	$(window).click(function(event){
@@ -138,7 +160,7 @@ $(document).ready(function(){
 		
 		var ifFind = false;
 		var parentEls = $(event.toElement).parents().map(function() {
-			console.log(this);
+			//console.log(this);
 			if ($(this).hasClass("modal-pic")) {
 				ifFind = true;
 			}
