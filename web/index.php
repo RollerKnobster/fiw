@@ -19,12 +19,15 @@ ORM::configure('caching', true);
 ORM::configure('caching_auto_clear', true);
 ORM::configure('logging', DEBUG);
 
+$user_device = new Mobile_Detect();
+$is_mobile = ($user_device->isMobile() || $user_device->isTablet() ? true : false);
 
 $app = new \Slim\Slim([
 	'debug' => DEBUG,
 	'mode' => APP_MODE,
-	'templates.path' => '../app/views',
-	'site_name' => 'Keef Studio'
+	'templates.path' => '../app/views'.($is_mobile ? '/mobile' : ''),
+	'site_name' => 'Forma Interior Workshop',
+	'is_mobile' => $is_mobile
 	]);
 
 $app->view = new \Slim\Views\Twig();
