@@ -1,0 +1,360 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "compass/reset";
+
+/*FONT-FACE*/
+@font-face {
+    font-family: 'opensanslight';
+    src: url('../font/opensanslight/opensans-light.eot');
+    src: url('../font/opensanslight/opensans-light.eot?#iefix') format('embedded-opentype'),
+         url('../font/opensanslight/opensans-light.woff2') format('woff2'),
+         url('../font/opensanslight/opensans-light.woff') format('woff'),
+         url('../font/opensanslight/opensans-light.svg#open_sanslight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'opensans';
+    src: url('../font/opensansregular/opensans-regular.eot');
+    src: url('../font/opensansregular/opensans-regular.eot?#iefix') format('embedded-opentype'),
+         url('../font/opensansregular/opensans-regular.woff2') format('woff2'),
+         url('../font/opensansregular/opensans-regular.woff') format('woff'),
+         url('../font/opensansregular/opensans-regular.svg#open_sansregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'opensanssemibold';
+    src: url('../font/opensanssemibold/opensans-semibold.eot');
+    src: url('../font/opensanssemibold/opensans-semibold.eot?#iefix') format('embedded-opentype'),
+         url('../font/opensanssemibold/opensans-semibold.woff2') format('woff2'),
+         url('../font/opensanssemibold/opensans-semibold.woff') format('woff'),
+         url('../font/opensanssemibold/opensans-semibold.svg#open_sanssemibold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}
+/*END FONT-FACE*/
+
+* {
+	box-sizing: border-box;
+}
+
+a {
+	color: #fff;
+	text-decoration: none;
+}
+
+body {
+	background: #0d0d0d;
+}
+
+.m-hidden {
+	display: none;
+}
+
+.m-uppercase {
+	text-transform: uppercase;
+}
+
+.m-project-name {
+	height: 100%;
+	font-family: opensans;
+}
+
+
+
+.mobile-wrapper {
+	/*border: 1px solid red;*/
+	max-width: 640px;
+	min-width: 320px;
+	width: 100%;
+	margin: 0 auto;
+	background: #0d0d0d;
+
+	/*header-menu*/
+	.m-menu {
+		max-width: 640px;
+		width: 100%;
+		height: 42px;
+		background: #0d0d0d;
+		position: fixed;
+		top: 0;
+		box-shadow: 0 15px 15px -12px #000;
+		overflow: hidden;
+		text-align: right;
+		z-index: 99999;
+
+		.m-back {
+			width: 33px;
+			height: 33px;
+			position: absolute;
+			left: 13px;
+			top: 5px;
+			cursor: pointer;
+			z-index: 99999;
+		}
+
+		.menu-img {
+			height: 18px;
+			width: 33px;
+			position: absolute;
+			right: 15px;
+			top: 13px;
+			/*background: url('../image/menu.png') center no-repeat;*/
+			cursor: pointer;
+			z-index: 9999;
+
+			img {
+				z-index: 99999;
+			}
+		}
+
+		.m-nav {
+			opacity: 0;
+		}
+	}
+
+	.m-menu-active {
+		height: 177px;
+
+		.menu-img {
+			top: 14px;
+			right: 15px;
+			height: 17px;
+		}
+
+		.m-nav {
+			margin-top: 45px;
+			opacity: 1;
+
+			li {
+				text-align: right;
+				padding-right: 54px;
+				margin: 0 0 18px 0;
+
+				a {
+					font-size: 12px;
+					font-family: opensanslight;
+					text-transform: uppercase;
+					position: relative;
+
+					&:before {
+						content: '';
+						display: block;
+						background: #a37f61;
+						height: 2px;
+						width: 600px;
+						position: absolute;
+						right: calc(100% + 10px);
+						top: 50%;
+						opacity: 0;
+						-webkit-transition: opacity ease-in-out;
+						transition: opacity ease-in-out;
+					}
+				}
+			}
+
+			.active-li {
+				a {
+					&:before {
+						opacity: 1;
+					}
+				}
+			}
+		}
+	}
+	/*end header-menu*/
+
+	/*header-logo*/
+	.m-header {
+		width: 100%;
+		height: 212px;
+		background: url('../image/mobile/main-img.png') center no-repeat;
+		background-size: cover;
+		/*margin-top: 42px;*/
+
+		.m-logo {
+			width: 100%;
+			height: 100%;
+			background: url('../image/mobile/logo.svg') no-repeat;
+			background-size: 190px 170px;
+			background-position: center 35px;
+		}
+	}
+	/*end header-logo*/
+	
+	/*portfolio*/
+	.m-projects-margin {
+		margin-top: 50px;
+	}
+
+	.m-portfolio {
+		width: 100%;
+		padding: 13px 10px 20px 10px;
+		position: relative;
+		color: #fff;
+
+		.m-portfolio-wrapper {
+			position: relative;
+			margin-top: 40px;
+
+			&:before {
+				content: '';
+				display: block;
+				position: absolute;
+				width: 100%;
+				height: 1px;
+				background: #a37f61;
+				top: -35px;
+				/*left: 50%;*/
+				/*margin-left: -148px;*/
+			}
+
+			.m-portfolio-block {
+				/*height: 105px;*/
+				height: 135px;
+				width: 100%;
+				margin-bottom: 2px;
+				display: -webkit-box;
+				display: -ms-flexbox;
+				display: flex;
+
+				&:last-child {
+					margin-bottom: 0;
+				}
+
+				.m-left-block, .m-right-block {
+					height: 100%;
+					width: 49.835%;
+				}
+
+				.m-left-block {
+					margin-right: 1px;
+					text-align: center;
+					overflow: hidden;
+
+					img {
+						width: 100%;
+						height: auto;
+						min-height: 105px;
+					}
+				}
+
+				.m-right-block {
+					background: #161616;
+					position: relative;
+
+					p {
+						text-align: center;
+						font-size: 8px;
+						line-height: 10px;
+						color: #a0a0a0;
+					}
+
+					.m-name-wr {
+						width: 139px;
+						min-height: 28px;
+						border: 1px solid #a3856d;
+						margin: 45px auto 0 auto;
+						padding-top: 6px;
+						font-family: opensans;
+
+						p {
+							line-height: 12px;
+						}
+					}
+
+					.post {
+						margin-top: 8px;
+						color: #838181;
+						font-size: 8px;
+					}
+					
+					.m-project-head {
+						font-family: opensanslight;
+						margin: 0 auto 0 auto;
+						font-size: 10px;
+						color: #a4a4a4;
+					}
+				}
+			}
+		}
+
+		.m-resizer {
+			font-size: 8px;
+			font-family: opensanslight;
+			color: #a0a0a0;
+			width: 70px;
+			height: auto;
+			margin: 17px auto 0 auto;
+			cursor: pointer;
+		}
+	}
+	/*end portfolio*/
+}
+
+/*modal window portfolio*/
+.mobile-modal {
+	opacity: 0;
+	visibility: hidden;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background: #000;
+	left: 0;
+    top: 0;
+    overflow: auto;
+    z-index: 88888;
+    -webkit-transition: opacity ease-in-out .5s, visibility ease-in-out .5s;
+    transition: opacity ease-in-out .5s, visibility ease-in-out .5s;
+}
+
+.slider-modal, .services-modal, .portfolio-modal {
+	z-index: 99999;
+}
+/*end modal window portfolio*/
+
+
+/*mobile portfolio PAGE*/
+@import "m-portfolio";
+/*mobile portfolio PAGE*/
+
+/*mobile about PAGE*/
+@import "m-about";
+/*mobile about PAGE*/
+
+/*mobile services PAGE*/
+@import "m-services";
+/*mobile services PAGE*/
+
+/*mobile services-description page*/
+@import "m-description";
+/*mobile services-description page*/
+
+/*mobile about PAGE*/
+@import "m-contacts";
+/*mobile about PAGE*/
+
+
+@media only screen and (max-width: 480px) {
+	.mobile-wrapper {
+		.m-portfolio {
+			.m-portfolio-wrapper {
+				.m-portfolio-block {
+					height: 105px;
+
+					.m-right-block {
+						.m-name-wr {
+							margin-top: 27px;
+						}
+					}
+				}
+			}
+		}
+	}
+}
