@@ -7,6 +7,7 @@ use Slim\Slim;
 use FIW\Models\TextModel;
 use FIW\Models\SliderModel;
 use FIW\Models\PortfolioModel;
+use FIW\Models\EmployerModel;
 
 
 class AdminController
@@ -187,6 +188,56 @@ class AdminController
 		$data = $portfolio->remove($this->app->request->post('portfolio_id'));
 
 		return $this->app->response->write(json_encode(['success'=>$data]));
+	}
+
+	/**
+	 *
+	 * Контроллер сторінки "Про нас"
+	 *
+	 */
+	public function aboutAction()
+	{
+		return $this->app->render('admin.about.html.twig',[
+			'about' => (new TextModel)->getRawText('about-us'),
+			'employers' => (new EmployerModel)->showAll(),
+			'active_page' => 'about'
+		]);
+	}
+
+	/**
+	 *
+	 * Контроллер збереження працівника
+	 *
+	 */
+	public function employerSaveAction()
+	{
+		$this->app->response->headers->set('Content-Type', 'application/json');
+		if (!$this->app->request->isAjax())
+			return $this->app->response->write('{}');
+
+		$employer = new EmployerModel;
+		$data = $employer->save($this->app->request->post());
+
+		if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
+			$employer->updatePhoto($this->app->request->post('id'));
+		}
+
+		return $this->app->response->write(json_encode(['success'=>count($data)>1]));
+	}
+
+	/**
+	 *
+	 * Контроллер збереження тексту "Про нас"
+	 *
+	 */
+	public function aboutSaveAction()
+	{
+		$this->app->response->headers->set('Content-Type', 'application/json');
+		if (!$this->app->request->isAjax())
+			return $this->app->response->write('{}');
+
+		$txt = new TextModel;
+		return $this->app->response->write(json_encode(['success' => $txt->setText('about-us', $this->app->request->post('about_text'))]));
 	}
 
 

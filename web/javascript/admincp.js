@@ -1,4 +1,5 @@
 'use strict';
+var empty_pic = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
 
 $(document).ready(function(){
 	$('#save-social-form').on('submit', function(e){
@@ -168,6 +169,53 @@ $(document).ready(function(){
 			if (data.success == true) {
 				location.reload();
 			}
+		}, 'json');
+	});
+
+	/* employers */
+	$('.worker-photo').on('change', function(){
+		var reader = new FileReader(),
+			self = $(this);
+		reader.onload = function(e) {
+			self.siblings('img').attr('src', e.target.result);
+		}
+		reader.readAsDataURL(this.files[0]);
+		self.siblings('input[name=remove_pic]').remove();
+	});
+
+	$('.del-photo').on('click', function(){
+		$(this).siblings('img').attr('src', empty_pic);
+		$(this).before('<input type="hidden" name="remove_pic" value="1">');
+	});
+
+	$('.worker-form').on('submit', function(e){
+		e.preventDefault();
+
+		var formData = new FormData(this);
+		$.ajax({
+			url: $(this).attr('action'),
+			type: 'POST',
+			data: formData,
+			dataType: 'json',
+			async: false,
+			success: function (data) {
+				if (data.success == true) {
+					alert('Данные обновлены!');
+				} else {
+					alert('Обновить не удалось!');
+				}
+			},
+			cache: false,
+			contentType: false,
+			processData: false
+		});
+	});
+
+	$('#about-text-form').on('submit', function(e){
+		e.preventDefault();
+
+		$.post($(this).attr('action'), $(this).serialize(), function(resp){
+			console.info(resp);
 		}, 'json');
 	});
 

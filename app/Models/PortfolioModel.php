@@ -46,7 +46,7 @@ class PortfolioModel
 			return [];
 
 		if (array_diff(['id', 'name', 'address', 'price', 'director'], array_keys($post_data)))
-			return [0];
+			return [];
 
 		$id = intval($post_data['id']);
 		$portfolio = ORM::for_table('portfolio')->find_one($id);

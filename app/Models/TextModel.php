@@ -20,6 +20,38 @@ class TextModel
 		return '';
 	}
 
+	public function getRawText($slug)
+	{
+		$found = ORM::for_table('texts')
+			->where('slug', $slug)
+			->find_one();
+
+		if (is_object($found))
+			return $found->text;
+
+		return '';
+	}
+
+	public function setText($slug, $text)
+	{
+		if (!$slug || !$text)
+			return false;
+
+		$found = ORM::for_table('texts')
+			->where('slug', $slug)
+			->find_one();
+
+		if (!$found) {
+			$found = ORM::for_table('texts')->create();
+			$found->slug = $slug;
+		}
+
+		$found->text = $text;
+		$found->save();
+
+		return true;
+	}
+
 	public function getContacts()
 	{
 		$found = ORM::for_table('texts')

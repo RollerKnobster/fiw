@@ -1,0 +1,81 @@
+{% extends "admin.base.html.twig" %}
+
+{% block content %}
+			<!-- - - right side - - -->
+					<div class="right-side">
+						<!-- FORM-FORM -->
+						<form action="{{urlFor('admin_about_save')}}" method="POST" id="about-text-form">
+							<!-- Company description -->
+							<section class="company-description">
+								<div class="topic-wrapper">
+									<span class="topic">описание компании</span>
+									<div class="button-submit">
+									<label for="submit_btn">
+										<input type="submit" id="submit_btn" value="Сохранить Изменения">
+									</label>
+								</div>
+								</div>
+								<div class="description-wrapper main-border">
+									<div class="description-inner inner-border">
+										<label for="company_description">
+											<textarea name="about_text" id="company_description" cols="30" rows="10" placeholder="">{{about}}</textarea>
+										</label>
+									</div>
+								</div>
+							</section>
+							<!-- END Company description -->
+						</form>
+						<!-- Workers -->
+						<section class="workers">
+							<div class="topic-wrapper">
+								<span class="topic">сотрудники</span>
+							</div>
+							<div class="workers-wrapper">
+								<div class="workers-block-wrapper">
+									{% for employer in employers %}
+									<!-- workers-box -->
+									<div class="workers-box">
+										<form action="{{urlFor('admin_employer_save')}}" method="POST" class="worker-form" >
+											<input type="hidden" name="id" value="{{employer.id}}">
+											<div class="workers-photo inline">
+												<img src="{% if employer.photo %}{{employer.photo}}{% else %}data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=={% endif %}" alt="worker">
+												<label for="worker-{{loop.index}}">
+													<div class="file-field" title="Загрузить фото">
+														<img src="{{baseUrl}}/image/icons/pen-sm.svg" alt="pen">
+													</div>
+												</label>
+												<div class="del-photo" title="Удалить фото">
+													<img src="{{baseUrl}}/image/icons/del-sm.svg" alt="del">
+												</div>
+												<input type="file" id="worker-{{loop.index}}" name="image" class="worker-photo" accept="image/*">
+											</div>
+											<div class="workers-info-block inline">
+												<div class="label-wrapper">
+													<label for="worker-{{loop.index}}-post">
+														<p>Должность:</p>
+														<input type="text" id="worker-{{loop.index}}-post" placeholder="" name="position" value="{{employer.position}}">
+													</label>
+												</div>
+												<div class="label-wrapper">
+													<label for="worker-{{loop.index}}-name">
+														<p>Имя:</p>
+														<input type="text" id="worker-{{loop.index}}-name" placeholder="" name="name" value="{{employer.name}}">
+													</label>
+												</div>
+												<textarea name="about" cols="30" rows="10" placeholder="">{{employer.about}}</textarea>
+												<div class="buttons-wrapper">
+													<input type="submit" value="Сохранить">
+												</div>
+											</div>
+										</form>
+									</div>
+									<!-- end workers-box -->
+									{% endfor %}
+								</div>
+							</div>
+						</section>
+						<!-- END Workers -->
+					</div>
+				    <!-- - - right side - - -->
+				</section>
+{% endblock %}
