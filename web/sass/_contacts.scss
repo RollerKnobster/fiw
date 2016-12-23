@@ -66,13 +66,14 @@
 					}
 				}
 
-				input {
+				textarea {
 					font-size: 11px;
 					font-family: opensans;
-					border: none;
-					width: 30%;
+					border: 1px solid silver;
+					width: 40%;
 					background: transparent;
 					color: #7b7b7b;
+					resize: none;
 				}
 			}
 		}

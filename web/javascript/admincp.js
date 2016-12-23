@@ -286,4 +286,13 @@ $(document).ready(function(){
 	$('.project-slider-photoes .buttons-wrapper input:first, .topic-wrapper label input').on('click', function(){
 		location.reload()
 	});
+
+	function shadowMenu() {
+		if ($('.side-menu .side-menu-li:not(:first)').hasClass('active-li')) {
+			$('.boss-logo-wrapper').removeClass('box-shadow-rb').addClass('box-shadow-r')
+
+			$('.side-menu-li.active-li').prev().removeClass('box-shadow-r').addClass('box-shadow-rb');
+		}
+	}
+	shadowMenu();
 });
