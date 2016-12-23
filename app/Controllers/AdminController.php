@@ -9,6 +9,7 @@ use FIW\Models\SliderModel;
 use FIW\Models\PortfolioModel;
 use FIW\Models\EmployerModel;
 use FIW\Models\ServicesModel;
+use FIW\Models\UserModel;
 
 
 class AdminController
@@ -309,8 +310,45 @@ class AdminController
 		$result &= $tm->setText('contacts_emails', $this->app->request->post('emails'));
 		$result &= $tm->setText('contacts_address', $this->app->request->post('address'));
 
-		return $this->app->response->write('{"success": '.$result.'}');
+		return $this->app->response->write('{"success": '.($result ? 'true' : 'false').'}');
 	}
 
+	/**
+	 *
+	 * Контроллер сторінки авторизації
+	 *
+	 */
+	public function loginAction()
+	{
+		return $this->app->render('admin.login.html.twig');
+	}
+
+	/**
+	 *
+	 * Контроллер процесу авторизації
+	 *
+	 */
+	public function authAction()
+	{
+		$this->app->response->headers->set('Content-Type', 'application/json');
+		if (!$this->app->request->isAjax())
+			return $this->app->response->write('{}');
+
+		$result = (new UserModel)->auth($this->app->request->post('username'), $this->app->request->post('password'));
+
+		return $this->app->response->write('{"success": '.($result ? 'true' : 'false').'}');
+	}
+
+	/**
+	 *
+	 * Контроллер виходу з системи
+	 *
+	 */
+	public function logoutAction()
+	{
+		(new UserModel)->logout();
+
+		$this->app->redirect($this->app->urlFor('admin_login_page'));
+	}
 
 }

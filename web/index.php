@@ -9,6 +9,7 @@ require_once APP_DIR.'/app/config.php';
 session_start();
 
 use Slim\Slim;
+use FIW\Middleware\Auth;
 
 /* config ORM */
 ORM::configure('mysql:host=localhost;dbname='.DB_NAME);
@@ -19,11 +20,10 @@ ORM::configure('caching', true);
 ORM::configure('caching_auto_clear', true);
 ORM::configure('logging', DEBUG);
 
-
-$app = new \Slim\Slim([
+$app = new Slim([
 	'debug' => DEBUG,
 	'mode' => APP_MODE,
-	'templates.path' => '../app/views',
+	'templates.path' => implode(DIRECTORY_SEPARATOR, [APP_DIR, 'app', 'views']),
 	'site_name' => 'Forma Interior Workshop'
 	]);
 
@@ -34,13 +34,7 @@ $app->view->parserExtensions = array(
 	new \Slim\Views\TwigExtension(),
 	new \Twig_Extension_Debug(),
 );
-
-function check_login() {
-	$app = \Slim\Slim::getInstance();
-	if (!count($_SESSION) || !$_SESSION['user'] || !$_SESSION['token'])
-		$app->redirect('/admin/login');
-	$app->config('user', $_SESSION['user']);
-};
+$app->add(new Auth);
 
 $app->view->setData(['app'=>$app->container->settings]);
 
@@ -56,6 +50,9 @@ $app->get('/admin/services', 'FIW\Controllers\AdminController:servicesAction')->
 $app->get('/admin/services/', 'FIW\Controllers\AdminController:servicesAction');
 $app->get('/admin/contacts', 'FIW\Controllers\AdminController:contactsAction')->name('admin_contacts');
 $app->get('/admin/contacts/', 'FIW\Controllers\AdminController:contactsAction');
+$app->get('/admin/login', 'FIW\Controllers\AdminController:loginAction')->name('admin_login_page');
+$app->get('/admin/login/', 'FIW\Controllers\AdminController:loginAction');
+$app->get('/admin/logout', 'FIW\Controllers\AdminController:logoutAction')->name('admin_logout');
 
 $app->post('/admin/main-slider/remove', 'FIW\Controllers\AdminController:removeMainSlideAction')->name('admin_remove_main_slide');
 $app->post('/admin/main-slider/upload', 'FIW\Controllers\AdminController:uploadMainSlideAction')->name('admin_upload_main_slide');
@@ -69,5 +66,6 @@ $app->post('/admin/about/save', 'FIW\Controllers\AdminController:aboutSaveAction
 $app->post('/admin/employer/save', 'FIW\Controllers\AdminController:employerSaveAction')->name('admin_employer_save');
 $app->post('/admin/services/save', 'FIW\Controllers\AdminController:servicesSaveAction')->name('admin_services_save');
 $app->post('/admin/contacts/save', 'FIW\Controllers\AdminController:contactsSaveAction')->name('admin_contacts_save');
+$app->post('/admin/login', 'FIW\Controllers\AdminController:authAction')->name('admin_auth');
 
 $app->run();
