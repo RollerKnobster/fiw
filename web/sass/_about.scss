@@ -191,6 +191,26 @@
 						border: none;
 					}
 
+					.buttons-wrapper {
+						text-align: right;
+
+						input {
+							width: 90px;
+							height: 17px;
+							border: none;
+							background: #eaeaea;
+							padding: 0;
+							cursor: pointer;
+							font-size: 10px;
+							font-family: opensanslight;
+							color: #6b6b6b;
+							transition: background .2s ease-in-out;
+							-webkit-box-shadow: 0px 3px 8px 2px rgba(0, 0, 0, 0.55);
+							-moz-box-shadow: 0px 3px 8px 2px rgba(0, 0, 0, 0.55);
+							box-shadow: 0px 3px 8px 2px rgba(0, 0, 0, 0.55);
+						}
+					}
+
 					input, textarea {
 						&:focus::-webkit-input-placeholder {
 								opacity: .3;
