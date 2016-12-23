@@ -2,54 +2,53 @@
 <div class="mobile-modal portfolio-modal" id="modalPortfolio">
 	<!-- modal content -->
 		<section class="mobile-wrapper">
-		
-		<!-- header menu - - - - - - - -->
-		<nav class="m-menu">
-			<div class="m-back">
-				<img src="image/mobile/back.svg" class="back-btn">
-			</div>
-			<div class="menu-img">
-				<img src="image/mobile/menu.png" class="menu-open">
-				<img src="image/mobile/close.png" class="menu-close m-hidden">
-			</div>
-			<ul class="m-nav">
-				<li class="m-li active-li"><a href="index.html">Портфолио</a></li>
-				<li class="m-li"><a href="m.about.html">О Нас</a></li>
-				<li class="m-li"><a href="m.services.html">Услуги</a></li>
-				<li class="m-li"><a href="m.contacts.html">Контакты</a></li>
-			</ul>
-		</nav>
-		<!-- end header menu - - - - - - - --> 
+			<!-- header menu - - - - - - - -->
+			<nav class="m-menu">
+				<div class="m-back">
+					<img src="image/mobile/back.svg" class="back-btn">
+				</div>
+				<div class="menu-img">
+					<img src="image/mobile/menu.png" class="menu-open">
+					<img src="image/mobile/close.png" class="menu-close m-hidden">
+				</div>
+				<ul class="m-nav">
+					<li class="m-li active-li"><a href="index.html">Портфолио</a></li>
+					<li class="m-li"><a href="m.about.html">О Нас</a></li>
+					<li class="m-li"><a href="m.services.html">Услуги</a></li>
+					<li class="m-li"><a href="m.contacts.html">Контакты</a></li>
+				</ul>
+			</nav>
+			<!-- end header menu - - - - - - - --> 
 
-		<!-- portfolio -->
-		<div class="m-portfolio m-projects-margin" id="m-portfolio">
-			<!-- portfolio-wrapper -->
-			<div class="m-portfolio-wrapper">
-				{% for portfolio in portfolio_list %}
-				<!-- portfolio-block -->
-				<a href="javascript:void(0)" id="openMobileModal-{{loop.index}}">
-					<div class="m-portfolio-block">
-						<div class="m-left-block">
-							<img src="{{portfolio.images.0}}" alt="project">
-						</div>
-						<div class="m-right-block">
-							<div class="m-name-wr">
-								<p class="m-project-name">{{portfolio.name}}</p>
+			<!-- portfolio -->
+			<div class="m-portfolio m-projects-margin" id="m-portfolio">
+				<!-- portfolio-wrapper -->
+				<div class="m-portfolio-wrapper">
+					{% for portfolio in portfolio_list %}
+					<!-- portfolio-block -->
+					<a href="javascript:void(0)" id="openMobileModal-{{loop.index}}">
+						<div class="m-portfolio-block">
+							<div class="m-left-block">
+								<img src="{{portfolio.images.0}}" alt="project">
 							</div>
-							<p class="post">Дизайнер</p>
-							<p class="m-project-head">{{portfolio.director}}</p>
+							<div class="m-right-block">
+								<div class="m-name-wr">
+									<p class="m-project-name">{{portfolio.name}}</p>
+								</div>
+								<p class="post">Дизайнер</p>
+								<p class="m-project-head">{{portfolio.director}}</p>
+							</div>
 						</div>
-					</div>
-				</a>
-				{% include "modal.project.html.twig" %}
-				{% if loop.index >= 5 %}
-				{% endif %}
-				<!-- portfolio-block -->
-				{% endfor %}
+					</a>
+					{% include "modal.project.html.twig" %}
+					{% if loop.index >= 5 %}
+					{% endif %}
+					<!-- portfolio-block -->
+					{% endfor %}
+				</div>
+				<!-- end portfolio-wrapper -->
 			</div>
-			<!-- end portfolio-wrapper -->
-		</div>
-		<!-- end portfolio -->
+			<!-- end portfolio -->
 	</section>
 
 	<!-- modal content -->

@@ -34,8 +34,8 @@ $(document).ready(function(){
 	// end portfolio resizer
 
 	// back btn
-	$('.back-btn').click(function(){
-		$('.mobile-modal').css({
+	$('.back-btn').on('click', function(){
+		$(this).closest('.mobile-modal').css({
 			opacity: "0",
 			visibility: "hidden"
 		});
@@ -61,10 +61,13 @@ $(document).ready(function(){
 		if (!numId)
 			return false;
 
-		winModal.css('opacity', '1').css('visibility', 'visible');
+		winModal.css({
+			opacity: "1",
+			visibility: "visible"
+		});
 	});
 
-	$('.m-box-wr').on('click', function(){
+	$('.m-services-wr .m-box-wr').on('click', function(){
 		$('#servicesModal').css({
 			opacity: "1",
 			visibility: "visible"
