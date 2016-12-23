@@ -278,5 +278,18 @@ class AdminController
 		return $this->app->response->write('{"success": true}');
 	}
 
+	/**
+	 *
+	 * Контроллер сторінки "Контакти"
+	 *
+	 */
+	public function contactsAction()
+	{
+		return $this->app->render('admin.contacts.html.twig',[
+			'contacts' => (new TextModel)->getContacts(),
+			'active_page' => 'contacts'
+		]);
+	}
+
 
 }

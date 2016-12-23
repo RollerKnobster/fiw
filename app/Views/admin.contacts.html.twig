@@ -1,4 +1,4 @@
-{% extends admin.base.html.twig %}
+{% extends "admin.base.html.twig" %}
 
 {% block content %}
 <!-- - - right side - - -->
@@ -20,7 +20,7 @@
 										<label for="phone_number1">
 											<p>Телефон:</p>
 										</label>
-										<input type="text" id="phone_number1" value="+38 (093) 763 67 54">
+										<input type="text" id="phone_number1" value="{{contacts.phones|join('\n')}}">
 									</div>
 								</div>
 							</div>
@@ -30,7 +30,7 @@
 										<label for="email1">
 											<p>Email:</p>
 										</label>
-										<input type="text" id="email1" value="oliynnkmr@mail.ru">
+										<input type="text" id="email1" value="{{contacts.emails|join('\n')}}">
 									</div>
 								</div>
 							</div>
@@ -40,7 +40,7 @@
 										<label for="adress">
 											<p>Адрес:</p>
 										</label>
-										<input type="text" id="adress" value="г. Киев ул. Нижненовгородская 15">
+										<input type="text" id="adress" value="{{contacts.address|join('\n')}}">
 									</div>
 								</div>
 							</div>

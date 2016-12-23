@@ -54,6 +54,8 @@ $app->get('/admin/about', 'FIW\Controllers\AdminController:aboutAction')->name('
 $app->get('/admin/about/', 'FIW\Controllers\AdminController:aboutAction');
 $app->get('/admin/services', 'FIW\Controllers\AdminController:servicesAction')->name('admin_services');
 $app->get('/admin/services/', 'FIW\Controllers\AdminController:servicesAction');
+$app->get('/admin/contacts', 'FIW\Controllers\AdminController:contactsAction')->name('admin_contacts');
+$app->get('/admin/contacts/', 'FIW\Controllers\AdminController:contactsAction');
 
 $app->post('/admin/main-slider/remove', 'FIW\Controllers\AdminController:removeMainSlideAction')->name('admin_remove_main_slide');
 $app->post('/admin/main-slider/upload', 'FIW\Controllers\AdminController:uploadMainSlideAction')->name('admin_upload_main_slide');
