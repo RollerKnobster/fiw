@@ -59,7 +59,7 @@ class TextModel
 			->find_array();
 
 		$data = [
-			'contacts' => [],
+			'phones' => [],
 			'emails' => [],
 			'address' => []
 		];
@@ -70,7 +70,7 @@ class TextModel
 			if (count($key) != 2 || $key[0] != 'contacts')
 				continue;
 
-			$data[$key[1]] = explode("\n", $item['text']);
+			$data[$key[1]] = array_filter(array_map('trim', explode("\n", $item['text'])));
 		}
 
 		return $data;

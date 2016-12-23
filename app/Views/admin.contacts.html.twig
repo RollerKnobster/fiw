@@ -4,7 +4,7 @@
 <!-- - - right side - - -->
 				<div class="right-side">
 					<!-- FORM-FORM -->
-					<form action="">
+					<form action="{{urlFor('admin_contacts_save')}}" method="POST" id="save-contacts-form">
 						<div class="contacts">
 							<div class="topic-wrapper">
 								<span class="topic">Контакты</span>
@@ -20,7 +20,7 @@
 										<label for="phone_number1">
 											<p>Телефон:</p>
 										</label>
-										<textarea id="phone_number1" value="{{contacts.phones|join('\n')}}"></textarea>
+										<textarea id="phone_number1" name="phones" rows="2">{{contacts.phones|join('\n')}}</textarea>
 									</div>
 								</div>
 							</div>
@@ -30,7 +30,7 @@
 										<label for="email1">
 											<p>Email:</p>
 										</label>
-										<textarea id="email1" value="{{contacts.emails|join('\n')}}"></textarea>
+										<textarea id="email1" name="emails" rows="2">{{contacts.emails|join('\n')}}</textarea>
 									</div>
 								</div>
 							</div>
@@ -40,7 +40,7 @@
 										<label for="adress">
 											<p>Адрес:</p>
 										</label>
-										<textarea id="adress" value="{{contacts.address|join('\n')}}"></textarea>
+										<textarea id="adress" name="address" rows="2">{{contacts.address|join('\n')}}</textarea>
 									</div>
 								</div>
 							</div>

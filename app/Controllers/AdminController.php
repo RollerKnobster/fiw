@@ -291,5 +291,26 @@ class AdminController
 		]);
 	}
 
+	/**
+	 *
+	 * Контроллер збереження контактів
+	 *
+	 */
+	public function contactsSaveAction()
+	{
+		$this->app->response->headers->set('Content-Type', 'application/json');
+		if (!$this->app->request->isAjax())
+			return $this->app->response->write('{}');
+
+		$result = true;
+		$tm = new TextModel;
+
+		$result &= $tm->setText('contacts_phones', $this->app->request->post('phones'));
+		$result &= $tm->setText('contacts_emails', $this->app->request->post('emails'));
+		$result &= $tm->setText('contacts_address', $this->app->request->post('address'));
+
+		return $this->app->response->write('{"success": '.$result.'}');
+	}
+
 
 }

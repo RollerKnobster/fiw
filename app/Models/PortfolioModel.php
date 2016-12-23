@@ -164,7 +164,7 @@ class PortfolioModel
 
 		if (is_dir($dir)) {
 			foreach(scandir($dir) as $file) {
-				$file = implode(DIRECTORY_SEPARATOR, $dir, $file);
+				$file = implode(DIRECTORY_SEPARATOR, [$dir, $file]);
 				if (is_file($file)) {
 					@unlink($file);
 				}

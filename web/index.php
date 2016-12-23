@@ -68,5 +68,6 @@ $app->post('/admin/portfolio/remove-photo', 'FIW\Controllers\AdminController:por
 $app->post('/admin/about/save', 'FIW\Controllers\AdminController:aboutSaveAction')->name('admin_about_save');
 $app->post('/admin/employer/save', 'FIW\Controllers\AdminController:employerSaveAction')->name('admin_employer_save');
 $app->post('/admin/services/save', 'FIW\Controllers\AdminController:servicesSaveAction')->name('admin_services_save');
+$app->post('/admin/contacts/save', 'FIW\Controllers\AdminController:contactsSaveAction')->name('admin_contacts_save');
 
 $app->run();

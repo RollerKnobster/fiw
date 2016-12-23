@@ -2,14 +2,12 @@
 var empty_pic = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
 
 $(document).ready(function(){
+
 	$('#save-social-form').on('submit', function(e){
 		e.preventDefault();
 
 		$.post($(this).attr('action'), $(this).serialize(), function(data) {
-			if (data.success)
-				$('.success-block').toggle();
-			else
-				alert('Saving social: error');
+			infoBox(data.success == true ? 'Данные обновлены' : 'Обновить не удалось');
 		}, 'json');
 	});
 
@@ -55,6 +53,8 @@ $(document).ready(function(){
 	$('.new-project').on('click', function(){
 		$('.project-about').removeClass('hidden');
 		$('.project-slider-photoes .slider-box:not(:first)').remove();
+		$('#portfolio_form')[0].reset();
+		$('#portfolio_id').val(0);
 	});
 
 	$('#slider_add_photo').on('change', function(e){
@@ -87,7 +87,11 @@ $(document).ready(function(){
 		e.preventDefault();
 
 		$.post($(this).attr('action'), $(this).serialize(), function(data){
-			console.alert(data);
+			if (data.success == true) {
+				$('#portfolio_id').val(data.data.id);
+			} else {
+				infoBox('Сохранить не удалось');
+			}
 		}, 'json');
 	});
 
@@ -98,31 +102,35 @@ $(document).ready(function(){
 			e.preventDefault();
 			e.stopPropagation();
 
-			function appearSuccessBlock() {
-				$('.success-block').find('p').text('Перед добавлением фото сохраните проект!');
-				$('.success-block').toggle();
-			}
-			appearSuccessBlock();
+			infoBox('Перед добавлением фото сохраните проект!');
 		}
 
 		if ($('.project-slider-photoes .slider-box:not(:first)').length > 4) {
 			e.preventDefault();
 			e.stopPropagation();
 
-			function appearSuccessBlock() {
-				$('.success-block').find('p').text('Не больше 5 слайдов на проект!');
-				$('.success-block').toggle();
-			}
-			appearSuccessBlock();
+			infoBox('Не больше 5 слайдов на проект!');
 		}
 	});
 
 	$('.projects-wrapper').on('click', '.project-block', function(){
-		var token = $(this).data('token');
+		var token = $(this).data('token'),
+			hover = $(this).find('.project-block-hover'),
+			form = $('#portfolio_form')[0];
+		form.reset();
+
+		if (hover.hasClass('visible')) {
+			hover.removeClass('visible');
+			$('.project-slider-photoes .slider-box:not(:first)').remove();
+			$('.project-about').addClass('hidden');
+			return false;
+		}
+
+		$('.projects-wrapper .project-block-hover.visible').removeClass('visible');
+		hover.addClass('visible');
 
 		$.post('/admin/portfolio/get_one', {token: token}, function(data){
 			if(data.success) {
-				var form = $('#portfolio_form')[0];
 				form.id.value = data.data.id;
 				form.name.value = data.data.name;
 				form.price.value = data.data.price;
@@ -208,19 +216,7 @@ $(document).ready(function(){
 			dataType: 'json',
 			async: false,
 			success: function (data) {
-				if (data.success == true) {
-					function appearSuccessBlock() {
-						$('.success-block').find('p').text('Данные обновлены!');
-						$('.success-block').toggle();
-					}
-					appearSuccessBlock();
-				} else {
-					function appearSuccessBlock() {
-						$('.success-block').find('p').text('Обновить не удалось!');
-						$('.success-block').toggle();
-					}
-					appearSuccessBlock();
-				}
+				infoBox(data.success == true ? 'Данные обновлены' : 'Обновить не удалось');
 			},
 			cache: false,
 			contentType: false,
@@ -249,50 +245,27 @@ $(document).ready(function(){
 		$(".success-block").css("display", "none");
 	});
 
-	$(".project-block-wrapper").click(function(){
-		var arrProjectBlocks = $(".project-block-wrapper");
-		var count = 0;
+	/* contacts */
+	$('#save-contacts-form').on('submit', function(e){
+		e.preventDefault();
 
-		$(".project-description input").removeClass("hidden");
-		$(".project-slider-photoes").removeClass("hidden");
-		$(".slider-add-box").removeClass("invisible");
-
-
-		if ($(this).find(".project-block-hover").hasClass("visible")) {
-			$(this).find(".project-block-hover").removeClass("visible");
-
-			$(".project-description input").addClass("hidden");
-			$(".project-slider-photoes").addClass("hidden");
-
-		} else {
-			for (var i = 0; i < arrProjectBlocks.length; i++) {
-				if ($(arrProjectBlocks[i]).find(".project-block-hover").hasClass("visible")) {
-					count++;
-				}
-			}
-			if (count === 0) {
-				$(this).find(".project-block-hover").addClass("visible");
-			} else {
-				for (var i = 0; i < arrProjectBlocks.length; i++) {
-					if ($(arrProjectBlocks[i]).find(".project-block-hover").hasClass("visible")) {
-						$(arrProjectBlocks[i]).find(".project-block-hover").removeClass("visible");
-					}
-				}
-				$(this).find(".project-block-hover").addClass("visible");
-			}
-		}
+		$.post($(this).attr('action'), $(this).serialize(), function(resp){
+			infoBox(resp.success == true ? 'Данные обновлены' : 'Обновить не удалось');
+		}, 'json');
 	});
 
-	$('.project-slider-photoes .buttons-wrapper input:first, .topic-wrapper label input').on('click', function(){
-		location.reload()
-	});
-
-	function shadowMenu() {
-		if ($('.side-menu .side-menu-li:not(:first)').hasClass('active-li')) {
-			$('.boss-logo-wrapper').removeClass('box-shadow-rb').addClass('box-shadow-r')
-
-			$('.side-menu-li.active-li').prev().removeClass('box-shadow-r').addClass('box-shadow-rb');
-		}
-	}
 	shadowMenu();
 });
+
+
+function infoBox(text = 'Операция успешна!') {
+	$('.success-block').find('p').text(text);
+	$('.success-block').show();
+}
+
+function shadowMenu() {
+	if ($('.side-menu .side-menu-li:not(:first)').hasClass('active-li')) {
+		$('.boss-logo-wrapper').removeClass('box-shadow-rb').addClass('box-shadow-r')
+		$('.side-menu-li.active-li').prev().removeClass('box-shadow-r').addClass('box-shadow-rb');
+	}
+}
