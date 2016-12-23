@@ -274,4 +274,8 @@ $(document).ready(function(){
 		}
 
 	});
+
+	$('.project-slider-photoes .buttons-wrapper input:first, .topic-wrapper label input').on('click', function(){
+		location.reload()
+	});
 });
