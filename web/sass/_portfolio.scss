@@ -35,6 +35,7 @@
 				margin: 0 10px 10px 0;
 				vertical-align: middle;
 				cursor: pointer;
+				border: 1px solid silver;
 
 				&:nth-child(5), &:nth-child(10), &:nth-child(15), &:nth-child(20), &:nth-child(25), &:nth-child(30), &:nth-child(35), &:nth-child(40), &:nth-child(45), &:last-child {
 					margin-right: 0;
@@ -159,7 +160,7 @@
 						font-family: opensans;
 						color: #8d8c8c;
 						font-size: 11px;
-						border: none;
+						border: 1px solid silver;
 
 						&::-webkit-input-placeholder {
 							font-size: 11px;

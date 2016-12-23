@@ -6,12 +6,7 @@ $(document).ready(function(){
 	$(".slider").bxSlider({
 		auto: true,
 		pause: 4000, 
-		useCSS: false,
-		// adaptiveHeight: true,
-		// pagerCustom: '#slider'
-		// mode: 'fade'
-   		// captions: true
-		// adaptiveHeightSpeed: 200,
+		useCSS: false
 	});
 
 	// header-block margin

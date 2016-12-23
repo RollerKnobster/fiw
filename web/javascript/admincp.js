@@ -7,7 +7,7 @@ $(document).ready(function(){
 
 		$.post($(this).attr('action'), $(this).serialize(), function(data) {
 			if (data.success)
-				$(".success-block").toggle();
+				$('.success-block').toggle();
 			else
 				alert('Saving social: error');
 		}, 'json');
@@ -45,7 +45,6 @@ $(document).ready(function(){
 
 		if (slide !== null && action != null) {
 			$.post(action, {filename: slide}, function(data){
-				console.log(data);
 				if (data.success == true)
 					self.closest('.slide-block').remove();
 			}, 'json');
@@ -98,13 +97,23 @@ $(document).ready(function(){
 		if (portfolioId < 1) {
 			e.preventDefault();
 			e.stopPropagation();
-			alert('Перед добавление фото сохраните проект!');
+
+			function appearSuccessBlock() {
+				$('.success-block').find('p').text('Перед добавлением фото сохраните проект!');
+				$('.success-block').toggle();
+			}
+			appearSuccessBlock(); 
 		}
 
 		if ($('.project-slider-photoes .slider-box:not(:first)').length > 4) {
 			e.preventDefault();
 			e.stopPropagation();
-			alert('Не больше 5 слайдов на проект!');
+
+			function appearSuccessBlock() {
+				$('.success-block').find('p').text('Не больше 5 слайдов на проект!');
+				$('.success-block').toggle();
+			}
+			appearSuccessBlock(); 
 		}
 	});
 
@@ -200,9 +209,17 @@ $(document).ready(function(){
 			async: false,
 			success: function (data) {
 				if (data.success == true) {
-					alert('Данные обновлены!');
+					function appearSuccessBlock() {
+						$('.success-block').find('p').text('Данные обновлены!');
+						$('.success-block').toggle();
+					}
+					appearSuccessBlock(); 
 				} else {
-					alert('Обновить не удалось!');
+					function appearSuccessBlock() {
+						$('.success-block').find('p').text('Обновить не удалось!');
+						$('.success-block').toggle();
+					}
+					appearSuccessBlock();
 				}
 			},
 			cache: false,
@@ -219,8 +236,42 @@ $(document).ready(function(){
 		}, 'json');
 	});
 
-	$(".success-close").click(function(){
-		$(".success-block").css("display", "none");
+	$('.success-close').click(function(){
+		$('.success-block').css('display', 'none');
 	});
 
+	$(".project-block-wrapper").click(function(){
+		var arrProjectBlocks = $(".project-block-wrapper");
+		var count = 0;
+
+		$(".project-description input").removeClass("hidden");
+		$(".project-slider-photoes").removeClass("hidden");
+		$(".slider-add-box").removeClass("invisible");
+
+
+		if ($(this).find(".project-block-hover").hasClass("visible")) {
+			$(this).find(".project-block-hover").removeClass("visible");
+			
+			$(".project-description input").addClass("hidden");
+			$(".project-slider-photoes").addClass("hidden");
+		
+		} else {
+			for (var i = 0; i < arrProjectBlocks.length; i++) {
+				if ($(arrProjectBlocks[i]).find(".project-block-hover").hasClass("visible")) {
+					count++;
+				}
+			}
+			if (count === 0) {
+				$(this).find(".project-block-hover").addClass("visible");
+			} else {
+				for (var i = 0; i < arrProjectBlocks.length; i++) {
+					if ($(arrProjectBlocks[i]).find(".project-block-hover").hasClass("visible")) {
+						$(arrProjectBlocks[i]).find(".project-block-hover").removeClass("visible");
+					}
+				}
+				$(this).find(".project-block-hover").addClass("visible");
+			}
+		}
+
+	});
 });
