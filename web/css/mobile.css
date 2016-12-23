@@ -440,12 +440,12 @@ body {
 }
 /* line 66, ../sass/_m-portfolio.scss */
 .m-slider-section .m-slider-wr .bx-wrapper .bx-controls-direction .bx-prev {
-  background: url("../image/arrowprev.png") center no-repeat;
+  background: url("../image/slider-arrows/arrowprev.png") center no-repeat;
   left: 8px;
 }
 /* line 71, ../sass/_m-portfolio.scss */
 .m-slider-section .m-slider-wr .bx-wrapper .bx-controls-direction .bx-next {
-  background: url("../image/arrownext.png") center no-repeat;
+  background: url("../image/slider-arrows/arrownext.png") center no-repeat;
   right: 8px;
 }
 
