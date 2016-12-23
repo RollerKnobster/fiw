@@ -219,6 +219,16 @@ $(document).ready(function(){
 		}, 'json');
 	});
 
+
+	/* services */
+	$('#services-form').on('submit', function(e){
+		e.preventDefault();
+
+		$.post($(this).attr('action'), $(this).serialize(), function(resp){
+			console.info(resp);
+		}, 'json');
+	});
+
 	$(".success-close").click(function(){
 		$(".success-block").css("display", "none");
 	});

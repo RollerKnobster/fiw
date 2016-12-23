@@ -52,6 +52,8 @@ $app->get('/admin/portfolio', 'FIW\Controllers\AdminController:portfolioAction')
 $app->get('/admin/portfolio/', 'FIW\Controllers\AdminController:portfolioAction');
 $app->get('/admin/about', 'FIW\Controllers\AdminController:aboutAction')->name('admin_about');
 $app->get('/admin/about/', 'FIW\Controllers\AdminController:aboutAction');
+$app->get('/admin/services', 'FIW\Controllers\AdminController:servicesAction')->name('admin_services');
+$app->get('/admin/services/', 'FIW\Controllers\AdminController:servicesAction');
 
 $app->post('/admin/main-slider/remove', 'FIW\Controllers\AdminController:removeMainSlideAction')->name('admin_remove_main_slide');
 $app->post('/admin/main-slider/upload', 'FIW\Controllers\AdminController:uploadMainSlideAction')->name('admin_upload_main_slide');
@@ -61,8 +63,8 @@ $app->post('/admin/portfolio/get_one', 'FIW\Controllers\AdminController:portfoli
 $app->post('/admin/portfolio/remove', 'FIW\Controllers\AdminController:portfolioRemoveAction')->name('admin_rm_portfolio');
 $app->post('/admin/portfolio/add-photo', 'FIW\Controllers\AdminController:portfolioPhotoAddAction')->name('admin_add_portfolio_photo');
 $app->post('/admin/portfolio/remove-photo', 'FIW\Controllers\AdminController:portfolioPhotoRemoveAction')->name('admin_rm_portfolio_photo');
-
 $app->post('/admin/about/save', 'FIW\Controllers\AdminController:aboutSaveAction')->name('admin_about_save');
 $app->post('/admin/employer/save', 'FIW\Controllers\AdminController:employerSaveAction')->name('admin_employer_save');
+$app->post('/admin/services/save', 'FIW\Controllers\AdminController:servicesSaveAction')->name('admin_services_save');
 
 $app->run();

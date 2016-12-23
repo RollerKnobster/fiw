@@ -1,0 +1,53 @@
+{% extends admin.base.html.twig %}
+
+{% block content %}
+<!-- - - right side - - -->
+				<div class="right-side">
+					<!-- FORM-FORM -->
+					<form action="">
+						<div class="contacts">
+							<div class="topic-wrapper">
+								<span class="topic">Контакты</span>
+								<div class="button-submit">
+									<label for="submit_btn">
+										<input type="submit" id="submit_btn" value="Сохранить Изменения">
+									</label>
+								</div>
+							</div>
+							<div class="contacts-box-wrapper">
+								<div class="contacts-box-border">
+									<div class="contacts-box">
+										<label for="phone_number1">
+											<p>Телефон:</p>
+										</label>
+										<input type="text" id="phone_number1" value="+38 (093) 763 67 54">
+									</div>
+								</div>
+							</div>
+							<div class="contacts-box-wrapper">
+								<div class="contacts-box-border">
+									<div class="contacts-box">
+										<label for="email1">
+											<p>Email:</p>
+										</label>
+										<input type="text" id="email1" value="oliynnkmr@mail.ru">
+									</div>
+								</div>
+							</div>
+							<div class="contacts-box-wrapper">
+								<div class="contacts-box-border">
+									<div class="contacts-box">
+										<label for="adress">
+											<p>Адрес:</p>
+										</label>
+										<input type="text" id="adress" value="г. Киев ул. Нижненовгородская 15">
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+					<!-- END FORM-FORM -->
+				</div>
+			    <!-- - - right side - - -->
+			</section>
+{% endblock %}

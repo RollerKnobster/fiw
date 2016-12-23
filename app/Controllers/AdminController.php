@@ -8,6 +8,7 @@ use FIW\Models\TextModel;
 use FIW\Models\SliderModel;
 use FIW\Models\PortfolioModel;
 use FIW\Models\EmployerModel;
+use FIW\Models\ServicesModel;
 
 
 class AdminController
@@ -238,6 +239,43 @@ class AdminController
 
 		$txt = new TextModel;
 		return $this->app->response->write(json_encode(['success' => $txt->setText('about-us', $this->app->request->post('about_text'))]));
+	}
+
+	/**
+	 *
+	 * Контроллер сторінки "Сервіси"
+	 *
+	 */
+	public function servicesAction()
+	{
+		return $this->app->render('admin.services.html.twig',[
+			'services' => (new ServicesModel)->getAll(),
+			'active_page' => 'services'
+		]);
+	}
+
+	/**
+	 *
+	 * Контроллер збереження сервісів
+	 *
+	 */
+	public function servicesSaveAction()
+	{
+		$this->app->response->headers->set('Content-Type', 'application/json');
+		if (!$this->app->request->isAjax())
+			return $this->app->response->write('{}');
+		$services = $this->app->request->post('service');
+
+		if (!is_array($services))
+			return $this->app->response->write('{}');
+
+		$m_service = new ServicesModel;
+
+		foreach ($services as $service) {
+			$m_service->save($service);
+		}
+
+		return $this->app->response->write('{"success": true}');
 	}
 
 

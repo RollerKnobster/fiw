@@ -1,0 +1,43 @@
+{% extends "admin.base.html.twig" %}
+
+{% block content %}
+				<!-- - - right side - - -->
+				<div class="right-side">
+					<!-- FORM-FORM -->
+					<form action="{{urlFor('admin_services_save')}}" method="POST" id="services-form">
+						<section class="services">
+							<div class="topic-wrapper">
+								<span class="topic">Услуги</span>
+								<div class="button-submit">
+									<label for="submit_btn">
+										<input type="submit" id="submit_btn" value="Сохранить Изменения">
+									</label>
+								</div>
+							</div>
+							<div class="services-wrapper main-border">
+								<div class="services-inner inner-border">
+									{% for service in services %}
+									<input type="hidden" name="service[{{service.id}}][id]" value="{{service.id}}">
+									<div class="services-box">
+										<p class="box-topic">{{service.name}}</p>
+										<div class="label-wrapper">
+											<label for="{{service.slug}}_price">
+												<p>Цена:</p>
+												<input type="text" id="{{service.slug}}_price" placeholder="" name = "service[{{service.id}}][price]" value="{{service.price}}">
+											</label>
+										</div>
+										<div class="textarea-wrapper">
+											<textarea name="service[{{service.id}}][description]" cols="30" rows="10">{{service.description}}</textarea>
+										</div>
+									</div>
+									{% endfor %}
+								</div>
+							</div>
+						</section>
+					</form>
+					<!-- END FORM-FORM -->
+				</div>
+			    <!-- - - right side - - -->
+
+			</section>
+{% endblock %}
