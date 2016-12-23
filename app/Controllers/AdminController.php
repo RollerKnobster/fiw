@@ -1,66 +1,230 @@
 <?php
 
-class AdminController {
+namespace FIW\Controllers;
+
+use Exception;
+use Slim\Slim;
+use FIW\Models\TextModel;
+use FIW\Models\SliderModel;
+use FIW\Models\PortfolioModel;
+use FIW\Models\EmployerModel;
+use FIW\Models\ServicesModel;
+use FIW\Models\UserModel;
+
+
+class AdminController
+{
 	protected $app;
-	protected $lang;
 
-	public function __construct(){
-		$this->app = i18nSlim::getInstance();
-		$this->lang = $this->app->container->settings['lang'];
+	public function __construct()
+	{
+		$this->app = Slim::getInstance();
 	}
 
 	/**
 	 *
-	 * Контроллер сторінки адмінки "Редагування тексту про нас"
+	 * Контроллер сторінки адмінки "Головна"
 	 *
 	 */
-	public function indexAction(){
-		$text = ORM::for_table('texts')
-			->select('text')
-			->where_equal('lang', $this->lang)
-			->where_equal('name', 'about_company')
-			->find_one();
-		return $this->app->render('admin.main.html.twig', ['text' => $text->text]);
+	public function indexAction()
+	{
+		return $this->app->render('admin.main.html.twig',[
+			'social' => (new TextModel)->getSocial(),
+			'slides' => (new SliderModel)->listSlides(),
+			'active_page' => 'main'
+		]);
 	}
 
 	/**
 	 *
-	 * Контроллер сторінки адмінки "Авторизація"
+	 * Контроллер видалення слайду з головного слайдера
 	 *
 	 */
-	public function loginAction(){
-		return $this->app->render('admin.login.html.twig');
+	public function removeMainSlideAction()
+	{
+		$this->app->response->headers->set('Content-Type', 'application/json');
+		if (!$this->app->request->isAjax())
+			return $this->app->response->write('{}');
+		$filename = (string)$this->app->request->post('filename');
+		$filename = str_replace(['/', '\\'], '', $filename);
+		$slide = implode(DIRECTORY_SEPARATOR, [ROOT_DIR, 'image', 'header', 'slider', $filename]);
+		if (!is_file($slide))
+			return $this->app->response->write('{}');
+		@unlink($slide);
+		return $this->app->response->write('{"success": true}');
 	}
 
 	/**
 	 *
-	 * Контроллер авторизації
+	 * Контроллер завантаження фото в головний слайдер
 	 *
 	 */
-	public function authAction(){
-		if ($this->app->request->post('auth_name')){
-			$user = ORM::for_table('users')
-				->where_any_is([['login' => $this->app->request->post('auth_name')], ['email' => $this->app->request->post('auth_name')]])
-				->find_one();
-			if ($user && $user->password == sha1(md5($this->app->request->post('auth_password')))){
-				$_SESSION['user'] = $user;
-				$_SESSION['token'] = sha1(time());
-				return $this->app->redirect('/admin');
-			}
-			$this->app->flashNow('login.error', 'Невірний логін або пароль!');
+	public function uploadMainSlideAction()
+	{
+		$this->app->response->headers->set('Content-Type', 'application/json');
+		if (!$this->app->request->isAjax())
+			return $this->app->response->write('{}');
+		if (!isset($_FILES['image']) || $_FILES['image']['error'] != 0)
+			return $this->app->response->write('{}');
+		$img_file = (new SliderModel)->saveSlide($_FILES['image']['tmp_name']);
+		if ($img_file)
+			return $this->app->response->write('{"success": true, "img": "'.$img_file.'"}');
+		return $this->app->response->write('{}');
+	}
+
+	/**
+	 *
+	 * Контроллер збереження соціальних мереж
+	 *
+	 */
+	public function socialSaveAction()
+	{
+		$this->app->response->headers->set('Content-Type', 'application/json');
+		if (!$this->app->request->isAjax())
+			return $this->app->response->write('{}');
+		$data = (new TextModel)->setSocial($this->app->request->post('social'));
+		if (count(array_diff($data, $this->app->request->post('social'))) == 0);
+			return $this->app->response->write('{"success": true}');
+		return $this->app->response->write('{}');
+	}
+
+	/**
+	 *
+	 * Контроллер сторінки адмінки "Портфоліо"
+	 *
+	 */
+	public function portfolioAction()
+	{
+		return $this->app->render('admin.portfolio.html.twig',[
+			'projects' => (new PortfolioModel)->showAll(true),
+			'active_page' => 'portfolio'
+		]);
+	}
+
+	/**
+	 *
+	 * Контроллер збереження портфоліо
+	 *
+	 */
+	public function portfolioSaveAction()
+	{
+		$this->app->response->headers->set('Content-Type', 'application/json');
+		if (!$this->app->request->isAjax())
+			return $this->app->response->write('{}');
+
+		$portfolio = new PortfolioModel;
+		$data = $portfolio->save($this->app->request->post());
+
+		if (!count($data))
+			return $this->app->response->write('{}');
+
+		return $this->app->response->write(json_encode(['success'=>true, 'data'=>$data]));
+	}
+
+	/**
+	 *
+	 * Контроллер збереження фоток портфоліо
+	 *
+	 */
+	public function portfolioPhotoAddAction()
+	{
+		$this->app->response->headers->set('Content-Type', 'application/json');
+		if (!$this->app->request->isAjax())
+			return $this->app->response->write('{}');
+
+		$portfolio = new PortfolioModel;
+		$data = $portfolio->uploadPhoto($this->app->request->post('portfolio_id'));
+
+		return $this->app->response->write(json_encode(['success'=>true, 'data'=>$data]));
+	}
+
+	/**
+	 *
+	 * Контроллер видалення фоток портфоліо
+	 *
+	 */
+	public function portfolioPhotoRemoveAction()
+	{
+		$this->app->response->headers->set('Content-Type', 'application/json');
+		if (!$this->app->request->isAjax())
+			return $this->app->response->write('{}');
+
+		$portfolio = new PortfolioModel;
+		$data = $portfolio->removePhoto($this->app->request->post('portfolio_id'), $this->app->request->post('filename'));
+
+		return $this->app->response->write(json_encode(['success'=>$data]));
+	}
+
+	/**
+	 *
+	 * Контроллер отримання даних про одну роботу за токеном
+	 *
+	 */
+	public function portfolioGetOneAction()
+	{
+		$this->app->response->headers->set('Content-Type', 'application/json');
+		if (!$this->app->request->isAjax())
+			return $this->app->response->write('{}');
+
+		$portfolio = new PortfolioModel;
+		$data = $portfolio->findByToken($this->app->request->post('token'));
+
+		if (!count($data))
+			return $this->app->response->write('{}');
+
+		return $this->app->response->write(json_encode(['success'=>true, 'data'=>$data]));
+	}
+
+	/**
+	 *
+	 * Контроллер видалення портфоліо
+	 *
+	 */
+	public function portfolioRemoveAction()
+	{
+		$this->app->response->headers->set('Content-Type', 'application/json');
+		if (!$this->app->request->isAjax())
+			return $this->app->response->write('{}');
+
+		$portfolio = new PortfolioModel;
+		$data = $portfolio->remove($this->app->request->post('portfolio_id'));
+
+		return $this->app->response->write(json_encode(['success'=>$data]));
+	}
+
+	/**
+	 *
+	 * Контроллер сторінки "Про нас"
+	 *
+	 */
+	public function aboutAction()
+	{
+		return $this->app->render('admin.about.html.twig',[
+			'about' => (new TextModel)->getRawText('about-us'),
+			'employers' => (new EmployerModel)->showAll(),
+			'active_page' => 'about'
+		]);
+	}
+
+	/**
+	 *
+	 * Контроллер збереження працівника
+	 *
+	 */
+	public function employerSaveAction()
+	{
+		$this->app->response->headers->set('Content-Type', 'application/json');
+		if (!$this->app->request->isAjax())
+			return $this->app->response->write('{}');
+
+		$employer = new EmployerModel;
+		$data = $employer->save($this->app->request->post());
+
+		if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
+			$employer->updatePhoto($this->app->request->post('id'));
 		}
-		return $this->app->render('admin.login.html.twig');
-	}
 
-	/**
-	 *
-	 * Контроллер авторизації
-	 *
-	 */
-	public function logoutAction(){
-		$_SESSION['user'] = null;
-		unset($_SESSION['token']);
-		return $this->app->redirect($this->app->urlFor('admin_login'));
+		return $this->app->response->write(json_encode(['success'=>count($data)>1]));
 	}
 
 	/**
@@ -68,110 +232,123 @@ class AdminController {
 	 * Контроллер збереження тексту "Про нас"
 	 *
 	 */
-	public function saveTextAction(){
+	public function aboutSaveAction()
+	{
 		$this->app->response->headers->set('Content-Type', 'application/json');
+		if (!$this->app->request->isAjax())
+			return $this->app->response->write('{}');
 
-		if ($this->app->request->post('text') === null)
-			return $this->app->response->write(json_encode(['error'=>'Заповніть текст']));
+		$txt = new TextModel;
+		return $this->app->response->write(json_encode(['success' => $txt->setText('about-us', $this->app->request->post('about_text'))]));
+	}
 
-		$text = ORM::for_table('Texts')
-			->where_equal('lang', $this->lang)
-			->where_equal('name', 'about_company')
-			->find_one();
+	/**
+	 *
+	 * Контроллер сторінки "Сервіси"
+	 *
+	 */
+	public function servicesAction()
+	{
+		return $this->app->render('admin.services.html.twig',[
+			'services' => (new ServicesModel)->getAll(),
+			'active_page' => 'services'
+		]);
+	}
 
-		if (!$text){
-			$text = ORM::for_table('Texts')->create();
-			$text->lang = $this->lang;
+	/**
+	 *
+	 * Контроллер збереження сервісів
+	 *
+	 */
+	public function servicesSaveAction()
+	{
+		$this->app->response->headers->set('Content-Type', 'application/json');
+		if (!$this->app->request->isAjax())
+			return $this->app->response->write('{}');
+		$services = $this->app->request->post('service');
+
+		if (!is_array($services))
+			return $this->app->response->write('{}');
+
+		$m_service = new ServicesModel;
+
+		foreach ($services as $service) {
+			$m_service->save($service);
 		}
 
-		$text->text = $this->app->request->post('text');
-		$text->save();
-
-		return $this->app->response->write(json_encode(['error'=>'Дані оновлено.']));
+		return $this->app->response->write('{"success": true}');
 	}
 
 	/**
 	 *
-	 * Контроллер сторінки адмінки "Каталог портфоліо"
+	 * Контроллер сторінки "Контакти"
 	 *
 	 */
-	public function listPortfolioAction(){
-		/* Get category data */
-		$cats = ORM::for_table('category')
-			->select('cd.*')
-			->select('css_class')
-			->join('category_data', ['cd.category_id', '=', 'category.id'], 'cd')
-			->where_equal('cd.lang', $this->lang)
-			->find_array();
-
-		return $this->app->render('admin.portfolio.html.twig',[
-			'cats' => $cats,
-			'portfolio_list' => (new PortfolioModel)->displayAll()
-			]);
+	public function contactsAction()
+	{
+		return $this->app->render('admin.contacts.html.twig',[
+			'contacts' => (new TextModel)->getContacts(),
+			'active_page' => 'contacts'
+		]);
 	}
 
 	/**
 	 *
-	 * Контроллер сторінки адмінки "Вивід одного портфоліо"
+	 * Контроллер збереження контактів
 	 *
 	 */
-	public function showPortfolioAction($token){
-		$token = preg_replace('/[^a-z0-9]/', '', $token);
+	public function contactsSaveAction()
+	{
+		$this->app->response->headers->set('Content-Type', 'application/json');
+		if (!$this->app->request->isAjax())
+			return $this->app->response->write('{}');
 
-		$portfolio = (new PortfolioModel)->displayOne($token);
+		$result = true;
+		$tm = new TextModel;
 
-		if (!$portfolio)
-			$this->app->redirect($this->app->urlFor('admin_portfolio'));
+		$result &= $tm->setText('contacts_phones', $this->app->request->post('phones'));
+		$result &= $tm->setText('contacts_emails', $this->app->request->post('emails'));
+		$result &= $tm->setText('contacts_address', $this->app->request->post('address'));
 
-		$cats = ORM::for_table('category')
-			->select('cd.*')
-			->select('css_class')
-			->join('category_data', ['cd.category_id', '=', 'category.id'], 'cd')
-			->where_equal('cd.lang', $this->lang)
-			->find_array();
-
-		$used_categories = array_filter(array_map('current', ORM::for_table('category_portfolio')
-			->select('category_id')
-			->where_equal('category_portfolio.portfolio_id', $portfolio->portfolio_id)
-			->find_array()));
-
-		return $this->app->render('admin.portfolio.html.twig',[
-			'cats' => $cats,
-			'portfolio' => $portfolio,
-			'has_categories' => $used_categories,
-			'portfolio_list' => (new PortfolioModel)->displayAll()
-			]);
+		return $this->app->response->write('{"success": '.($result ? 'true' : 'false').'}');
 	}
 
 	/**
 	 *
-	 * Контроллер сторінки адмінки "Каталог працівників"
+	 * Контроллер сторінки авторизації
 	 *
 	 */
-	public function listEmployersAction(){
-		$this->app->render('admin.employers.html.twig',[
-			'employer_list' => (new EmployerModel)->displayAll()
-			]);
+	public function loginAction()
+	{
+		return $this->app->render('admin.login.html.twig');
 	}
 
 	/**
 	 *
-	 * Контроллер сторінки адмінки "Вивід одного працівника"
+	 * Контроллер процесу авторизації
 	 *
 	 */
-	public function showEmployerAction($token){
-		$token = preg_replace('/[^a-z0-9]/', '', $token);
+	public function authAction()
+	{
+		$this->app->response->headers->set('Content-Type', 'application/json');
+		if (!$this->app->request->isAjax())
+			return $this->app->response->write('{}');
 
-		$employer = (new EmployerModel)->displayOne($token);
+		$result = (new UserModel)->auth($this->app->request->post('username'), $this->app->request->post('password'));
 
-		if (!$employer)
-			$this->app->redirect($this->app->urlFor('admin_employers'));
-
-		return $this->app->render('admin.employers.html.twig',[
-			'employer' => $employer,
-			'employer_list' => (new EmployerModel)->displayAll()
-			]);
+		return $this->app->response->write('{"success": '.($result ? 'true' : 'false').'}');
 	}
 
+	/**
+	 *
+	 * Контроллер виходу з системи
+	 *
+	 */
+	public function logoutAction()
+	{
+		(new UserModel)->logout();
+
+		$this->app->redirect($this->app->urlFor('admin_login_page'));
+	}
 
 }

@@ -1,36 +1,67 @@
 <!DOCTYPE html>
-<html lang="{{app.lang}}">
+<html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>{{app.site_name}}</title>
+	<title>{{page_title}} - Админпанель</title>
 	<link rel="stylesheet" href="{{baseUrl()}}/css/admin.css">
-	<link rel="stylesheet" href="{{baseUrl()}}/scrollbar/jquery.mCustomScrollbar.css">
 	<link rel="stylesheet" href="{{baseUrl()}}/css/fontawesome/css/font-awesome.min.css">
 </head>
 <body>
-	<div class="main-container">
-		<div class="container">
-			<!-- header-menu -->
-			<header class="header">
-				<div class="logo">
-					<img src="{{baseUrl()}}/image/logo.png" alt="logo">
-				</div>
-				<ul class="header-menu">
-					<li><a href="{{urlFor('admin_portfolio')}}">проекти</a></li>
-					<li><a href="{{urlFor('admin_main')}}">текст про нас</a></li>
-					<li><a href="{{urlFor('admin_employers')}}">наші фото</a></li>
-				</ul>
-			</header>
-			<!-- end header-menu -->
-			{% block content %}{% endblock %}
+<section class="main-section-wrapper">
+
+	<div class="wr-wrapper">
+		<div class="wr-main">
+			<div class="company-name">
+				<p><span>Forma</span> <span>interior</span> <span>workshop</span></p>
 			</div>
+			<!-- - - - - main section - - - - -->
+			<section class="main-section">
+			    <!-- - - left side - - -->
+				<div class="left-side">
+					<!-- logo-wrapper -->
+					<div class="boss-logo-wrapper box-shadow-rb">
+						<div class="boss-logo">
+							<img src="{{baseUrl()}}/image/logo/boss.png" alt="boss">
+							<p>Андрей Сергеев</p>
+						</div>
+					</div>
+					<!-- end logo-wrapper -->
+					<ul class="side-menu">
+						<li class="side-menu-li {% if active_page == 'main' %}active-li{% else %}box-shadow-r{% endif %}"><a href="{{urlFor('admin_index')}}">Главная</a></li>
+						<li class="side-menu-li {% if active_page == 'portfolio' %}active-li{% else %}box-shadow-r{% endif %}"><a href="{{urlFor('admin_portfolio')}}">Портфолио</a></li>
+						<li class="side-menu-li {% if active_page == 'about' %}active-li{% else %}box-shadow-r{% endif %}"><a href="{{urlFor('admin_about')}}">О Нас</a></li>
+						<li class="side-menu-li {% if active_page == 'services' %}active-li{% else %}box-shadow-r{% endif %}"><a href="{{urlFor('admin_services')}}">Услуги</a></li>
+						<li class="side-menu-li {% if active_page == 'contacts' %}active-li{% else %}box-shadow-r{% endif %}"><a href="{{urlFor('admin_contacts')}}">Контакты</a></li>
+					</ul>
+					<!-- - -bottom-block- - -->
+					<div class="bottom-block box-shadow-r">
+						<img src="{{baseUrl()}}/image/logo/logo.png" alt="logo">
+					</div>
+					<!-- - -end bottom-block- - -->
+				</div>
+			    <!-- - - left side - - -->
+			{% block content %}{% endblock %}
+			</section>
+			<!-- - - - - end main section - - - - -->
+		</div>
 	</div>
 
+	<!-- главная - - кнопка Сохранить изменения -->
+	<div class="success-block">
+		<div class="success-wr">
+			<p>Изменения сохранены</p>
+			<div class="success-close">x</div>
+		</div>
+	</div>
+	<!-- главная - - кнопка Сохранить изменения -->
 
-	<script src="{{baseUrl()}}/javascript/jquery-1.11.1.min.js"></script>
-	<script src="{{baseUrl()}}/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
-	<script src="{{baseUrl()}}/javascript/addscrollbar.js"></script>
-	<script src="{{baseUrl()}}/javascript/index.js"></script>
-	{% block javascripts %}{% endblock %}
+
+
+</section>
+
+
+<script src="{{baseUrl()}}/javascript/jquery-1.12.4.min.js"></script>
+<script src="{{baseUrl()}}/javascript/admincp.js"></script>
+{% block javascripts %}{% endblock %}
 </body>
 </html>

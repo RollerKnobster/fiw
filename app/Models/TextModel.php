@@ -20,6 +20,38 @@ class TextModel
 		return '';
 	}
 
+	public function getRawText($slug)
+	{
+		$found = ORM::for_table('texts')
+			->where('slug', $slug)
+			->find_one();
+
+		if (is_object($found))
+			return $found->text;
+
+		return '';
+	}
+
+	public function setText($slug, $text)
+	{
+		if (!$slug || !$text)
+			return false;
+
+		$found = ORM::for_table('texts')
+			->where('slug', $slug)
+			->find_one();
+
+		if (!$found) {
+			$found = ORM::for_table('texts')->create();
+			$found->slug = $slug;
+		}
+
+		$found->text = $text;
+		$found->save();
+
+		return true;
+	}
+
 	public function getContacts()
 	{
 		$found = ORM::for_table('texts')
@@ -27,7 +59,7 @@ class TextModel
 			->find_array();
 
 		$data = [
-			'contacts' => [],
+			'phones' => [],
 			'emails' => [],
 			'address' => []
 		];
@@ -38,7 +70,7 @@ class TextModel
 			if (count($key) != 2 || $key[0] != 'contacts')
 				continue;
 
-			$data[$key[1]] = explode("\n", $item['text']);
+			$data[$key[1]] = array_filter(array_map('trim', explode("\n", $item['text'])));
 		}
 
 		return $data;
@@ -65,6 +97,32 @@ class TextModel
 				continue;
 
 			$data[$key[1]] = $item['text'];
+		}
+
+		return $data;
+	}
+
+	public function setSocial($new_data){
+		$data = [
+			'twitter' => '',
+			'pinterest' => '',
+			'facebook' => '',
+			'vk' => '',
+			'gp' => ''
+		];
+
+		$data = array_merge($data, $new_data);
+
+		foreach ($data as $soc => $soc_text) {
+			$text = ORM::for_table('texts')
+				->where_like('slug', 'social_'.$soc)
+				->find_one();
+			if (!$text) {
+				$text = ORM::for_table('texts')->create();
+				$text->slug = 'social_'.$soc;
+			}
+			$text->text = $soc_text;
+			$text->save();
 		}
 
 		return $data;

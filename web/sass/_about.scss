@@ -1,0 +1,265 @@
+/*COMPANY DESCRIPTION*/
+
+/*close btn*/
+.btn-close {
+	width: 22px;
+	height: 19px;
+	color: #b7b3b4;
+	top: 0;
+	font-size: 22px;
+	cursor: pointer;
+	position: absolute;
+	right: 0;
+	text-align: center;
+}
+/*close btn*/
+/*label-wrapper*/
+.label-wrapper {
+	margin-top: 3px;
+
+	&:first-child {
+		margin: 0;
+	}
+}
+/*label-wrapper*/
+
+.company-description {
+	width: 100%;
+	height: 185px;
+	padding: 0 0 0 0;
+	margin-bottom: 12px;
+
+	.description-wrapper {
+		background: rgba(255, 255, 255, .4);
+
+		.description-inner {
+			width: 100%;
+			padding: 15px 25px 15px 15px;
+			position: relative; 
+		}
+
+		textarea {
+			width: 99%;
+			height: 100px;
+			resize: none;
+			background: transparent;
+			border: none;
+			color: #000;
+			font-family: opensans;
+			font-size: 10px;
+			line-height: 16px;
+			text-align: justify;
+
+			&:focus::-webkit-input-placeholder {
+				opacity: .3;
+			}
+
+			&::-webkit-input-placeholder {
+				/*font-size: 10px;*/
+				color: #000;
+			}
+
+			&:focus::-moz-placeholder {
+				opacity: .3;
+			} 
+
+			&::-moz-placeholder {
+				/*font-size: 10px;*/
+				color: #000;
+			}
+
+			&:focus:-moz-placeholder {
+				opacity: .3;
+			}
+
+			&:-moz-placeholder {
+				/*font-size: 10px;*/
+				color: #000;
+			}
+
+			&:focus:-ms-input-placeholder {
+				opacity: .3;
+			}
+
+			&:-ms-input-placeholder {
+				/*font-size: 10px;*/
+				color: #000;
+			} 
+		}
+	}
+}
+/*END COMPANY DESCRIPTION*/
+
+/*WORKERS*/
+	.workers-wrapper {
+		background: rgba(255, 255, 255, .4);
+		width: 100%;
+		height: 330px;
+		padding: 5px;
+
+		.workers-block-wrapper {
+			width: 900px;
+			height: 100%;
+			/*overflow-y: scroll;*/
+			/*overflow-x: hidden;*/
+
+			.workers-box {
+				background: rgba(255, 255, 255, .4);
+				width: 48.6%;
+				height: 157px;
+				display: inline-block;
+				margin: 0 6px 6px 0;
+				padding: 5px;
+				position: relative;
+				vertical-align: middle;
+
+				.workers-photo {
+					width: 116px;
+					height: 136px;
+					margin: 0 12px 0 0;
+					position: relative;
+
+					img {
+						width: 100%;
+						height: 100%;
+					}
+
+					.file-field, .del-photo {
+						width: 22px;
+						height: 22px;
+						position: absolute;
+						cursor: pointer;
+						opacity: .7;
+					}
+
+					.file-field {
+						bottom: 3px;
+						right: 4px;
+					}
+
+					.del-photo {
+						bottom: 3px;
+						right: 26px;
+					}
+
+					input {
+						display: none;
+					}
+				}
+
+				.workers-info-block {
+					width: 270px;
+					/*height: auto;*/
+					height: 136px;
+					vertical-align: top;
+
+					label {
+						font-size: 11px;
+						font-family: opensans;
+						color: #000;
+
+						&:after {
+							content: '';
+							display: block;
+							clear: both;
+							height: 0;
+						}
+						
+						p {
+							width: 70px;
+							float: left;
+							margin-top: 3px;
+						}
+
+						input {
+							width: 73%;
+							float: right;
+							font-size: 11px;
+							font-family: opensans;
+							color: #000;
+							border: none;
+							background: transparent;
+						}
+					}
+					
+					textarea {
+						width: 100%;
+						height: 65px;
+						background: rgba(255, 255, 255, .4);
+						margin-top: 8px;
+						resize: none;
+						border: none;
+					}
+
+					.buttons-wrapper {
+						text-align: right;
+
+						input {
+							width: 90px;
+							height: 17px;
+							border: none;
+							background: #eaeaea;
+							padding: 0;
+							cursor: pointer;
+							font-size: 10px;
+							font-family: opensanslight;
+							color: #6b6b6b;
+							transition: background .2s ease-in-out;
+							-webkit-box-shadow: 0px 3px 8px 2px rgba(0, 0, 0, 0.55);
+							-moz-box-shadow: 0px 3px 8px 2px rgba(0, 0, 0, 0.55);
+							box-shadow: 0px 3px 8px 2px rgba(0, 0, 0, 0.55);
+						}
+					}
+
+					input, textarea {
+						&:focus::-webkit-input-placeholder {
+								opacity: .3;
+							}
+
+							&::-webkit-input-placeholder {
+								/*font-size: 10px;*/
+								color: #b7b3b4;
+							}
+
+							&:focus::-moz-placeholder {
+								opacity: .3;
+							} 
+
+							&::-moz-placeholder {
+								/*font-size: 10px;*/
+								color: #b7b3b4;
+							}
+
+							&:focus:-moz-placeholder {
+								opacity: .3;
+							}
+
+							&:-moz-placeholder {
+								/*font-size: 10px;*/
+								color: #b7b3b4;
+							}
+
+							&:focus:-ms-input-placeholder {
+								opacity: .3;
+							}
+
+							&:-ms-input-placeholder {
+								/*font-size: 10px;*/
+								color: #b7b3b4;
+							} 
+					}
+				}
+
+				.inline {
+					display: inline-block;
+				}
+			}
+
+			.add-workers {
+				background: url('../image/icons/plus.png') no-repeat center;
+				border: 1px solid #a8a5a5;
+				cursor: pointer;
+			}
+		}
+	}
+/*END WORKERS*/

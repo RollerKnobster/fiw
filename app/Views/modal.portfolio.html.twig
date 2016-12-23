@@ -1,5 +1,5 @@
 <!-- MODAL -->
-<div id="myModal-{{loop.index}}" class="modal">
+<div id="myModal-{{loop.index}}" class="modal modal-pic">
 	<!-- modal content -->
 	<div class="modal-content-wrapper">
 		<div class="modal-content">
@@ -17,7 +17,7 @@
 					{% endfor %}
 				</ul>
 				<!-- end big image -->
-				<div class="small-img-wrapper" id="small_pictures">
+				<div class="small-img-wrapper small_pictures" id="modal-slider-{{loop.index}}">
 					{% for p_image in portfolio.images %}
 					<a href="javascript:void(0)" data-slide-index="{{loop.index0}}">
 						<div class="small-img-block">

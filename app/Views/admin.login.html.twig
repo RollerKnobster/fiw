@@ -1,42 +1,39 @@
 <!DOCTYPE html>
-<html lang="{{app.lang}}">
+<html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>login keef</title>
-	<link rel="stylesheet" href="{{baseUrl}}/css/admin.css">
-
+	<title>Авторизация - Админпанель</title>
+	<link rel="stylesheet" href="{{baseUrl()}}/css/admin.css">
 </head>
 <body>
-	<section class="main-section">
-		<div class="login-field-wrapper">
-			<div class="login-field">
-				<div class="logo-wrapper">
-					<img src="{{baseUrl}}/image/logo.png" alt="logo">
+	<section class="main-section-wrapper">
+		<section class="main-section">
+			<div class="logo-wrapper-abs">
+				<div class="logo-wrapper-inner">
+					<div class="enter-field">
+						<form action="{{urlFor('admin_auth')}}" method="POST" id="auth-form">
+							<div class="input-field">
+								<label for="login">
+									<input type="text" id="login" placeholder="Логин" name="username">
+								</label>
+							</div>
+							<div class="input-field">
+								<label for="password">
+									<input type="password" id="password" placeholder="Пароль" name="password">
+								</label>
+							</div>
+							<div class="bnt-enter">
+								<label for="submit">
+									<input type="submit" id="submit" value="Войти">
+								</label>
+							</div>
+						</form>
+					</div>
 				</div>
-				<form action="{{baseUrl}}/admin/login" method="POST">
-					<div class="input-box">
-						<label for="login" class="login">
-							<input type="text" id="login" placeholder="LOGIN" name="auth_name">
-						</label>
-					</div>
-					<div class="input-box">
-						<label for="password" class="password">
-							<input type="password" id="password" placeholder="PASSWORD" name="auth_password">
-						</label>
-					</div>
-					{% if flash['login.error'] %}
-					<div class="center">{{flash['login.error']}}</div>
-					{% endif %}
-					<div class="btn-wrapper">
-						<label for="submit">
-							<input type="submit" id="submit" value="">
-						</label>
-					</div>
-				</form>
 			</div>
-		</div>
+		</section>
 	</section>
-	<script src="{{baseUrl}}/javascript/jquery-1.11.1.min.js"></script>
-	<script src="{{baseUrl}}/javascript/index.js"></script>
+	<script src="{{baseUrl()}}/javascript/jquery-1.12.4.min.js"></script>
+	<script src="{{baseUrl()}}/javascript/login.js"></script>
 </body>
 </html>

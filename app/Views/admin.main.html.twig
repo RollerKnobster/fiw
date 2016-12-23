@@ -1,50 +1,95 @@
 {% extends "admin.base.html.twig" %}
 
 {% block content %}
-			<section class="project-name-wrapper">
-				<!-- topic wrapper -->
-					<div class="topic-wrapper">
-						<div class="project-name">
-						</div>
-						<div class="lang-wrapper">
-							<ul class="lang-menu">
-								{% for lang in app.langs %}
-								<li class="lang-field{% if app.lang == lang %} lang-active{% endif %}"><a href="{{baseUrl()}}/{{lang}}/admin">{{lang}}</a></li>
-								{% endfor %}
-							</ul>
-						</div>
-					</div>
-				<!-- end topic wrapper -->
-
-				<!-- text field -->
-				<section class="text-field">
-					<form action="{{baseUrl()}}/{{app.lang_uri}}/admin/save_text" method="POST" id="about_form">
-						<textarea class="text-field-input" tabindex="1" data-mcs-theme="dark" name="text">{{text}}</textarea>
-						<div class="button-wrapper submit-float">
-							<button type="submit" class="submit-button"></button>
-							<p class="submit-text">збережено</p>
-						</div>
+			<!-- - - right side - - -->
+				<div class="right-side">
+					<!-- FORM-FORM -->
+					<form action="{{urlFor('admin_social_save')}}" method="POST" id="save-social-form">
+						<!-- changing-content -->
+						<section class="slider">
+							<div class="topic-wrapper">
+								<span class="topic">Слайдер</span>
+								<div class="button-submit">
+									<label for="submit_btn">
+										<input type="submit" id="submit_btn" value="Сохранить Изменения">
+									</label>
+								</div>
+							</div>
+							<div class="slider-img-wrapper main-border">
+								<div class="slider-img-inner inner-border">
+									<div class="slide-box-wrapper">
+										{% for slide in slides %}
+										<div class="slide-block">
+											<div class="slide-box">
+												<img src="{{baseUrl()}}/image/header/slider/{{slide}}" alt="Slide {{loop.index}}">
+												<div class="slide-box-hover">
+													<div class="box-hover-icon icon-big rm-slide-btn" data-image="{{slide}}" data-action="{{urlFor('admin_remove_main_slide')}}"></div>
+												</div>
+											</div>
+										</div>
+										{% endfor %}
+										<label for="add_slide_block">
+											<div class="add-slide-block"></div>
+											<input type="file" id="add_slide_block" class="input-hidden" data-action="{{urlFor('admin_upload_main_slide')}}">
+										</label>
+									</div>
+								</div>
+							</div>
+						</section>
+						<!-- end changing-content -->
+						<!-- social networks -->
+						<section class="social">
+							<div class="topic-wrapper">
+								<span class="topic">Социальные сети</span>
+							</div>
+							<div class="social-main-wrapper main-border">
+								<div class="inner-border">
+									<div class="social-line">
+										<div class="social-icon">
+											<i class="fa fa-twitter"></i>
+										</div>
+										<div class="social-href">
+											<input type="text" value="{{social.twitter}}" id="twitter_soc" name="social[twitter]">
+										</div>
+									</div>
+									<div class="social-line">
+										<div class="social-icon">
+											<i class="fa fa-pinterest-p"></i>
+										</div>
+										<div class="social-href">
+											<input type="text" value="{{social.pinterest}}" id="pinterest_soc" name="social[pinterest]">
+										</div>
+									</div>
+									<div class="social-line">
+										<div class="social-icon">
+											<i class="fa fa-facebook"></i>
+										</div>
+										<div class="social-href">
+											<input type="text" value="{{social.facebook}}" id="facebook_soc" name="social[facebook]">
+										</div>
+									</div>
+									<div class="social-line">
+										<div class="social-icon">
+											<i class="fa fa-vk"></i>
+										</div>
+										<div class="social-href">
+											<input type="text" value="{{social.vk}}" id="vk_soc" name="social[vk]">
+										</div>
+									</div>
+									<div class="social-line">
+										<div class="social-icon">
+											<i class="fa fa-google-plus"></i>
+										</div>
+										<div class="social-href">
+											<input type="text" value="{{social.gp}}" id="google_soc" name="social[gp]">
+										</div>
+									</div>
+								</div>
+							</div>
+						</section>
+						<!-- social networks -->
 					</form>
-				</section>
-				<!-- end text field -->
-			</section>
-{% endblock %}
-
-{% block javascripts %}
-<script>
-
-$(document).ready(function(){
-
-	$("#about_form").on('submit', function(e){
-		e.preventDefault();
-
-		$.post($(this).attr('action'), $(this).serialize(), function(data){
-			console.log(data);
-		});
-
-	});
-
-});
-
-</script>
+					<!-- END FORM-FORM -->
+				</div>
+				<!-- - - right side - - -->
 {% endblock %}
