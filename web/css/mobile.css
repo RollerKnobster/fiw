@@ -1,0 +1,857 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+/* line 5, C:/Ruby22/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* line 22, C:/Ruby22/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+html {
+  line-height: 1;
+}
+
+/* line 24, C:/Ruby22/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 26, C:/Ruby22/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 28, C:/Ruby22/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 30, C:/Ruby22/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 103, C:/Ruby22/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 32, C:/Ruby22/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 116, C:/Ruby22/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+  display: block;
+}
+
+/*FONT-FACE*/
+@font-face {
+  font-family: 'opensanslight';
+  src: url("../font/opensanslight/opensans-light.eot");
+  src: url("../font/opensanslight/opensans-light.eot?#iefix") format("embedded-opentype"), url("../font/opensanslight/opensans-light.woff2") format("woff2"), url("../font/opensanslight/opensans-light.woff") format("woff"), url("../font/opensanslight/opensans-light.svg#open_sanslight") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'opensans';
+  src: url("../font/opensansregular/opensans-regular.eot");
+  src: url("../font/opensansregular/opensans-regular.eot?#iefix") format("embedded-opentype"), url("../font/opensansregular/opensans-regular.woff2") format("woff2"), url("../font/opensansregular/opensans-regular.woff") format("woff"), url("../font/opensansregular/opensans-regular.svg#open_sansregular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'opensanssemibold';
+  src: url("../font/opensanssemibold/opensans-semibold.eot");
+  src: url("../font/opensanssemibold/opensans-semibold.eot?#iefix") format("embedded-opentype"), url("../font/opensanssemibold/opensans-semibold.woff2") format("woff2"), url("../font/opensanssemibold/opensans-semibold.woff") format("woff"), url("../font/opensanssemibold/opensans-semibold.svg#open_sanssemibold") format("svg");
+  font-weight: bold;
+  font-style: normal;
+}
+/*END FONT-FACE*/
+/* line 43, ../sass/mobile.scss */
+* {
+  box-sizing: border-box;
+}
+
+/* line 47, ../sass/mobile.scss */
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* line 52, ../sass/mobile.scss */
+body {
+  background: #0d0d0d;
+}
+
+/* line 56, ../sass/mobile.scss */
+.m-hidden {
+  display: none;
+}
+
+/* line 60, ../sass/mobile.scss */
+.m-uppercase {
+  text-transform: uppercase;
+}
+
+/* line 64, ../sass/mobile.scss */
+.m-project-name {
+  height: 100%;
+  font-family: opensans;
+}
+
+/* line 71, ../sass/mobile.scss */
+.mobile-wrapper {
+  /*border: 1px solid red;*/
+  max-width: 640px;
+  min-width: 320px;
+  width: 100%;
+  margin: 0 auto;
+  background: #0d0d0d;
+  /*header-menu*/
+  /*end header-menu*/
+  /*header-logo*/
+  /*end header-logo*/
+  /*portfolio*/
+  /*end portfolio*/
+}
+/* line 80, ../sass/mobile.scss */
+.mobile-wrapper .m-menu {
+  max-width: 640px;
+  width: 100%;
+  height: 42px;
+  background: #0d0d0d;
+  position: fixed;
+  top: 0;
+  box-shadow: 0 15px 15px -12px #000;
+  overflow: hidden;
+  text-align: right;
+  z-index: 99999;
+}
+/* line 92, ../sass/mobile.scss */
+.mobile-wrapper .m-menu .m-back {
+  width: 33px;
+  height: 33px;
+  position: absolute;
+  left: 13px;
+  top: 5px;
+  cursor: pointer;
+  z-index: 99999;
+}
+/* line 102, ../sass/mobile.scss */
+.mobile-wrapper .m-menu .menu-img {
+  height: 18px;
+  width: 33px;
+  position: absolute;
+  right: 15px;
+  top: 13px;
+  /*background: url('../image/menu.png') center no-repeat;*/
+  cursor: pointer;
+  z-index: 9999;
+}
+/* line 112, ../sass/mobile.scss */
+.mobile-wrapper .m-menu .menu-img img {
+  z-index: 99999;
+}
+/* line 117, ../sass/mobile.scss */
+.mobile-wrapper .m-menu .m-nav {
+  opacity: 0;
+}
+/* line 122, ../sass/mobile.scss */
+.mobile-wrapper .m-menu-active {
+  height: 177px;
+}
+/* line 125, ../sass/mobile.scss */
+.mobile-wrapper .m-menu-active .menu-img {
+  top: 14px;
+  right: 15px;
+  height: 17px;
+}
+/* line 131, ../sass/mobile.scss */
+.mobile-wrapper .m-menu-active .m-nav {
+  margin-top: 45px;
+  opacity: 1;
+}
+/* line 135, ../sass/mobile.scss */
+.mobile-wrapper .m-menu-active .m-nav li {
+  text-align: right;
+  padding-right: 54px;
+  margin: 0 0 18px 0;
+}
+/* line 140, ../sass/mobile.scss */
+.mobile-wrapper .m-menu-active .m-nav li a {
+  font-size: 12px;
+  font-family: opensanslight;
+  text-transform: uppercase;
+  position: relative;
+}
+/* line 146, ../sass/mobile.scss */
+.mobile-wrapper .m-menu-active .m-nav li a:before {
+  content: '';
+  display: block;
+  background: #a37f61;
+  height: 2px;
+  width: 600px;
+  position: absolute;
+  right: calc(100% + 10px);
+  top: 50%;
+  opacity: 0;
+  -webkit-transition: opacity ease-in-out;
+  transition: opacity ease-in-out;
+}
+/* line 164, ../sass/mobile.scss */
+.mobile-wrapper .m-menu-active .m-nav .active-li a:before {
+  opacity: 1;
+}
+/* line 174, ../sass/mobile.scss */
+.mobile-wrapper .m-header {
+  width: 100%;
+  height: 212px;
+  background: url("../image/mobile/main-img.png") center no-repeat;
+  background-size: cover;
+  /*margin-top: 42px;*/
+}
+/* line 181, ../sass/mobile.scss */
+.mobile-wrapper .m-header .m-logo {
+  width: 100%;
+  height: 100%;
+  background: url("../image/mobile/logo.svg") no-repeat;
+  background-size: 190px 170px;
+  background-position: center 35px;
+}
+/* line 192, ../sass/mobile.scss */
+.mobile-wrapper .m-projects-margin {
+  margin-top: 50px;
+}
+/* line 196, ../sass/mobile.scss */
+.mobile-wrapper .m-portfolio {
+  width: 100%;
+  padding: 13px 10px 20px 10px;
+  position: relative;
+  color: #fff;
+}
+/* line 202, ../sass/mobile.scss */
+.mobile-wrapper .m-portfolio .m-portfolio-wrapper {
+  position: relative;
+  margin-top: 40px;
+}
+/* line 206, ../sass/mobile.scss */
+.mobile-wrapper .m-portfolio .m-portfolio-wrapper:before {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background: #a37f61;
+  top: -35px;
+  /*left: 50%;*/
+  /*margin-left: -148px;*/
+}
+/* line 218, ../sass/mobile.scss */
+.mobile-wrapper .m-portfolio .m-portfolio-wrapper .m-portfolio-block {
+  /*height: 105px;*/
+  height: 135px;
+  width: 100%;
+  margin-bottom: 2px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+/* line 227, ../sass/mobile.scss */
+.mobile-wrapper .m-portfolio .m-portfolio-wrapper .m-portfolio-block:last-child {
+  margin-bottom: 0;
+}
+/* line 231, ../sass/mobile.scss */
+.mobile-wrapper .m-portfolio .m-portfolio-wrapper .m-portfolio-block .m-left-block, .mobile-wrapper .m-portfolio .m-portfolio-wrapper .m-portfolio-block .m-right-block {
+  height: 100%;
+  width: 49.835%;
+}
+/* line 236, ../sass/mobile.scss */
+.mobile-wrapper .m-portfolio .m-portfolio-wrapper .m-portfolio-block .m-left-block {
+  margin-right: 1px;
+  text-align: center;
+  overflow: hidden;
+}
+/* line 241, ../sass/mobile.scss */
+.mobile-wrapper .m-portfolio .m-portfolio-wrapper .m-portfolio-block .m-left-block img {
+  width: 100%;
+  height: auto;
+  min-height: 105px;
+}
+/* line 248, ../sass/mobile.scss */
+.mobile-wrapper .m-portfolio .m-portfolio-wrapper .m-portfolio-block .m-right-block {
+  background: #161616;
+  position: relative;
+}
+/* line 252, ../sass/mobile.scss */
+.mobile-wrapper .m-portfolio .m-portfolio-wrapper .m-portfolio-block .m-right-block p {
+  text-align: center;
+  font-size: 8px;
+  line-height: 10px;
+  color: #a0a0a0;
+}
+/* line 259, ../sass/mobile.scss */
+.mobile-wrapper .m-portfolio .m-portfolio-wrapper .m-portfolio-block .m-right-block .m-name-wr {
+  width: 139px;
+  min-height: 28px;
+  border: 1px solid #a3856d;
+  margin: 45px auto 0 auto;
+  padding-top: 6px;
+  font-family: opensans;
+}
+/* line 267, ../sass/mobile.scss */
+.mobile-wrapper .m-portfolio .m-portfolio-wrapper .m-portfolio-block .m-right-block .m-name-wr p {
+  line-height: 12px;
+}
+/* line 272, ../sass/mobile.scss */
+.mobile-wrapper .m-portfolio .m-portfolio-wrapper .m-portfolio-block .m-right-block .post {
+  margin-top: 8px;
+  color: #838181;
+  font-size: 8px;
+}
+/* line 278, ../sass/mobile.scss */
+.mobile-wrapper .m-portfolio .m-portfolio-wrapper .m-portfolio-block .m-right-block .m-project-head {
+  font-family: opensanslight;
+  margin: 0 auto 0 auto;
+  font-size: 10px;
+  color: #a4a4a4;
+}
+/* line 288, ../sass/mobile.scss */
+.mobile-wrapper .m-portfolio .m-resizer {
+  font-size: 8px;
+  font-family: opensanslight;
+  color: #a0a0a0;
+  width: 70px;
+  height: auto;
+  margin: 17px auto 0 auto;
+  cursor: pointer;
+}
+
+/*modal window portfolio*/
+/* line 302, ../sass/mobile.scss */
+.mobile-modal {
+  opacity: 0;
+  visibility: hidden;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  left: 0;
+  top: 0;
+  overflow: auto;
+  z-index: 88888;
+  -webkit-transition: opacity ease-in-out .5s, visibility ease-in-out .5s;
+  transition: opacity ease-in-out .5s, visibility ease-in-out .5s;
+}
+
+/* line 317, ../sass/mobile.scss */
+.slider-modal, .services-modal, .portfolio-modal {
+  z-index: 99999;
+}
+
+/*end modal window portfolio*/
+/*mobile portfolio PAGE*/
+/* line 1, ../sass/_m-portfolio.scss */
+.m-slider-section {
+  height: 370px;
+  width: 100%;
+  padding-top: 80px;
+  margin: 0 auto;
+  /*project-topic*/
+  /*end project topic*/
+  /*slider*/
+  /*end slider*/
+}
+/* line 8, ../sass/_m-portfolio.scss */
+.m-slider-section .m-project-topic {
+  color: #fff;
+  width: 100%;
+  height: auto;
+  text-align: center;
+  font-size: 0;
+  overflow: hidden;
+}
+/* line 16, ../sass/_m-portfolio.scss */
+.m-slider-section .m-project-topic .portfolio-proj-name {
+  font-family: opensans;
+  font-size: 11px;
+  color: #d2d2d2;
+  position: relative;
+  width: 55.6%;
+  margin: 0 auto;
+}
+/* line 24, ../sass/_m-portfolio.scss */
+.m-slider-section .m-project-topic .portfolio-proj-name:before, .m-slider-section .m-project-topic .portfolio-proj-name:after {
+  position: absolute;
+  content: '';
+  display: block;
+  height: 1px;
+  background: #8e745f;
+  width: 200px;
+  top: 50%;
+}
+/* line 34, ../sass/_m-portfolio.scss */
+.m-slider-section .m-project-topic .portfolio-proj-name:before {
+  right: calc(100% + 17px);
+}
+/* line 38, ../sass/_m-portfolio.scss */
+.m-slider-section .m-project-topic .portfolio-proj-name:after {
+  left: calc(100% + 17px);
+}
+/* line 46, ../sass/_m-portfolio.scss */
+.m-slider-section .m-slider-wr {
+  margin-top: 29px;
+}
+/* line 50, ../sass/_m-portfolio.scss */
+.m-slider-section .m-slider-wr .m-slider li {
+  height: 222px;
+}
+/* line 53, ../sass/_m-portfolio.scss */
+.m-slider-section .m-slider-wr .m-slider li img {
+  width: 100%;
+  height: 100%;
+}
+/* line 61, ../sass/_m-portfolio.scss */
+.m-slider-section .m-slider-wr .bx-wrapper .bx-controls-direction .bx-prev, .m-slider-section .m-slider-wr .bx-wrapper .bx-controls-direction .bx-next {
+  width: 18px;
+  height: 20px;
+}
+/* line 66, ../sass/_m-portfolio.scss */
+.m-slider-section .m-slider-wr .bx-wrapper .bx-controls-direction .bx-prev {
+  background: url("../image/slider-arrows/arrowprev.png") center no-repeat;
+  left: 8px;
+}
+/* line 71, ../sass/_m-portfolio.scss */
+.m-slider-section .m-slider-wr .bx-wrapper .bx-controls-direction .bx-next {
+  background: url("../image/slider-arrows/arrownext.png") center no-repeat;
+  right: 8px;
+}
+
+/*project-description*/
+/* line 81, ../sass/_m-portfolio.scss */
+.m-project-description {
+  width: 100%;
+  height: auto;
+  color: #fff;
+  padding-top: 35px;
+}
+/* line 87, ../sass/_m-portfolio.scss */
+.m-project-description .m-box {
+  /*width: 300px;*/
+  width: 100%;
+  height: 49px;
+  background: #161616;
+  margin: 0 auto;
+  margin-bottom: 4px;
+  padding: 5px 10px;
+}
+/* line 96, ../sass/_m-portfolio.scss */
+.m-project-description .m-box span {
+  color: #6b6a6a;
+  font-size: 12px;
+  font-family: opensanslight;
+}
+/* line 102, ../sass/_m-portfolio.scss */
+.m-project-description .m-box p {
+  margin-top: 5px;
+  font-size: 13px;
+  font-family: opensanslight;
+  color: #bbbbbb;
+}
+
+/*project-description*/
+/*mobile portfolio PAGE*/
+/*mobile about PAGE*/
+/* line 1, ../sass/_m-about.scss */
+.m-about-wr {
+  /*min-height: 642px;*/
+  width: 100%;
+  padding: 20px 0 10px 0;
+}
+/* line 6, ../sass/_m-about.scss */
+.m-about-wr .m-company-text-wr {
+  width: 95%;
+  height: auto;
+  margin: 0 auto 11px auto;
+  padding: 18px 0;
+  background: #0d0d0d;
+  -webkit-box-shadow: 0px 1px 16px 2px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 1px 16px 2px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 1px 16px 2px rgba(0, 0, 0, 0.75);
+}
+/* line 16, ../sass/_m-about.scss */
+.m-about-wr .m-company-text-wr p {
+  font-family: opensanssemibold;
+}
+/* line 20, ../sass/_m-about.scss */
+.m-about-wr .m-company-text-wr p:first-child {
+  text-align: center;
+  font-size: 9.34px;
+  color: #a6876f;
+}
+/* line 26, ../sass/_m-about.scss */
+.m-about-wr .m-company-text-wr .m-company-text {
+  /*width: 235px;*/
+  width: 85%;
+  margin: 5px auto 0 auto;
+  color: #9d9d9d;
+  font-size: 7.5px;
+  line-height: 10px;
+  text-align: justify;
+  /*font-family: opensanslight;*/
+}
+
+/*about workers*/
+/* line 40, ../sass/_m-about.scss */
+.m-box-wr {
+  width: 95%;
+  height: auto;
+  margin: 0 auto 3px auto;
+  background: #111111;
+  padding: 12px 7px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+/* line 50, ../sass/_m-about.scss */
+.m-box-wr .m-photo-wr {
+  width: 37%;
+}
+/* line 53, ../sass/_m-about.scss */
+.m-box-wr .m-photo-wr .m-worker-photo {
+  width: 97px;
+  height: 97px;
+  border-radius: 50%;
+  border: 1px solid #343434;
+  margin: 0 auto;
+}
+/* line 60, ../sass/_m-about.scss */
+.m-box-wr .m-photo-wr .m-worker-photo img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid #111111;
+}
+/* line 69, ../sass/_m-about.scss */
+.m-box-wr .m-box-info {
+  width: 63%;
+  padding: 5px 0 0 40px;
+}
+/* line 73, ../sass/_m-about.scss */
+.m-box-wr .m-box-info span {
+  font-family: opensanslight;
+  font-size: 9.4px;
+  color: #919191;
+}
+/* line 79, ../sass/_m-about.scss */
+.m-box-wr .m-box-info .m-worker-name {
+  font-family: opensans;
+  font-size: 9.4px;
+  color: #c2c2c2;
+  position: relative;
+  margin-top: 3px;
+}
+/* line 86, ../sass/_m-about.scss */
+.m-box-wr .m-box-info .m-worker-name:after {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 155px;
+  height: 1px;
+  background: #a6876f;
+  bottom: -5px;
+}
+/* line 97, ../sass/_m-about.scss */
+.m-box-wr .m-box-info .m-worker-about {
+  font-family: opensanslight;
+  font-size: 6.7px;
+  color: #aeaeae;
+  margin-top: 15px;
+  width: 170px;
+  line-height: 8.7px;
+  text-align: justify;
+}
+
+/*end about workers*/
+@media only screen and (max-width: 480px) {
+  /* line 114, ../sass/_m-about.scss */
+  .m-box-wr .m-box-info {
+    padding-left: 5px;
+  }
+}
+/*mobile about PAGE*/
+/*mobile services PAGE*/
+/* line 1, ../sass/_m-services.scss */
+.m-services-wr {
+  width: 100%;
+  padding: 20px 0 35px 0;
+  /*border: 1px solid blue;*/
+}
+/* line 6, ../sass/_m-services.scss */
+.m-services-wr .m-services-info {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+/* line 11, ../sass/_m-services.scss */
+.m-services-wr .m-services-info p {
+  font-family: opensanslight;
+  font-size: 11px;
+  color: #fff;
+}
+/* line 18, ../sass/_m-services.scss */
+.m-services-wr .m-services-info .m-services-price {
+  margin-top: 12px;
+}
+/* line 22, ../sass/_m-services.scss */
+.m-services-wr .m-services-info .etc {
+  position: absolute;
+  bottom: 0;
+  right: 10px;
+}
+/* line 27, ../sass/_m-services.scss */
+.m-services-wr .m-services-info .etc a {
+  font-size: 30px;
+  color: #977b66;
+  letter-spacing: -2px;
+}
+
+/* line 36, ../sass/_m-services.scss */
+.m-services-name {
+  width: 170px;
+  height: 17px;
+  position: relative;
+  text-transform: uppercase;
+  margin-top: 3px;
+}
+/* line 43, ../sass/_m-services.scss */
+.m-services-name:after {
+  content: '';
+  display: block;
+  background: #a6876f;
+  height: 1px;
+  width: 170px;
+  position: absolute;
+  bottom: 0;
+}
+
+/* line 54, ../sass/_m-services.scss */
+.m-services-icon, .m-contacts-icon {
+  width: 82px;
+  height: 82px;
+  border: 1px solid #343434;
+  border-radius: 50%;
+  margin: 0 auto;
+  position: relative;
+}
+/* line 62, ../sass/_m-services.scss */
+.m-services-icon:after, .m-contacts-icon:after {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 97.2%;
+  height: 97.2%;
+  border: 1px solid #151515;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+/* line 76, ../sass/_m-services.scss */
+.m-services-icon img, .m-contacts-icon img {
+  height: 40px;
+  width: 28px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+/*mobile services PAGE*/
+/*mobile services-description page*/
+/* line 2, ../sass/_m-description.scss */
+.m-description-field {
+  /*width: 234px;*/
+  width: 80%;
+  height: auto;
+  margin: 0 auto;
+  padding: 58px 0 45px 0;
+}
+/* line 9, ../sass/_m-description.scss */
+.m-description-field .m-description-topic {
+  width: 100%;
+  height: 60px;
+  position: relative;
+  overflow: hidden;
+}
+/* line 15, ../sass/_m-description.scss */
+.m-description-field .m-description-topic .m-description-icon {
+  position: absolute;
+  left: 0;
+  width: 60px;
+  height: 60px;
+}
+/* line 21, ../sass/_m-description.scss */
+.m-description-field .m-description-topic .m-description-icon img {
+  width: 20px;
+  height: 30px;
+}
+/* line 27, ../sass/_m-description.scss */
+.m-description-field .m-description-topic .m-description-info {
+  /*width: 230px;*/
+  width: 80%;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  color: #bfbfbf;
+  padding-top: 10px;
+  font-family: opensanslight;
+}
+/* line 37, ../sass/_m-description.scss */
+.m-description-field .m-description-topic .m-description-info .m-descr-name {
+  padding-bottom: 5px;
+  width: 100%;
+  font-size: 13.84px;
+  position: relative;
+}
+/* line 43, ../sass/_m-description.scss */
+.m-description-field .m-description-topic .m-description-info .m-descr-name:after {
+  width: 140%;
+  position: absolute;
+  left: -5px;
+}
+/* line 50, ../sass/_m-description.scss */
+.m-description-field .m-description-topic .m-description-info .m-descr-price {
+  padding-top: 4px;
+  font-size: 11.87px;
+}
+/* line 58, ../sass/_m-description.scss */
+.m-description-field .m-services-img {
+  width: 100%;
+  /*height: 109px;*/
+  height: auto;
+  max-height: 250px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+/* line 66, ../sass/_m-description.scss */
+.m-description-field .m-services-img img {
+  width: 100%;
+  /*height: 100%;*/
+}
+/* line 72, ../sass/_m-description.scss */
+.m-description-field .m-services-text {
+  margin-top: 12px;
+  font-size: 14px;
+  font-family: opensanslight;
+  color: #9c9c9c;
+  text-align: justify;
+  line-height: 18px;
+}
+
+@media only screen and (max-width: 480px) {
+  /* line 85, ../sass/_m-description.scss */
+  .m-description-field .m-description-topic .m-description-info {
+    width: 71%;
+  }
+}
+/*mobile services-description page*/
+/*mobile about PAGE*/
+/* line 1, ../sass/_m-contacts.scss */
+.m-contacts-wr {
+  width: 100%;
+  padding: 0px 0 30px 0;
+}
+/* line 5, ../sass/_m-contacts.scss */
+.m-contacts-wr .cont-ph-wr {
+  padding-top: 10px;
+}
+/* line 9, ../sass/_m-contacts.scss */
+.m-contacts-wr .m-box-inner {
+  width: 250px;
+  height: 93px;
+  border: 1px solid #a6876f;
+  position: relative;
+}
+/* line 15, ../sass/_m-contacts.scss */
+.m-contacts-wr .m-box-inner p {
+  font-family: opensanslight;
+  font-size: 11px;
+  width: 100%;
+  color: #b7b7b7;
+  line-height: 15px;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+/* line 30, ../sass/_m-contacts.scss */
+.m-contacts-wr .m-social-wr {
+  width: 100%;
+  height: 100px;
+  text-align: center;
+  padding-top: 30px;
+}
+/* line 36, ../sass/_m-contacts.scss */
+.m-contacts-wr .m-social-wr .m-icon-section {
+  width: 37px;
+  height: 37px;
+  border-radius: 50%;
+  border: 1px solid #a0826b;
+  display: inline-block;
+  line-height: 37px;
+  text-align: center;
+  color: #a0826b;
+  font-size: 18px;
+  -webkit-transition: color ease-in-out .1s, border-color ease-in-out .1s;
+  transition: color ease-in-out .1s, border-color ease-in-out .1s;
+}
+/* line 49, ../sass/_m-contacts.scss */
+.m-contacts-wr .m-social-wr .m-icon-section:hover {
+  border-color: #47240d;
+  color: #47240d;
+}
+
+@media only screen and (max-width: 480px) {
+  /* line 58, ../sass/_m-contacts.scss */
+  .m-contacts-wr .m-box-inner {
+    width: 175px;
+  }
+}
+/*mobile about PAGE*/
+@media only screen and (max-width: 480px) {
+  /* line 348, ../sass/mobile.scss */
+  .mobile-wrapper .m-portfolio .m-portfolio-wrapper .m-portfolio-block {
+    height: 105px;
+  }
+  /* line 352, ../sass/mobile.scss */
+  .mobile-wrapper .m-portfolio .m-portfolio-wrapper .m-portfolio-block .m-right-block .m-name-wr {
+    margin-top: 27px;
+  }
+}

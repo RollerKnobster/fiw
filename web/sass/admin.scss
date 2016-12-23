@@ -42,7 +42,7 @@ $testcolor-five: rgba(157, 0, 255, 0.4);
 
 	&::-webkit-scrollbar {
 		background: #f7f1f1;
-		width: 1px;	
+		width: 1px;
 	}
 
 	&::-webkit-scrollbar-thumb {
@@ -106,7 +106,7 @@ a {
 .box-shadow-rb {
 	-webkit-box-shadow: 8px 8px 12px -4px rgba(50, 50, 50, 0.30);
   -moz-box-shadow:    8px 8px 12px -4px rgba(50, 50, 50, 0.30);
-  box-shadow:         8px 8px 12px -4px rgba(50, 50, 50, 0.30);	
+  box-shadow:         8px 8px 12px -4px rgba(50, 50, 50, 0.30);
 }
 
 .box-hover-icon {
@@ -134,7 +134,7 @@ a {
 	width: 350px;
 	height: 200px;
 	border-radius: 20px;
-	background: #fff; 
+	background: #fff;
 	z-index: 1000;
 	position: absolute;
 	top: 50%;
@@ -148,11 +148,12 @@ a {
 		height: 100%;
 		padding-top: 25%;
 
-	
+
 		p {
 			font-family: opensans;
 			font-size: 20px;
 			line-height: 22px;
+			text-transform: uppercase;
 			text-align: center;
 		}
 
@@ -181,7 +182,7 @@ a {
 	height: 974px;
 	/*padding-top: 80px;*/
 	margin: 0 auto;
-	background: url('../image/bgg.jpg') 0 0 no-repeat; 
+	background: url('../image/bgg.jpg') 0 0 no-repeat;
 	background-size: cover;
 	position: relative;
 
@@ -198,7 +199,7 @@ a {
 		height: 700px;
 		margin: 0 auto 0 auto;
 		position: relative;
-		
+
 		.company-name {
 			width: 600px;
 			-webkit-transform: rotate(-90deg);
@@ -221,11 +222,11 @@ a {
 					margin-right: 35px;
 				}
 			}
-		}	
+		}
 	}
 	/*- - - - main-section - - - -*/
 	.main-section {
-		background: rgba(255, 255, 255, 0.6); 
+		background: rgba(255, 255, 255, 0.6);
 		width: 1140px;
 		height: 590px;
 		margin: 0 auto;
@@ -269,7 +270,7 @@ a {
 						content: '';
 						height: 0;
 					}
-					
+
 					img {
 						float: left;
 						margin-right: 15px;
@@ -320,7 +321,7 @@ a {
 
 				.active-li {
 					background: transparent;
-					
+
 					a {
 						font-size: 12px;
 						font-family: opensanslight;
@@ -360,11 +361,11 @@ a {
 					width: 100%;
 					height: 157px;
 					background: rgba(255, 255, 255, .4);
-						
+
 					.slider-img-inner {
 
 						.slide-box-wrapper {
-							overflow-y: scroll;	
+							overflow-y: scroll;
 							overflow-x: hidden;
 							width: 99.5%;
 							height: 100%;
@@ -379,14 +380,14 @@ a {
 								display: inline-block;
 								cursor: pointer;
 								position: relative;
-								
+
 								&:nth-child(5), &:nth-child(10), &:nth-child(15), &:nth-child(20), &:nth-child(25), &:nth-child(30), &:last-child {
 									margin-right: 0;
 								}
 
 								.slide-box {
 									width: 100%;
-									height: 100%; 
+									height: 100%;
 									margin: 0 auto;
 									position: absolute;
 									top: 50%;
@@ -442,14 +443,14 @@ a {
 								cursor: pointer;
 								position: relative;
 								border: 1px solid #767676;
-								background: url('../image/icons/plus.png') no-repeat center; 
+								background: url('../image/icons/plus.png') no-repeat center;
 							}
 						}
 					}
 				}
 			}
 			/* END SLIDER*/
-			
+
 			/*SOCIAL NETWORKS*/
 			.social {
 				width: 100%;
@@ -538,8 +539,8 @@ a {
     left: 0;
     top: 0;
     width: 100%;
-    height: 100%; 
-    overflow: auto; 
+    height: 100%;
+    overflow: auto;
     background-color: rgba(0,0,0,0.5);
     /*z-index: 999999;*/
     -webkit-transition: opacity ease-in-out .2s, visibility ease-in-out .2s;
@@ -557,7 +558,7 @@ a {
 .admin-modal-content {
 	width: 304px;
 	height: 138px;
-	margin: 0 auto; 
+	margin: 0 auto;
 	position: relative;
 	background: rgba(255, 255, 255, .8);
 	padding: 17px 20px;

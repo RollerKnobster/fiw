@@ -1,0 +1,63 @@
+<!-- Modal window PROJECT -->
+<div class="mobile-modal slider-modal" id="modalProject-{{loop.index}}">
+	<!-- modal content -->
+	<section class="mobile-wrapper">
+		
+		<!-- header menu - - - - - - - -->
+		<nav class="m-menu">
+			<div class="m-back">
+				<img src="image/mobile/back.svg" class="back-btn">
+			</div>
+			<div class="menu-img">
+				<img src="image/mobile/menu.png" class="menu-open">
+				<img src="image/mobile/close.png" class="menu-close m-hidden">
+			</div>
+			<ul class="m-nav">
+				<li class="m-li active-li"><a href="index.html">Портфолио</a></li>
+				<li class="m-li"><a href="m.about.html">О Нас</a></li>
+				<li class="m-li"><a href="m.services.html">Услуги</a></li>
+				<li class="m-li"><a href="m.contacts.html">Контакты</a></li>
+			</ul>
+		</nav>
+		<!-- end header menu - - - - - - - --> 
+
+		<!-- slider-section -->
+		<div class="m-slider-section">
+
+			<!-- project-topic -->
+			<div class="m-project-topic">
+				<p class="m-project-name portfolio-proj-name">{{portfolio.name}}</p>
+			</div>
+			<!-- project-topic -->
+			
+			<!-- slider -->
+			<div class="m-slider-wr">
+				<ul class="m-slider">
+					<li><img src="{{portfolio.images.0}}" alt="project"></li>
+					<li><img src="{{portfolio.images.0}}" alt="project"></li>
+					<li><img src="{{portfolio.images.0}}" alt="project"></li>
+					<li><img src="{{portfolio.images.0}}" alt="project"></li>
+				</ul>
+			</div>
+			<!-- end slider -->
+
+		</div>
+		<!-- end slider-section -->
+
+		<!-- project-description -->
+		<div class="m-project-description">
+			<div class="m-box">
+				<span>Дизайнер</span>
+				<p>{{portfolio.director}}</p>
+			</div>
+			<div class="m-box">
+				<span>Цена</span>
+				<p>12 000$</p>
+			</div>
+		</div>
+		<!-- project-description -->
+
+	</section>
+	<!-- modal content -->
+</div>
+<!-- Modal window PROJECT 

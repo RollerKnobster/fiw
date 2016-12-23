@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Главная</title>
+
+	<link rel="stylesheet" href="{{baseUrl()}}/css/mobile.css">
+	<link rel="stylesheet" href="{{baseUrl()}}/css/fontawesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="mbxslider/jquery.bxslider.css">
+</head>
+<body>
+	<section class="mobile-wrapper">
+
+		<!-- header menu -->
+		<nav class="m-menu">
+			<div class="menu-img">
+				<img src="image/mobile/menu.png" class="menu-open">
+				<img src="image/mobile/close.png" class="menu-close m-hidden">
+			</div>
+			<ul class="m-nav">
+				<li class="m-li active-li"><a href="#m-portfolio">Портфолио</a></li>
+				<li class="m-li"><a href="#m-about">О Нас</a></li>
+				<li class="m-li"><a href="#m-services">Услуги</a></li>
+				<li class="m-li"><a href="#m-contacts">Контакты</a></li>
+			</ul>
+		</nav>
+		<!-- end header menu - - - - - - - --> 
+		
+		<!-- header-logo -->
+		<div class="m-header">
+			<div class="m-logo"></div>
+		</div>
+		<!-- end header-logo -->
+
+		<!-- portfolio -->
+		<div class="m-portfolio" id="m-portfolio">
+			<!-- portfolio-wrapper -->
+			<div class="m-portfolio-wrapper">
+				{% for portfolio in portfolio_list|slice(0,5) %}
+				<!-- portfolio-block -->
+				<a href="javascript:void(0)" id="openMobileModal-{{loop.index}}">
+					<div class="m-portfolio-block">
+						<div class="m-left-block">
+							<img src="{{portfolio.images.0}}" alt="project">
+						</div>
+						<div class="m-right-block">
+							<div class="m-name-wr">
+								<p class="m-project-name">{{portfolio.name}}</p>
+							</div>
+							<p class="post">Дизайнер</p>
+							<p class="m-project-head">{{portfolio.director}}</p>
+						</div>
+					</div>
+				</a>
+				{% include "modal.project.html.twig" %}
+				<!-- portfolio-block -->
+				{% endfor %}
+			</div>
+			<!-- end portfolio-wrapper -->
+
+			<!-- resizer -->
+			<p class="m-resizer">Другие проекты...</p>
+			{% include "modal.portfolio.html.twig" %}
+			<!-- end resizer -->
+
+		</div>
+		<!-- end portfolio -->
+
+		<!-- about wrapper -->
+		<div class="m-about-wr" id="m-about">
+
+			<!-- company-text -->
+			<div class="m-company-text-wr">
+				<p>FORMA Interior Workshop</p>
+				<p class="m-company-text">Создание уникальных жилых интерьеров. Дизайн интерьер коттеджа, дома, квартиры. Мы работаем как в Киеве и во Львове, так и по всей территории Украины. Разработка стиля интерьера для кафе, ресторана, бутиков.</p> <!-- цей текст буде мінятись (верхній - нє) -->
+			</div>
+			<!-- end company-text -->
+	
+			<!-- about workers -->
+			<div class="m-box-wr">
+				<div class="m-photo-wr">	
+					<div class="m-worker-photo">
+						<img src="image/mobile/workers/worker1.png" alt="worker">
+					</div>
+				</div>
+				<div class="m-box-info">
+					<span>Дизайнер</span>
+					<p class="m-worker-name m-uppercase">Анастасия Немальцева</p>
+					<p class="m-worker-about">
+						Он конструирует мир для пользователя - удобный - симпатичный. Он знает, что сконструировано хорошо, а что плохо. Кому-то ведь нужно это решать. Основная задача професионала
+					</p>
+				</div>
+			</div>
+			<div class="m-box-wr">
+				<div class="m-photo-wr">	
+					<div class="m-worker-photo">
+						<img src="image/mobile/workers/worker2.png" alt="worker">
+					</div>
+				</div>
+				<div class="m-box-info">
+					<span>Дизайнер</span>
+					<p class="m-worker-name m-uppercase">Анастасия Немальцева</p>
+					<p class="m-worker-about">
+						Он конструирует мир для пользователя - удобный - симпатичный. Он знает, что сконструировано хорошо, а что плохо. Кому-то ведь нужно это решать. Основная задача професионала
+					</p>
+				</div>
+			</div>
+			<div class="m-box-wr">
+				<div class="m-photo-wr">	
+					<div class="m-worker-photo">
+						<img src="image/mobile/workers/worker3.png" alt="worker">
+					</div>
+				</div>
+				<div class="m-box-info">
+					<span>Дизайнер</span>
+					<p class="m-worker-name m-uppercase">Анастасия Немальцева</p>
+					<p class="m-worker-about">
+						Он конструирует мир для пользователя - удобный - симпатичный. Он знает, что сконструировано хорошо, а что плохо. Кому-то ведь нужно это решать. Основная задача професионала
+					</p>
+				</div>
+			</div>
+			<div class="m-box-wr">
+				<div class="m-photo-wr">	
+					<div class="m-worker-photo">
+						<img src="image/mobile/workers/worker1.png" alt="worker">
+					</div>
+				</div>
+				<div class="m-box-info">
+					<span>Дизайнер</span>
+					<p class="m-worker-name m-uppercase">Анастасия Немальцева</p>
+					<p class="m-worker-about">
+						Он конструирует мир для пользователя - удобный - симпатичный. Он знает, что сконструировано хорошо, а что плохо. Кому-то ведь нужно это решать. Основная задача професионала
+					</p>
+				</div>
+			</div>
+			<!-- end about workers -->
+		</div>
+		<!-- about wrapper -->
+
+		<!-- services-wrapper -->
+		<div class="m-services-wr" id="m-services">
+			<div class="m-box-wr">
+				<div class="m-photo-wr">
+					<div class="m-services-icon">
+						<img src="image/mobile/icon/lamp.svg">
+					</div>
+				</div>
+				<div class="m-box-info">
+					<div class="m-services-info">
+						<p class="m-services-name">Дизайн</p>
+						<p class="m-services-price">1200 грн</p>
+
+						<div class="etc">
+							<a href="javascript:void(0)" title="Подробнее">...</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="m-box-wr">
+				<div class="m-photo-wr">
+					<div class="m-services-icon">
+						<img src="image/mobile/icon/circle.svg">
+					</div>
+				</div>
+				<div class="m-box-info">
+					<div class="m-services-info">
+						<p class="m-services-name">Архитектура</p>
+						<p class="m-services-price">1200 грн</p>
+
+						<div class="etc">
+							<a href="javascript:void(0)" title="Подробнее">...</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="m-box-wr">
+				<div class="m-photo-wr">
+					<div class="m-services-icon">
+						<img src="image/mobile/icon/shpat.svg">
+					</div>
+				</div>
+				<div class="m-box-info">
+					<div class="m-services-info">
+						<p class="m-services-name">Строительство</p>
+						<p class="m-services-price">1200 грн</p>
+
+						<div class="etc">
+							<a href="javascript:void(0)" title="Подробнее">...</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="m-box-wr">
+				<div class="m-photo-wr">
+					<div class="m-services-icon">
+						<img src="image/mobile/icon/chair.svg">
+					</div>
+				</div>
+				<div class="m-box-info">
+					<div class="m-services-info">
+						<p class="m-services-name">Мебель</p>
+						<p class="m-services-price">1200 грн</p>
+						
+						<div class="etc">
+							<a href="javascript:void(0)" title="Подробнее">...</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		{% include "modal.services.html.twig" %}
+		<!-- end services-wrapper -->
+
+		<!-- contacts-wrapper -->
+		<div class="m-contacts-wr" id="m-contacts">
+			<!-- phone-box-wr -->
+			<div class="m-box-wr">
+				<div class="m-photo-wr cont-ph-wr">
+					<a href="tel:+380675551699">
+						<div class="m-contacts-icon">
+							<img src="image/mobile/icon/phone.svg">
+						</div>
+					</a>
+				</div>
+				<div class="m-box-info">
+					<div class="m-box-inner">
+						<p><a href="tel:+380675551699">+38 (067) 555 16 99</a></p>
+					</div>
+				</div>
+			</div>
+			<!-- phone-box-wr -->
+			
+			<!-- email-box-wr -->
+			<div class="m-box-wr">
+				<div class="m-photo-wr cont-ph-wr">
+					<a href="mailto:info@formainterior.com.ua">
+						<div class="m-contacts-icon">
+							<img src="image/mobile/icon/envelope.svg">
+						</div>
+					</a>
+				</div>
+				<div class="m-box-info">
+					<div class="m-box-inner">
+						<p>info@formainterior.com.ua</p>
+					</div>
+				</div>
+			</div>
+			<!-- email-box-wr -->
+			
+			<!-- location-box-wr -->
+			<div class="m-box-wr">
+				<div class="m-photo-wr cont-ph-wr">
+					<a href="https://www.google.com.ua/maps/place/%D0%B2%D1%83%D0%BB%D0%B8%D1%86%D1%8F+%D0%9E%D0%BB%D0%B5%D0%B3%D1%96%D0%B2%D1%81%D1%8C%D0%BA%D0%B0,+36,+%D0%9A%D0%B8%D1%97%D0%B2/@50.465938,30.5018042,17z/data=!3m1!4b1!4m5!3m4!1s0x40d4ce6c371a3817:0x91a64d5aff2ddd82!8m2!3d50.465938!4d30.5039929?hl=ru">
+						<div class="m-contacts-icon">
+							<img src="image/mobile/icon/home.svg">
+						</div>
+					</a>
+				</div>
+				<div class="m-box-info">
+					<div class="m-box-inner">
+						<p>г. Киев <br> ул. Олеговская, 36</p>
+					</div>
+				</div>
+			</div>
+			<!-- location-box-wr -->
+	
+			<!-- social-box-wr -->
+			<div class="m-box-wr">
+				<div class="m-social-wr">
+					<a href="">
+						<div class="m-icon-section">
+							<i class="fa fa-twitter"></i>
+						</div>
+					</a>
+					<a href="">
+						<div class="m-icon-section">
+							<i class="fa fa-pinterest-p"></i>
+						</div>
+					</a>
+					<a href="">
+						<div class="m-icon-section">
+							<i class="fa fa-facebook"></i>
+						</div>
+					</a>
+					<a href="">
+						<div class="m-icon-section">
+							<i class="fa fa-google-plus"></i>
+						</div>
+					</a>
+					<a href="">
+						<div class="m-icon-section">
+							<i class="fa fa-vk"></i>
+						</div>
+					</a>
+				</div>
+			</div>
+			<!-- social-box-wr -->
+		</div>
+		<!-- end contacts-wrapper -->
+	</section>
+
+
+	<script src="javascript/jquery.min.js"></script>
+	<script src="javascript/mobile.js"></script>
+	<script src="mbxslider/jquery.bxslider.js"></script>
+</body>
+</html>

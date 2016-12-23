@@ -60,6 +60,7 @@ $(document).ready(function(){
 	$('#slider_add_photo').on('change', function(e){
 
 		var formData = new FormData();
+
 		formData.append('image', e.target.files[0]);
 		formData.append('portfolio_id', parseInt($('#portfolio_id').val()));
 
@@ -269,3 +270,4 @@ function shadowMenu() {
 		$('.side-menu-li.active-li').prev().removeClass('box-shadow-r').addClass('box-shadow-rb');
 	}
 }
+
