@@ -26,7 +26,7 @@ $is_mobile = ($user_device->isMobile() || $user_device->isTablet() ? true : fals
 $app = new Slim([
 	'debug' => DEBUG,
 	'mode' => APP_MODE,
-	'templates.path' => implode(DIRECTORY_SEPARATOR, [APP_DIR, 'app', 'views']).($is_mobile ? DIRECTORY_SEPARATOR.'mobile' : ''),
+	'templates.path' => implode(DIRECTORY_SEPARATOR, [APP_DIR, 'app', 'Views']).($is_mobile ? DIRECTORY_SEPARATOR.'mobile' : ''),
 	'site_name' => 'Forma Interior Workshop',
 	'is_mobile' => $is_mobile
 	]);

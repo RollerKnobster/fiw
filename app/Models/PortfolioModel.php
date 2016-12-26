@@ -98,6 +98,7 @@ class PortfolioModel
 		$f_path = implode(DIRECTORY_SEPARATOR, [ROOT_DIR, 'uploads', 'portfolio', $portfolio->token]);
 
 		$img = new upload($_FILES['image']);
+		$img->file_overwrite = true;
 		if ($img->uploaded) {
 			$images = array_map('current', ORM::for_table('portfolio_images')
 				->select('filename')

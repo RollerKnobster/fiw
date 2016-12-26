@@ -89,6 +89,7 @@ class EmployerModel
 		$f_path = implode(DIRECTORY_SEPARATOR, [ROOT_DIR, 'uploads', 'employers', $employer->id]);
 
 		$img = new upload($_FILES['image']);
+		$img->file_overwrite = true;
 		if ($img->uploaded) {
 			$f_name = 'avatar';
 			$img->file_new_name_body = $f_name;

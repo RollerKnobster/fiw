@@ -29,6 +29,8 @@ class SliderModel
 		$main_slider = [];
 
 		foreach (scandir($this->slider_dir) as $img) {
+			if (in_array($img, ['.', '..']))
+				continue;
 			try{
 				getimagesize(implode(DIRECTORY_SEPARATOR, [$this->slider_dir, $img]));
 				$main_slider[preg_replace('/[^0-9]/', '', $img)] = $img;

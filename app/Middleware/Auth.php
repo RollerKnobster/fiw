@@ -2,6 +2,7 @@
 
 namespace FIW\Middleware;
 
+use Slim\Slim;
 use Slim\Middleware;
 use FIW\Models\UserModel;
 
@@ -14,8 +15,10 @@ class Auth extends Middleware
 		$login_route = $this->app->urlFor('admin_login_page');
 
 		if (strpos($current_route, '/admin') === 0) {
-			if ((new UserModel)->isAuthenticated() == false && $current_route != $login_route)
-				$this->app->redirect($login_route);
+			if ((new UserModel)->isAuthenticated() == false && $current_route != $login_route) {
+				$app = Slim::getInstance();
+				return $app->response()->redirect($login_route);
+			}
 		}
 
 		$this->next->call();
