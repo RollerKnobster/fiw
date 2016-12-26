@@ -99,27 +99,28 @@
 		<!-- services-wrapper -->
 		<div class="m-services-wr" id="m-services">
 			{% for service in services %}
-			<div class="m-box-wr">
-				<div class="m-photo-wr">
-					<div class="m-services-icon">
-						<img src="image/mobile/icon/{{service.slug}}.svg">
+			<!-- services-block -->
+				<div class="m-box-wr" id="openServicesModal-{{loop.index}}">
+					<div class="m-photo-wr">
+						<div class="m-services-icon">
+							<img src="image/mobile/icon/{{service.slug}}.svg">
+						</div>
 					</div>
-				</div>
-				<div class="m-box-info">
-					<div class="m-services-info">
-						<p class="m-services-name">{{service.name}}</p>
-						<p class="m-services-price">{{service.price}} грн</p>
+					<div class="m-box-info">
+						<div class="m-services-info">
+							<p class="m-services-name">{{service.name}}</p>
+							<p class="m-services-price">{{service.price}} грн</p>
 
-						<div class="etc">
-							<a href="javascript:void(0)" title="Подробнее">...</a>
+							<div class="etc">
+								<a href="javascript:void(0)" title="Подробнее">...</a>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
+			<!-- end services-block -->
 			{% include "modal.services.html.twig" %}
 			{% endfor %}
 		</div>
-
 		<!-- end services-wrapper -->
 
 		<!-- contacts-wrapper -->
@@ -136,9 +137,11 @@
 				</div>
 				<div class="m-box-info">
 					<div class="m-box-inner">
-						{% for phone in contacts.phones %}
-						<p><a href="tel:{{phone}}">{{phone}}</a></p>
-						{% endfor %}
+						<div class="center-div">
+							{% for phone in contacts.phones %}
+							<p><a href="tel:{{phone}}">{{phone}}</a></p>
+							{% endfor %}
+						</div>
 					</div>
 				</div>
 			</div>
@@ -157,11 +160,11 @@
 				</div>
 				<div class="m-box-info">
 					<div class="m-box-inner">
-						{% for email in contacts.emails %}
-						<p>
-							<a href="mailto:{{email}}">{{email}}</a>
-						</p>
-						{% endfor %}
+						<div class="center-div">
+							{% for email in contacts.emails %}
+							<p><a href="mailto:{{email}}">{{email}}</a></p>
+							{% endfor %}
+						</div>
 					</div>
 				</div>
 			</div>
@@ -180,9 +183,11 @@
 				</div>
 				<div class="m-box-info">
 					<div class="m-box-inner">
-						{% for address in contacts.address %}
-						<p>{{address}}</p>
-						{% endfor %}
+						<div class="center-div">
+							{% for address in contacts.address %}
+							<p>{{address}}</p>
+							{% endfor %}
+						</div> 
 					</div>
 				</div>
 			</div>

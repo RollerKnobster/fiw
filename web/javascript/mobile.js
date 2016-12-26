@@ -31,6 +31,12 @@ $(document).ready(function(){
 	// end header-menu
 
 	// portfolio resizer
+	$('.m-resizer').on('click', function(){
+		$('#modalPortfolio').css({
+			opacity: "1",
+			visibility: "visible"
+		});
+	});
 	// end portfolio resizer
 
 	// back btn
@@ -46,12 +52,6 @@ $(document).ready(function(){
 	$('.m-slider').bxSlider();
 	// end slider
 
-	$('.m-resizer').on('click', function(){
-		$('#modalPortfolio').css({
-			opacity: "1",
-			visibility: "visible"
-		});
-	});
 
 	$('.m-portfolio-block').on('click', function(){
 		var numId = $(this).parent().attr('id').replace(/[^0-9]/g, ''),
@@ -68,7 +68,14 @@ $(document).ready(function(){
 	});
 
 	$('.m-services-wr .m-box-wr').on('click', function(){
-		$('#servicesModal').css({
+		var numbId = $(this).attr('id').replace(/[^0-9]/g, ''),
+		self = $(this),
+		windModal = $('#servicesModal-'+numbId);	
+		
+		if (!numbId)
+			return false;
+
+		windModal.css({
 			opacity: "1",
 			visibility: "visible"
 		});

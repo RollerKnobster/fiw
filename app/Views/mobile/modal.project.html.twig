@@ -33,10 +33,10 @@
 			<!-- slider -->
 			<div class="m-slider-wr">
 				<ul class="m-slider">
-					<li><img src="{{portfolio.images.0}}" alt="project"></li>
-					<li><img src="{{portfolio.images.0}}" alt="project"></li>
-					<li><img src="{{portfolio.images.0}}" alt="project"></li>
-					<li><img src="{{portfolio.images.0}}" alt="project"></li>
+					{% for p_image in portfolio.images %}
+						<!-- <li><img src="{{portfolio.images.0}}" alt="project"></li> -->
+						<li><img src="{{baseUrl()}}{{p_image}}" alt="project"></li>
+					{% endfor %}
 				</ul>
 			</div>
 			<!-- end slider -->
@@ -52,7 +52,7 @@
 			</div>
 			<div class="m-box">
 				<span>Цена</span>
-				<p>12 000$</p>
+				<p>{{portfolio.price}}</p>
 			</div>
 		</div>
 		<!-- project-description -->

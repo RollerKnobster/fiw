@@ -261,7 +261,7 @@ $(document).ready(function(){
 
 function infoBox(text = 'Операция успешна!') {
 	$('.success-block').find('p').text(text);
-	$('.success-block').show();
+	$('.success-block').fadeIn(500).delay(2000).fadeOut(500);
 }
 
 function shadowMenu() {

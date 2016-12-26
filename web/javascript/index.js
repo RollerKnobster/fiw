@@ -107,13 +107,8 @@ $(document).ready(function(){
 			return false;
 			});
 	// end up-btn
-
-	// modal slider
-	// $(".big-img").bxSlider({
-	//   pagerCustom: ".small_pictures"
-	// });
-	// end modal slider
-	// Contacts---Contacts---Contacts---Contacts---Contacts---
+	
+// Contacts---Contacts---Contacts---Contacts---Contacts---
 
 	// MODAL WINDOW------------------
 	var modalWindow = $(".modal");

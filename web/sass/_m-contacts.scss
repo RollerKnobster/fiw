@@ -11,19 +11,20 @@
 		height: 93px;
 		border: 1px solid #a6876f;
 		position: relative;
+		display: table;
+		
+		.center-div {
+			display: table-cell;
+			vertical-align: middle;
+		}
 
 		p {
 			font-family: opensanslight;
 			font-size: 11px;
 			width: 100%;
-			color: #b7b7b7;
+			color: #fff;
 			line-height: 15px;
 			text-align: center;
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			-webkit-transform: translate(-50%, -50%);
-			transform: translate(-50%, -50%);
 		}
 	}
 

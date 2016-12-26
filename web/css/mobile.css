@@ -148,7 +148,7 @@ body {
   box-shadow: 0 15px 15px -12px #000;
   overflow: hidden;
   text-align: right;
-  z-index: 99999;
+  z-index: 1000;
 }
 /* line 92, ../sass/mobile.scss */
 .mobile-wrapper .m-menu .m-back {
@@ -158,7 +158,7 @@ body {
   left: 13px;
   top: 5px;
   cursor: pointer;
-  z-index: 99999;
+  z-index: 1000;
 }
 /* line 102, ../sass/mobile.scss */
 .mobile-wrapper .m-menu .menu-img {
@@ -169,11 +169,11 @@ body {
   top: 13px;
   /*background: url('../image/menu.png') center no-repeat;*/
   cursor: pointer;
-  z-index: 9999;
+  z-index: 1000;
 }
 /* line 112, ../sass/mobile.scss */
 .mobile-wrapper .m-menu .menu-img img {
-  z-index: 99999;
+  z-index: 1000;
 }
 /* line 117, ../sass/mobile.scss */
 .mobile-wrapper .m-menu .m-nav {
@@ -361,14 +361,19 @@ body {
   left: 0;
   top: 0;
   overflow: auto;
-  z-index: 88888;
+  z-index: 2000;
   -webkit-transition: opacity ease-in-out .5s, visibility ease-in-out .5s;
   transition: opacity ease-in-out .5s, visibility ease-in-out .5s;
 }
 
 /* line 317, ../sass/mobile.scss */
-.slider-modal, .services-modal, .portfolio-modal {
-  z-index: 99999;
+.services-modal, .portfolio-modal {
+  z-index: 3000;
+}
+
+/* line 321, ../sass/mobile.scss */
+.slider-modal {
+  z-index: 88888;
 }
 
 /*end modal window portfolio*/
@@ -388,7 +393,7 @@ body {
 .m-slider-section .m-project-topic {
   color: #fff;
   width: 100%;
-  height: auto;
+  height: 14px;
   text-align: center;
   font-size: 0;
   overflow: hidden;
@@ -440,12 +445,12 @@ body {
 }
 /* line 66, ../sass/_m-portfolio.scss */
 .m-slider-section .m-slider-wr .bx-wrapper .bx-controls-direction .bx-prev {
-  background: url("../image/slider-arrows/arrowprev.png") center no-repeat;
+  background: url("../image/mobile/arrowprev.png") center no-repeat;
   left: 8px;
 }
 /* line 71, ../sass/_m-portfolio.scss */
 .m-slider-section .m-slider-wr .bx-wrapper .bx-controls-direction .bx-next {
-  background: url("../image/slider-arrows/arrownext.png") center no-repeat;
+  background: url("../image/mobile/arrownext.png") center no-repeat;
   right: 8px;
 }
 
@@ -754,7 +759,7 @@ body {
   width: 100%;
   /*height: 109px;*/
   height: auto;
-  max-height: 250px;
+  /*max-height: 250px;*/
   overflow: hidden;
   margin-top: 10px;
 }
@@ -796,29 +801,30 @@ body {
   height: 93px;
   border: 1px solid #a6876f;
   position: relative;
+  display: table;
 }
-/* line 15, ../sass/_m-contacts.scss */
+/* line 16, ../sass/_m-contacts.scss */
+.m-contacts-wr .m-box-inner .center-div {
+  display: table-cell;
+  vertical-align: middle;
+}
+/* line 21, ../sass/_m-contacts.scss */
 .m-contacts-wr .m-box-inner p {
   font-family: opensanslight;
   font-size: 11px;
   width: 100%;
-  color: #b7b7b7;
+  color: #fff;
   line-height: 15px;
   text-align: center;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
 }
-/* line 30, ../sass/_m-contacts.scss */
+/* line 31, ../sass/_m-contacts.scss */
 .m-contacts-wr .m-social-wr {
   width: 100%;
   height: 100px;
   text-align: center;
   padding-top: 30px;
 }
-/* line 36, ../sass/_m-contacts.scss */
+/* line 37, ../sass/_m-contacts.scss */
 .m-contacts-wr .m-social-wr .m-icon-section {
   width: 37px;
   height: 37px;
@@ -832,25 +838,25 @@ body {
   -webkit-transition: color ease-in-out .1s, border-color ease-in-out .1s;
   transition: color ease-in-out .1s, border-color ease-in-out .1s;
 }
-/* line 49, ../sass/_m-contacts.scss */
+/* line 50, ../sass/_m-contacts.scss */
 .m-contacts-wr .m-social-wr .m-icon-section:hover {
   border-color: #47240d;
   color: #47240d;
 }
 
 @media only screen and (max-width: 480px) {
-  /* line 58, ../sass/_m-contacts.scss */
+  /* line 59, ../sass/_m-contacts.scss */
   .m-contacts-wr .m-box-inner {
     width: 175px;
   }
 }
 /*mobile about PAGE*/
 @media only screen and (max-width: 480px) {
-  /* line 348, ../sass/mobile.scss */
+  /* line 352, ../sass/mobile.scss */
   .mobile-wrapper .m-portfolio .m-portfolio-wrapper .m-portfolio-block {
     height: 105px;
   }
-  /* line 352, ../sass/mobile.scss */
+  /* line 356, ../sass/mobile.scss */
   .mobile-wrapper .m-portfolio .m-portfolio-wrapper .m-portfolio-block .m-right-block .m-name-wr {
     margin-top: 27px;
   }

@@ -87,7 +87,7 @@ body {
 		box-shadow: 0 15px 15px -12px #000;
 		overflow: hidden;
 		text-align: right;
-		z-index: 99999;
+		z-index: 1000;
 
 		.m-back {
 			width: 33px;
@@ -96,7 +96,7 @@ body {
 			left: 13px;
 			top: 5px;
 			cursor: pointer;
-			z-index: 99999;
+			z-index: 1000;
 		}
 
 		.menu-img {
@@ -107,10 +107,10 @@ body {
 			top: 13px;
 			/*background: url('../image/menu.png') center no-repeat;*/
 			cursor: pointer;
-			z-index: 9999;
+			z-index: 1000;
 
 			img {
-				z-index: 99999;
+				z-index: 1000;
 			}
 		}
 
@@ -309,13 +309,17 @@ body {
 	left: 0;
     top: 0;
     overflow: auto;
-    z-index: 88888;
+    z-index: 2000;
     -webkit-transition: opacity ease-in-out .5s, visibility ease-in-out .5s;
     transition: opacity ease-in-out .5s, visibility ease-in-out .5s;
 }
 
-.slider-modal, .services-modal, .portfolio-modal {
-	z-index: 99999;
+.services-modal, .portfolio-modal {
+	z-index: 3000;
+}
+
+.slider-modal {
+	z-index: 88888;
 }
 /*end modal window portfolio*/
 

@@ -1,5 +1,5 @@
 <!-- modal window SERVICES -->
-<div class="mobile-modal services-modal" id="servicesModal">
+<div class="mobile-modal services-modal" id="servicesModal-{{loop.index}}">
 	<!-- modal content -->
 	<section class="mobile-wrapper">
 
@@ -24,20 +24,20 @@
 		<div class="m-description-field">
 			<div class="m-description-topic">
 				<div class="m-services-icon m-description-icon">
-					<img src="image/mobile/icon/lamp.svg">
+					<img src="image/mobile/icon/{{service.slug}}.svg">
 				</div>
 				<div class="m-description-info">
-					<p class="m-services-name m-descr-name">Дизайн</p>
-					<p class="m-services-price m-descr-price">1200 грн</p>
+					<p class="m-services-name m-descr-name">{{service.name}}</p>
+					<p class="m-services-price m-descr-price">{{service.price}} грн</p>
 				</div>
 			</div>
 			<div class="m-services-img">
-				<img src="image/mobile/services/design.png">
+				<img src="{{baseUrl}}{{service.image}}">
 			</div>
-			<p class="m-services-text">При разработке достаточно сложного или крупного приложения необходимо уделять особое внимание проектированию и документированию его архитектурыю В DEVPROM есть отдельная фаза, которая называется архитектуры и дизайна. В DEVPROM можно загружать готовые модели или вставлять изображения подготовленых диаграмм. Это может быть особенно полезно. "Проектирование" в рамках которай участники проекта могут готовить соответствующие диаграммы или модели. Существует достаточно много инструментов для проектирования и документирования програмной архитектуры и дизайна. В DEVPROM можно загружать готовые модели ил/если не все участники проекта владеют или хотят устанавливать дополнительное ПО для просмотра диаграмм.</p>
+			<p class="m-services-text">{{service.description|raw}}</p>
 		</div>
 
 	</section>
 	<!-- end modal content -->
 </div>
-<!-- end modal winow SERVICES
+<!-- end modal winow SERVICES -->
