@@ -534,7 +534,7 @@ a {
 .admin-modal {
 	/*display: none;*/
     position: fixed;
-    z-index: 10;
+    z-index: 999999;
     padding-top: 100px;
     left: 0;
     top: 0;
@@ -542,7 +542,6 @@ a {
     height: 100%;
     overflow: auto;
     background-color: rgba(0,0,0,0.5);
-    /*z-index: 999999;*/
     -webkit-transition: opacity ease-in-out .2s, visibility ease-in-out .2s;
     transition: opacity ease-in-out .2s, visibility ease-in-out .2s;
 }

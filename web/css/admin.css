@@ -588,7 +588,7 @@ a {
 .admin-modal {
   /*display: none;*/
   position: fixed;
-  z-index: 10;
+  z-index: 999999;
   padding-top: 100px;
   left: 0;
   top: 0;
@@ -596,12 +596,11 @@ a {
   height: 100%;
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.5);
-  /*z-index: 999999;*/
   -webkit-transition: opacity ease-in-out .2s, visibility ease-in-out .2s;
   transition: opacity ease-in-out .2s, visibility ease-in-out .2s;
 }
 
-/* line 550, ../sass/admin.scss */
+/* line 549, ../sass/admin.scss */
 .admin-modal-wrapper {
   position: absolute;
   top: 50%;
@@ -610,7 +609,7 @@ a {
   transform: translate(-50%, -50%);
 }
 
-/* line 558, ../sass/admin.scss */
+/* line 557, ../sass/admin.scss */
 .admin-modal-content {
   width: 304px;
   height: 138px;
@@ -619,24 +618,24 @@ a {
   background: rgba(255, 255, 255, 0.8);
   padding: 17px 20px;
 }
-/* line 566, ../sass/admin.scss */
+/* line 565, ../sass/admin.scss */
 .admin-modal-content p {
   font-size: 12px;
   font-family: opensanslight;
   color: #6b6b6b;
 }
-/* line 572, ../sass/admin.scss */
+/* line 571, ../sass/admin.scss */
 .admin-modal-content .img-delete {
   width: 140px;
   height: 82px;
   margin-top: 8px;
 }
-/* line 577, ../sass/admin.scss */
+/* line 576, ../sass/admin.scss */
 .admin-modal-content .img-delete img {
   width: 100%;
   height: 100%;
 }
-/* line 583, ../sass/admin.scss */
+/* line 582, ../sass/admin.scss */
 .admin-modal-content .confirm-wrapper {
   position: absolute;
   width: 125px;
@@ -644,7 +643,7 @@ a {
   right: 8px;
   bottom: 17px;
 }
-/* line 590, ../sass/admin.scss */
+/* line 589, ../sass/admin.scss */
 .admin-modal-content .confirm-wrapper input {
   font-family: opensanslight;
   font-size: 10px;
@@ -662,7 +661,7 @@ a {
   box-shadow: 0px 3px 6px -2px rgba(0, 0, 0, 0.75);
   outline: none;
 }
-/* line 607, ../sass/admin.scss */
+/* line 606, ../sass/admin.scss */
 .admin-modal-content .confirm-wrapper input:active {
   background: #c9c9c9;
 }

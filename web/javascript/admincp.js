@@ -173,7 +173,7 @@ $(document).ready(function(){
 
 	$('#adminModal').on('click', '#noBtn', function(){
 		$('#adminModal').off('click', '#yesBtn');
-		$('#adminModal').removeClass('hidden');
+		$('#adminModal').addClass('hidden');
 	});
 
 	$('#remove_project').on('click', function(e){
