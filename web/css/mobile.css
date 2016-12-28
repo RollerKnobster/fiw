@@ -274,7 +274,7 @@ body {
   /*height: 105px;*/
   height: 135px;
   width: 100%;
-  margin-bottom: 2px;
+  margin-top: 2px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -330,15 +330,16 @@ body {
   margin-top: 8px;
   color: #838181;
   font-size: 8px;
+  font-family: opensanslight;
 }
-/* line 278, ../sass/mobile.scss */
+/* line 279, ../sass/mobile.scss */
 .mobile-wrapper .m-portfolio .m-portfolio-wrapper .m-portfolio-block .m-right-block .m-project-head {
   font-family: opensanslight;
-  margin: 0 auto 0 auto;
+  margin: 2px auto 0 auto;
   font-size: 10px;
   color: #a4a4a4;
 }
-/* line 288, ../sass/mobile.scss */
+/* line 289, ../sass/mobile.scss */
 .mobile-wrapper .m-portfolio .m-resizer {
   font-size: 8px;
   font-family: opensanslight;
@@ -350,7 +351,7 @@ body {
 }
 
 /*modal window portfolio*/
-/* line 302, ../sass/mobile.scss */
+/* line 303, ../sass/mobile.scss */
 .mobile-modal {
   opacity: 0;
   visibility: hidden;
@@ -366,12 +367,12 @@ body {
   transition: opacity ease-in-out .5s, visibility ease-in-out .5s;
 }
 
-/* line 317, ../sass/mobile.scss */
+/* line 318, ../sass/mobile.scss */
 .services-modal, .portfolio-modal {
   z-index: 3000;
 }
 
-/* line 321, ../sass/mobile.scss */
+/* line 322, ../sass/mobile.scss */
 .slider-modal {
   z-index: 88888;
 }
@@ -460,7 +461,7 @@ body {
   width: 100%;
   height: auto;
   color: #fff;
-  padding-top: 35px;
+  padding-top: 30px;
 }
 /* line 87, ../sass/_m-portfolio.scss */
 .m-project-description .m-box {
@@ -487,6 +488,50 @@ body {
 }
 
 /*project-description*/
+@media only screen and (min-width: 541px) and (max-width: 800px) {
+  /* line 116, ../sass/_m-portfolio.scss */
+  .m-slider-section .m-slider-wr .m-slider li {
+    height: 300px;
+  }
+
+  /* line 123, ../sass/_m-portfolio.scss */
+  .m-project-description {
+    margin-top: 13%;
+  }
+}
+@media only screen and (max-width: 540px) {
+  /* line 132, ../sass/_m-portfolio.scss */
+  .m-slider-section .m-slider-wr .m-slider li {
+    height: 260px;
+  }
+
+  /* line 139, ../sass/_m-portfolio.scss */
+  .m-project-description {
+    margin-top: 8%;
+  }
+}
+@media only screen and (max-width: 460px) {
+  /* line 148, ../sass/_m-portfolio.scss */
+  .m-slider-section .m-slider-wr .m-slider li {
+    height: 235px;
+  }
+
+  /* line 155, ../sass/_m-portfolio.scss */
+  .m-project-description {
+    margin-top: 5%;
+  }
+}
+@media only screen and (max-width: 380px) {
+  /* line 164, ../sass/_m-portfolio.scss */
+  .m-slider-section .m-slider-wr .m-slider li {
+    height: 222px;
+  }
+
+  /* line 171, ../sass/_m-portfolio.scss */
+  .m-project-description {
+    margin-top: 0;
+  }
+}
 /*mobile portfolio PAGE*/
 /*mobile about PAGE*/
 /* line 1, ../sass/_m-about.scss */
@@ -542,7 +587,7 @@ body {
 }
 /* line 50, ../sass/_m-about.scss */
 .m-box-wr .m-photo-wr {
-  width: 37%;
+  width: 33.5%;
 }
 /* line 53, ../sass/_m-about.scss */
 .m-box-wr .m-photo-wr .m-worker-photo {
@@ -561,8 +606,8 @@ body {
 }
 /* line 69, ../sass/_m-about.scss */
 .m-box-wr .m-box-info {
-  width: 63%;
-  padding: 5px 0 0 40px;
+  width: 66.5%;
+  padding: 5px 0 0 5px;
 }
 /* line 73, ../sass/_m-about.scss */
 .m-box-wr .m-box-info span {
@@ -583,25 +628,45 @@ body {
   content: '';
   display: block;
   position: absolute;
-  width: 155px;
+  /*width: 155px;*/
+  width: 80%;
   height: 1px;
   background: #a6876f;
   bottom: -5px;
 }
-/* line 97, ../sass/_m-about.scss */
+/* line 98, ../sass/_m-about.scss */
 .m-box-wr .m-box-info .m-worker-about {
   font-family: opensanslight;
   font-size: 6.7px;
   color: #aeaeae;
   margin-top: 15px;
-  width: 170px;
+  /*width: 170px;*/
+  width: 90%;
   line-height: 8.7px;
   text-align: justify;
 }
 
 /*end about workers*/
+@media only screen and (min-width: 481px) and (max-width: 640px) {
+  /* line 115, ../sass/_m-about.scss */
+  .m-about-wr .m-box-wr .m-box-info {
+    /*border: 1px solid blue;*/
+  }
+  /* line 118, ../sass/_m-about.scss */
+  .m-about-wr .m-box-wr .m-box-info span {
+    /*border: 1px solid red;*/
+  }
+  /* line 122, ../sass/_m-about.scss */
+  .m-about-wr .m-box-wr .m-box-info .m-worker-name {
+    /*border: 1px solid yellow;*/
+  }
+  /* line 126, ../sass/_m-about.scss */
+  .m-about-wr .m-box-wr .m-box-info .m-worker-about {
+    /*border: 1px solid silver;*/
+  }
+}
 @media only screen and (max-width: 480px) {
-  /* line 114, ../sass/_m-about.scss */
+  /* line 137, ../sass/_m-about.scss */
   .m-box-wr .m-box-info {
     padding-left: 5px;
   }
@@ -625,25 +690,30 @@ body {
   font-family: opensanslight;
   font-size: 11px;
   color: #fff;
+  width: 100%;
 }
-/* line 18, ../sass/_m-services.scss */
+/* line 17, ../sass/_m-services.scss */
+.m-services-wr .m-services-info p:after {
+  width: 80%;
+}
+/* line 23, ../sass/_m-services.scss */
 .m-services-wr .m-services-info .m-services-price {
   margin-top: 12px;
 }
-/* line 22, ../sass/_m-services.scss */
+/* line 27, ../sass/_m-services.scss */
 .m-services-wr .m-services-info .etc {
   position: absolute;
   bottom: 0;
   right: 10px;
 }
-/* line 27, ../sass/_m-services.scss */
+/* line 32, ../sass/_m-services.scss */
 .m-services-wr .m-services-info .etc a {
   font-size: 30px;
   color: #977b66;
   letter-spacing: -2px;
 }
 
-/* line 36, ../sass/_m-services.scss */
+/* line 41, ../sass/_m-services.scss */
 .m-services-name {
   width: 170px;
   height: 17px;
@@ -651,7 +721,7 @@ body {
   text-transform: uppercase;
   margin-top: 3px;
 }
-/* line 43, ../sass/_m-services.scss */
+/* line 48, ../sass/_m-services.scss */
 .m-services-name:after {
   content: '';
   display: block;
@@ -662,7 +732,7 @@ body {
   bottom: 0;
 }
 
-/* line 54, ../sass/_m-services.scss */
+/* line 59, ../sass/_m-services.scss */
 .m-services-icon, .m-contacts-icon {
   width: 82px;
   height: 82px;
@@ -671,7 +741,7 @@ body {
   margin: 0 auto;
   position: relative;
 }
-/* line 62, ../sass/_m-services.scss */
+/* line 67, ../sass/_m-services.scss */
 .m-services-icon:after, .m-contacts-icon:after {
   content: '';
   display: block;
@@ -685,7 +755,7 @@ body {
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-/* line 76, ../sass/_m-services.scss */
+/* line 81, ../sass/_m-services.scss */
 .m-services-icon img, .m-contacts-icon img {
   height: 40px;
   width: 28px;
@@ -851,13 +921,39 @@ body {
   }
 }
 /*mobile about PAGE*/
+@media only screen and (min-width: 481px) and (max-width: 800px) {
+  /* line 354, ../sass/mobile.scss */
+  .mobile-wrapper .m-portfolio .m-portfolio-wrapper .m-portfolio-block .m-right-block p {
+    font-size: 11px;
+  }
+  /* line 358, ../sass/mobile.scss */
+  .mobile-wrapper .m-portfolio .m-portfolio-wrapper .m-portfolio-block .m-right-block .post {
+    font-size: 11px;
+  }
+  /* line 362, ../sass/mobile.scss */
+  .mobile-wrapper .m-portfolio .m-portfolio-wrapper .m-portfolio-block .m-right-block .m-project-head {
+    font-size: 13px;
+  }
+}
 @media only screen and (max-width: 480px) {
-  /* line 352, ../sass/mobile.scss */
+  /* line 376, ../sass/mobile.scss */
   .mobile-wrapper .m-portfolio .m-portfolio-wrapper .m-portfolio-block {
     height: 105px;
   }
-  /* line 356, ../sass/mobile.scss */
+  /* line 380, ../sass/mobile.scss */
   .mobile-wrapper .m-portfolio .m-portfolio-wrapper .m-portfolio-block .m-right-block .m-name-wr {
     margin-top: 27px;
+  }
+  /* line 383, ../sass/mobile.scss */
+  .mobile-wrapper .m-portfolio .m-portfolio-wrapper .m-portfolio-block .m-right-block p {
+    font-size: 9px;
+  }
+  /* line 387, ../sass/mobile.scss */
+  .mobile-wrapper .m-portfolio .m-portfolio-wrapper .m-portfolio-block .m-right-block .post {
+    font-size: 9px;
+  }
+  /* line 391, ../sass/mobile.scss */
+  .mobile-wrapper .m-portfolio .m-portfolio-wrapper .m-portfolio-block .m-right-block .m-project-head {
+    font-size: 11px;
   }
 }

@@ -48,7 +48,7 @@
 	display: flex;
 
 	.m-photo-wr {
-		width: 37%;
+		width: 33.5%;
 
 		.m-worker-photo {
 			width: 97px;
@@ -67,8 +67,8 @@
 	}
 
 	.m-box-info {
-		width: 63%;
-		padding: 5px 0 0 40px;
+		width: 66.5%;
+		padding: 5px 0 0 5px;
 
 		span {
 			font-family: opensanslight;
@@ -87,7 +87,8 @@
 				content: '';
 				display: block;
 				position: absolute;
-				width: 155px;
+				/*width: 155px;*/
+				width: 80%;
 				height: 1px;
 				background: #a6876f;
 				bottom: -5px;
@@ -99,7 +100,8 @@
 			font-size: 6.7px;
 			color: #aeaeae;
 			margin-top: 15px;
-			width: 170px;
+			/*width: 170px;*/
+			width: 90%;
 			line-height: 8.7px;
 			text-align: justify;
 		}
@@ -107,6 +109,27 @@
 }
 /*end about workers*/
 
+@media only screen and (min-width: 481px ) and (max-width: 640px) {
+	.m-about-wr {
+		.m-box-wr {
+			.m-box-info {
+				/*border: 1px solid blue;*/
+
+				span {
+					/*border: 1px solid red;*/
+				}
+
+				.m-worker-name {
+					/*border: 1px solid yellow;*/
+				}
+
+				.m-worker-about {
+					/*border: 1px solid silver;*/
+				}
+			}
+		}
+	}
+}
 
 @media only screen and (max-width: 480px) {
 

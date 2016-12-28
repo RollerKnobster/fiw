@@ -12,6 +12,11 @@
 			font-family: opensanslight;
 			font-size: 11px;
 			color: #fff;
+			width: 100%;
+
+			&:after {
+				width: 80%;
+			}
 		}
 
 
