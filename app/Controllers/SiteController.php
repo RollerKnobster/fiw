@@ -24,7 +24,9 @@ class SiteController {
 	 */
 	public function indexAction(){
 
-		return $this->app->render('main.html.twig', [
+		$tpl_name = $this->app->container->settings['is_mobile'] == true ? '@mobile/main.html.twig' : 'main.html.twig';
+
+		return $this->app->render($tpl_name, [
 			'main_slider' => (new SliderModel)->listSlides(),
 			'portfolio_list' => (new PortfolioModel)->showAll(),
 			'employers_list' => (new EmployerModel)->showAll(),

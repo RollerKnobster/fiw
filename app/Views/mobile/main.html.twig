@@ -53,7 +53,7 @@
 						</div>
 					</div>
 				</a>
-				{% include "modal.project.html.twig" %}
+				{% include "@mobile/modal.project.html.twig" %}
 				<!-- portfolio-block -->
 				{% endfor %}
 			</div>
@@ -61,7 +61,7 @@
 
 			<!-- resizer -->
 			<p class="m-resizer">Другие проекты...</p>
-			{% include "modal.portfolio.html.twig" %}
+			{% include "@mobile/modal.portfolio.html.twig" %}
 			<!-- end resizer -->
 
 		</div>
@@ -118,7 +118,7 @@
 					</div>
 				</div>
 			<!-- end services-block -->
-			{% include "modal.services.html.twig" %}
+			{% include "@mobile/modal.services.html.twig" %}
 			{% endfor %}
 		</div>
 		<!-- end services-wrapper -->
@@ -187,7 +187,7 @@
 							{% for address in contacts.address %}
 							<p>{{address}}</p>
 							{% endfor %}
-						</div> 
+						</div>
 					</div>
 				</div>
 			</div>

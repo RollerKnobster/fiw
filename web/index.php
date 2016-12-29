@@ -26,7 +26,7 @@ $is_mobile = ($user_device->isMobile() || $user_device->isTablet() ? true : fals
 $app = new Slim([
 	'debug' => DEBUG,
 	'mode' => APP_MODE,
-	'templates.path' => implode(DIRECTORY_SEPARATOR, [APP_DIR, 'app', 'Views']).($is_mobile ? DIRECTORY_SEPARATOR.'mobile' : ''),
+	'templates.path' => implode(DIRECTORY_SEPARATOR, [APP_DIR, 'app', 'Views']),
 	'site_name' => 'Forma Interior Workshop',
 	'is_mobile' => $is_mobile
 	]);
@@ -38,6 +38,9 @@ $app->view->parserExtensions = array(
 	new \Slim\Views\TwigExtension(),
 	new \Twig_Extension_Debug(),
 );
+if ($is_mobile)
+	$app->view->getInstance()->getLoader()->addPath(implode(DIRECTORY_SEPARATOR, [APP_DIR, 'app', 'Views', 'mobile']), 'mobile');
+
 $app->add(new Auth);
 
 $app->view->setData(['app'=>$app->container->settings]);
