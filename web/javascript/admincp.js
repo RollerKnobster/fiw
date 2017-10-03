@@ -106,12 +106,12 @@ $(document).ready(function(){
 			infoBox('Перед добавлением фото сохраните проект!');
 		}
 
-		if ($('.project-slider-photoes .slider-box:not(:first)').length > 4) {
-			e.preventDefault();
-			e.stopPropagation();
+		// if ($('.project-slider-photoes .slider-box:not(:first)').length > 7) {
+		// 	e.preventDefault();
+		// 	e.stopPropagation();
 
-			infoBox('Не больше 5 слайдов на проект!');
-		}
+		// 	infoBox('Не больше 8 слайдов на проект!');
+		// }
 	});
 
 	$('.projects-wrapper').on('click', '.project-block', function(){

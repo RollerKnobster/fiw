@@ -65,7 +65,7 @@ class SliderModel
 		}
 		$image->setImageFormat('jpg');
 		$image->setImageBackgroundColor('white');
-		$image->setImageAlphaChannel(Imagick::ALPHACHANNEL_REMOVE);
+		$image->setImageAlphaChannel(11);
 		$image->mergeImageLayers(Imagick::LAYERMETHOD_FLATTEN);
 		$image->setCompression(Imagick::COMPRESSION_JPEG);
 		$image->setImageCompressionQuality(90);

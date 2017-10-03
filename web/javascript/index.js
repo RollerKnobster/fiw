@@ -89,9 +89,9 @@ $(document).ready(function(){
 // Services---Services---Services---Services---Services---
 
 // Contacts---Contacts---Contacts---Contacts---Contacts---
-	$(".parallax-layer").parallax({
-		imageSrc: 'image/parallax/parallax.png'
-	});
+	// $(".parallax-layer").parallax({
+	// 	imageSrc: 'image/parallax/parallax.png'
+	// });
 
 	// up-btn
 		$(window).scroll(function(){

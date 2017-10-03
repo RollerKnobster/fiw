@@ -297,8 +297,10 @@ body {
 /* line 241, ../sass/mobile.scss */
 .mobile-wrapper .m-portfolio .m-portfolio-wrapper .m-portfolio-block .m-left-block img {
   width: 100%;
-  height: auto;
+  height: 100%;
   min-height: 105px;
+  background-position: center bottom;
+  background-repeat: no-repeat;
 }
 /* line 248, ../sass/mobile.scss */
 .mobile-wrapper .m-portfolio .m-portfolio-wrapper .m-portfolio-block .m-right-block {
@@ -591,11 +593,11 @@ body {
 }
 /* line 53, ../sass/_m-about.scss */
 .m-box-wr .m-photo-wr .m-worker-photo {
-  width: 97px;
-  height: 97px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   border: 1px solid #343434;
-  margin: 0 auto;
+  margin-right: 5%;
 }
 /* line 60, ../sass/_m-about.scss */
 .m-box-wr .m-photo-wr .m-worker-photo img {
@@ -603,6 +605,8 @@ body {
   height: 100%;
   border-radius: 50%;
   border: 2px solid #111111;
+  object-fit: cover; /* Do not scale the image */
+  object-position: top; /* Center the image within the element */
 }
 /* line 69, ../sass/_m-about.scss */
 .m-box-wr .m-box-info {

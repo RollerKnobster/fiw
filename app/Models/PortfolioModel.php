@@ -99,6 +99,10 @@ class PortfolioModel
 
 		$img = new upload($_FILES['image']);
 		$img->file_overwrite = true;
+		$img->image_resize = true;
+		$img->image_ratio_crop = true;
+		$img->image_x = 920;
+		$img->image_y = 460;
 		if ($img->uploaded) {
 			$images = array_map('current', ORM::for_table('portfolio_images')
 				->select('filename')

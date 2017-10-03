@@ -26,14 +26,14 @@ $(document).ready(function(){
 
 	// PORTFOLIO PAGE--------------------------------------------------------
 
-		// add project-block div 
+		// add project-block div
 		$(".add-project-block").click(function(){
-			
+
 			var countOfProjectBlocks = $(".project-block-wrapper").length;
-			
+
 			$(".wr").children().eq(countOfProjectBlocks-1).after($('<div class="project-block-wrapper"><div class="project-block"><img src="s" alt=""><div class="project-block-hover"><div class="project-block-icon"></div></div></div></div>'));
 		});
-		// add project-block div 
+		// add project-block div
 
 		$(".project-block-wrapper").click(function(){
 			var arrProjectBlocks = $(".project-block-wrapper");
@@ -46,10 +46,10 @@ $(document).ready(function(){
 
 			if ($(this).find(".project-block-hover").hasClass("visible")) {
 				$(this).find(".project-block-hover").removeClass("visible");
-				
+
 				$(".project-description input").addClass("hidden");
 				$(".project-slider-photoes").addClass("hidden");
-			
+
 			} else {
 				for (var i = 0; i < arrProjectBlocks.length; i++) {
 					if ($(arrProjectBlocks[i]).find(".project-block-hover").hasClass("visible")) {
@@ -82,7 +82,7 @@ $(document).ready(function(){
 		} else {
 			$(".slider-add-box").css("display", "inline-block");
 		}
-		
+
 		$(".slider-add-box").click(function(){
 			$(".project-slider-photoes").children().eq(countOfSliderBoxes-1).after($('<div class="slider-box"><img src="" alt="slider-photo"><div class="slider-box-hover"><div class="box-hover-icon"></div></div></div>'));
 		});
@@ -99,7 +99,7 @@ $(document).ready(function(){
 	// Get the button that opens the modal
 	var modalBtn1 = $(".slide-block, .slider-box");
 
-	// When the user clicks on the button, open the modal 
+	// When the user clicks on the button, open the modal
 	$(modalBtn1).click(function(){
 		$(".admin-modal").removeClass("hidden");
 	});

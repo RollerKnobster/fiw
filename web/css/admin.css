@@ -983,7 +983,7 @@ a {
   padding-top: 7px;
   float: right;
   position: relative;
-  overflow-y: hidden;
+  overflow-y: scroll;
 }
 /* line 199, ../sass/_portfolio.scss */
 .project-about .project-description-wrapper .project-slider-photoes .slider-box, .project-about .project-description-wrapper .project-slider-photoes .slider-add-box {
@@ -1051,9 +1051,10 @@ a {
 /* line 264, ../sass/_portfolio.scss */
 .project-about .project-description-wrapper .project-slider-photoes .buttons-wrapper {
   padding-right: 25px;
-  position: absolute;
+  position: relative;
   bottom: 2px;
   right: 0;
+  text-align: right;
 }
 /* line 270, ../sass/_portfolio.scss */
 .project-about .project-description-wrapper .project-slider-photoes .buttons-wrapper input {
@@ -1191,7 +1192,7 @@ a {
 .workers-wrapper .workers-block-wrapper {
   width: 900px;
   height: 100%;
-  /*overflow-y: scroll;*/
+  overflow-y: scroll;
   /*overflow-x: hidden;*/
 }
 /* line 106, ../sass/_about.scss */

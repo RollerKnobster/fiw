@@ -12,9 +12,16 @@ use Slim\Slim;
 use FIW\Middleware\Auth;
 
 /* config ORM */
+/*
 ORM::configure('mysql:host=localhost;dbname='.DB_NAME);
 ORM::configure('username', DB_USER);
 ORM::configure('password', DB_PASSWORD);
+*/
+ORM::configure('mysql:host=db19.freehost.com.ua;dbname=fiw_main');
+ORM::configure('username', 'fiw_main');
+ORM::configure('password', '6SBuIys9G');
+
+
 ORM::configure('driver_options', array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
 ORM::configure('caching', true);
 ORM::configure('caching_auto_clear', true);
@@ -30,7 +37,6 @@ $app = new Slim([
 	'site_name' => 'Forma Interior Workshop',
 	'is_mobile' => $is_mobile
 	]);
-
 $app->view = new \Slim\Views\Twig();
 $app->view->setTemplatesDirectory($app->container->settings['templates.path']);
 $app->view->parserOptions['debug'] = $app->container->settings['debug'];
@@ -44,7 +50,6 @@ if ($is_mobile)
 $app->add(new Auth);
 
 $app->view->setData(['app'=>$app->container->settings]);
-
 $app->get('/', 'FIW\Controllers\SiteController:indexAction')->name('home');
 
 $app->get('/admin', 'FIW\Controllers\AdminController:indexAction')->name('admin_index');
@@ -76,3 +81,5 @@ $app->post('/admin/contacts/save', 'FIW\Controllers\AdminController:contactsSave
 $app->post('/admin/login', 'FIW\Controllers\AdminController:authAction')->name('admin_auth');
 
 $app->run();
+
+?>

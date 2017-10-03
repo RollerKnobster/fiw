@@ -18,7 +18,7 @@
 				<img src="{{baseUrl()}}/image/mobile/menu.png" class="menu-open">
 				<img src="{{baseUrl()}}/image/mobile/close.png" class="menu-close m-hidden">
 			</div>
-			<ul class="m-nav">
+			<ul class="m-nav m-hidden">
 				<li class="m-li active-li"><a href="#m-portfolio">Портфолио</a></li>
 				<li class="m-li"><a href="#m-about">О Нас</a></li>
 				<li class="m-li"><a href="#m-services">Услуги</a></li>
@@ -37,7 +37,7 @@
 		<div class="m-portfolio" id="m-portfolio">
 			<!-- portfolio-wrapper -->
 			<div class="m-portfolio-wrapper">
-				{% for portfolio in portfolio_list|slice(0,5) %}
+				{% for portfolio in portfolio_list %}
 				<!-- portfolio-block -->
 				<a href="javascript:void(0)" id="openMobileModal-{{loop.index}}">
 					<div class="m-portfolio-block">
@@ -60,7 +60,6 @@
 			<!-- end portfolio-wrapper -->
 
 			<!-- resizer -->
-			<p class="m-resizer">Другие проекты...</p>
 			{% include "@mobile/modal.portfolio.html.twig" %}
 			<!-- end resizer -->
 

@@ -12,7 +12,7 @@ class Auth extends Middleware
 	public function call()
 	{
 		$current_route = $this->app->request()->getResourceUri();
-		$login_route = $this->app->urlFor('admin_login_page');
+		$login_route = str_replace('/web/', '/', $this->app->urlFor('admin_login_page'));
 
 		if (strpos($current_route, '/admin') === 0) {
 			if ((new UserModel)->isAuthenticated() == false && $current_route != $login_route) {

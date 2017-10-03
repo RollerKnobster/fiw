@@ -16,12 +16,14 @@ $(document).ready(function(){
 		$('.m-menu').addClass('m-menu-active');
 		$('.menu-open').addClass('m-hidden');
 		$('.menu-close').removeClass('m-hidden');
+		$('.m-menu .m-nav').removeClass('m-hidden');
 	});
 
 	$('.menu-close, a').click(function(){
 		$('.m-menu').removeClass('m-menu-active');
 		$('.menu-open').removeClass('m-hidden');
 		$('.menu-close').addClass('m-hidden');
+		$('.m-menu .m-nav').addClass('m-hidden');
 	});
 
 	$('.m-nav').on('click', '.m-li', function(e){

@@ -103,7 +103,7 @@
 		<div class="section-topic">
 			<span>Портфолио</span>
 		</div>
-		<div class="portfolio-block-wrapper">
+		<div class="portfolio-block-wrapper" style="text-align:center">
 			{% for portfolio in portfolio_list %}
 			<a href="javascript:void(0)" id="openModal-{{loop.index}}">
 				<div class="portfolio-block" style="background-image:url('{{portfolio.images.0}}')">
@@ -120,28 +120,7 @@
 				</div>
 			</a>
 			{% include "modal.portfolio.html.twig" %}
-			{% if loop.index == 6 %}
-		</div>
-		<div class="portfolio-resizer portfolio-open-projects">
-			<a href="javascript:void(0)">
-				<div class="portfolio-resizer-text open-projects">
-					<p>Смотреть другие проекты...</p>
-				</div>
-			</a>
-		</div>
-		<div class="portfolio-block-wrapper portfolio-block-hidden">
-			{% endif %}
-			{% if loop.last and loop.index >= 6 %}
-		</div>
-			{% endif %}
 			{% endfor %}
-		</div>
-		<div class="portfolio-resizer portfolio-close-projects resizer-hidden">
-			<a href="javascript:void(0)">
-				<div class="portfolio-resizer-text close-projects">
-					<p>Закрыть</p>
-				</div>
-			</a>
 		</div>
 	</div>
 </section>
@@ -157,7 +136,7 @@
 			<p class="main-text">{{about_us|raw}}</p>
 		</div>
 		<div class="about-workers">
-			{% for employer in employers_list %}
+			{% for employer in employers_list if employer.name %}
 			<div class="workers-block" style="background-image:url('{{baseUrl()}}{{employer.photo}}')">
 				<div class="workers-hover-block">
 					<div class="top-text">
@@ -223,9 +202,9 @@
 <!-- - - - - - CONTACTS - - - - - -->
 <section class="contacts" id="contacts">
 	<div class="container-large">
-		<div class="parallax-layer" data-parallax="scroll" data-image-src="image/parallax/parallax.png">
+		<div class="parallax-layer" data-parallax="scroll">
 			<div class="container">
-				<div class="section-topic white-line">
+				<div class="section-topic white-line white-topic">
 					<span>Контакты</span>
 				</div>
 				<div class="contact-links">
